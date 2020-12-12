@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 5 Cleaning Data in R | R Programming for Business</title>
+  <meta name="description" content="Module 5 Cleaning Data in R | R Programming for Business" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 5 Cleaning Data in R | R Programming for Business" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 5 Cleaning Data in R | R Programming for Business" />
+  
+  
+  
+
+<meta name="author" content="Iain Webb" />
+
+
+<meta name="date" content="2020-12-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-manipulation-with-dplyr.html"/>
+<link rel="next" href="introduction-to-data-visualization-with-ggplot2.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Wonderland</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#intro-to-basics"><i class="fa fa-check"></i><b>1.1</b> Intro to basics</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#how-it-works"><i class="fa fa-check"></i><b>1.1.1</b> How it works</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#arithmetic-with-r"><i class="fa fa-check"></i><b>1.1.2</b> Arithmetic with R</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#variable-assignment"><i class="fa fa-check"></i><b>1.1.3</b> Variable assignment</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#variable-assignment-2"><i class="fa fa-check"></i><b>1.1.4</b> Variable assignment (2)</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#variable-assignment-3"><i class="fa fa-check"></i><b>1.1.5</b> Variable assignment (3)</a></li>
+<li class="chapter" data-level="1.1.6" data-path="index.html"><a href="index.html#apples-and-oranges"><i class="fa fa-check"></i><b>1.1.6</b> Apples and oranges</a></li>
+<li class="chapter" data-level="1.1.7" data-path="index.html"><a href="index.html#basic-data-types-in-r"><i class="fa fa-check"></i><b>1.1.7</b> Basic data types in R</a></li>
+<li class="chapter" data-level="1.1.8" data-path="index.html"><a href="index.html#whats-the-data-type"><i class="fa fa-check"></i><b>1.1.8</b> What’s the data type?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#vectors"><i class="fa fa-check"></i><b>1.2</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#create-a-vector"><i class="fa fa-check"></i><b>1.2.1</b> Create a vector</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#create-a-vector-2"><i class="fa fa-check"></i><b>1.2.2</b> Create a vector (2)</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#create-a-vector-3"><i class="fa fa-check"></i><b>1.2.3</b> Create a vector (3)</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#naming-a-vector"><i class="fa fa-check"></i><b>1.2.4</b> Naming a vector</a></li>
+<li class="chapter" data-level="1.2.5" data-path="index.html"><a href="index.html#naming-a-vector-2"><i class="fa fa-check"></i><b>1.2.5</b> Naming a vector (2)</a></li>
+<li class="chapter" data-level="1.2.6" data-path="index.html"><a href="index.html#calculating-total-winnings"><i class="fa fa-check"></i><b>1.2.6</b> Calculating total winnings</a></li>
+<li class="chapter" data-level="1.2.7" data-path="index.html"><a href="index.html#calculating-total-winnings-2"><i class="fa fa-check"></i><b>1.2.7</b> Calculating total winnings (2)</a></li>
+<li class="chapter" data-level="1.2.8" data-path="index.html"><a href="index.html#calculating-total-winnings-3"><i class="fa fa-check"></i><b>1.2.8</b> Calculating total winnings (3)</a></li>
+<li class="chapter" data-level="1.2.9" data-path="index.html"><a href="index.html#comparing-total-winnings"><i class="fa fa-check"></i><b>1.2.9</b> Comparing total winnings</a></li>
+<li class="chapter" data-level="1.2.10" data-path="index.html"><a href="index.html#vector-selection-the-good-times"><i class="fa fa-check"></i><b>1.2.10</b> Vector selection: the good times</a></li>
+<li class="chapter" data-level="1.2.11" data-path="index.html"><a href="index.html#vector-selection-the-good-times-2"><i class="fa fa-check"></i><b>1.2.11</b> Vector selection: the good times (2)</a></li>
+<li class="chapter" data-level="1.2.12" data-path="index.html"><a href="index.html#vector-selection-the-good-times-3"><i class="fa fa-check"></i><b>1.2.12</b> Vector selection: the good times (3)</a></li>
+<li class="chapter" data-level="1.2.13" data-path="index.html"><a href="index.html#vector-selection-the-good-times-4"><i class="fa fa-check"></i><b>1.2.13</b> Vector selection: the good times (4)</a></li>
+<li class="chapter" data-level="1.2.14" data-path="index.html"><a href="index.html#selection-by-comparison---step-1"><i class="fa fa-check"></i><b>1.2.14</b> Selection by comparison - Step 1</a></li>
+<li class="chapter" data-level="1.2.15" data-path="index.html"><a href="index.html#selection-by-comparison---step-2"><i class="fa fa-check"></i><b>1.2.15</b> Selection by comparison - Step 2</a></li>
+<li class="chapter" data-level="1.2.16" data-path="index.html"><a href="index.html#advanced-selection"><i class="fa fa-check"></i><b>1.2.16</b> Advanced selection</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#matrices"><i class="fa fa-check"></i><b>1.3</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#whats-a-matrix"><i class="fa fa-check"></i><b>1.3.1</b> What’s a matrix?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#analyze-matrices-you-shall"><i class="fa fa-check"></i><b>1.3.2</b> Analyze matrices, you shall</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#naming-a-matrix"><i class="fa fa-check"></i><b>1.3.3</b> Naming a matrix</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#calculating-the-worldwide-box-office"><i class="fa fa-check"></i><b>1.3.4</b> Calculating the worldwide box office</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#using-dimnames"><i class="fa fa-check"></i><b>1.3.5</b> Using dimnames()</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#adding-a-column-for-the-worldwide-box-office"><i class="fa fa-check"></i><b>1.3.6</b> Adding a column for the Worldwide box office</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#adding-a-row"><i class="fa fa-check"></i><b>1.3.7</b> Adding a row</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#the-total-box-office-revenue-for-the-entire-saga"><i class="fa fa-check"></i><b>1.3.8</b> The total box office revenue for the entire saga</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#selection-of-matrix-elements"><i class="fa fa-check"></i><b>1.3.9</b> Selection of matrix elements</a></li>
+<li class="chapter" data-level="1.3.10" data-path="index.html"><a href="index.html#a-little-arithmetic-with-matrices"><i class="fa fa-check"></i><b>1.3.10</b> A little arithmetic with matrices</a></li>
+<li class="chapter" data-level="1.3.11" data-path="index.html"><a href="index.html#a-little-arithmetic-with-matrices-2"><i class="fa fa-check"></i><b>1.3.11</b> A little arithmetic with matrices (2)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#factors"><i class="fa fa-check"></i><b>1.4</b> Factors</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it"><i class="fa fa-check"></i><b>1.4.1</b> What’s a factor and why would you use it?</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it-2"><i class="fa fa-check"></i><b>1.4.2</b> What’s a factor and why would you use it? (2)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it-3"><i class="fa fa-check"></i><b>1.4.3</b> What’s a factor and why would you use it? (3)</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#factor-levels"><i class="fa fa-check"></i><b>1.4.4</b> Factor levels</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#summarizing-a-factor"><i class="fa fa-check"></i><b>1.4.5</b> Summarizing a factor</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#battle-of-the-sexes"><i class="fa fa-check"></i><b>1.4.6</b> Battle of the sexes</a></li>
+<li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#ordered-factors"><i class="fa fa-check"></i><b>1.4.7</b> Ordered factors</a></li>
+<li class="chapter" data-level="1.4.8" data-path="index.html"><a href="index.html#ordered-factors-2"><i class="fa fa-check"></i><b>1.4.8</b> Ordered factors (2)</a></li>
+<li class="chapter" data-level="1.4.9" data-path="index.html"><a href="index.html#comparing-ordered-factors"><i class="fa fa-check"></i><b>1.4.9</b> Comparing ordered factors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#data-frames"><i class="fa fa-check"></i><b>1.5</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#whats-a-data-frame"><i class="fa fa-check"></i><b>1.5.1</b> What’s a data frame?</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#quick-have-a-look-at-your-data-set"><i class="fa fa-check"></i><b>1.5.2</b> Quick, have a look at your data set</a></li>
+<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#have-a-look-at-the-structure"><i class="fa fa-check"></i><b>1.5.3</b> Have a look at the structure</a></li>
+<li class="chapter" data-level="1.5.4" data-path="index.html"><a href="index.html#creating-a-data-frame"><i class="fa fa-check"></i><b>1.5.4</b> Creating a data frame</a></li>
+<li class="chapter" data-level="1.5.5" data-path="index.html"><a href="index.html#creating-a-data-frame-2"><i class="fa fa-check"></i><b>1.5.5</b> Creating a data frame (2)</a></li>
+<li class="chapter" data-level="1.5.6" data-path="index.html"><a href="index.html#selection-of-data-frame-elements"><i class="fa fa-check"></i><b>1.5.6</b> Selection of data frame elements</a></li>
+<li class="chapter" data-level="1.5.7" data-path="index.html"><a href="index.html#selection-of-data-frame-elements-2"><i class="fa fa-check"></i><b>1.5.7</b> Selection of data frame elements (2)</a></li>
+<li class="chapter" data-level="1.5.8" data-path="index.html"><a href="index.html#only-planets-with-rings"><i class="fa fa-check"></i><b>1.5.8</b> Only planets with rings</a></li>
+<li class="chapter" data-level="1.5.9" data-path="index.html"><a href="index.html#only-planets-with-rings-2"><i class="fa fa-check"></i><b>1.5.9</b> Only planets with rings (2)</a></li>
+<li class="chapter" data-level="1.5.10" data-path="index.html"><a href="index.html#only-planets-with-rings-but-shorter"><i class="fa fa-check"></i><b>1.5.10</b> Only planets with rings but shorter</a></li>
+<li class="chapter" data-level="1.5.11" data-path="index.html"><a href="index.html#sorting"><i class="fa fa-check"></i><b>1.5.11</b> Sorting</a></li>
+<li class="chapter" data-level="1.5.12" data-path="index.html"><a href="index.html#sorting-your-data-frame"><i class="fa fa-check"></i><b>1.5.12</b> Sorting your data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#lists"><i class="fa fa-check"></i><b>1.6</b> Lists</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#lists-why-would-you-need-them"><i class="fa fa-check"></i><b>1.6.1</b> Lists, why would you need them?</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#lists-why-would-you-need-them-2"><i class="fa fa-check"></i><b>1.6.2</b> Lists, why would you need them? (2)</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#creating-a-list"><i class="fa fa-check"></i><b>1.6.3</b> Creating a list</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#creating-a-named-list"><i class="fa fa-check"></i><b>1.6.4</b> Creating a named list</a></li>
+<li class="chapter" data-level="1.6.5" data-path="index.html"><a href="index.html#creating-a-named-list-2"><i class="fa fa-check"></i><b>1.6.5</b> Creating a named list (2)</a></li>
+<li class="chapter" data-level="1.6.6" data-path="index.html"><a href="index.html#selecting-elements-from-a-list"><i class="fa fa-check"></i><b>1.6.6</b> Selecting elements from a list</a></li>
+<li class="chapter" data-level="1.6.7" data-path="index.html"><a href="index.html#creating-a-new-list-for-another-movie"><i class="fa fa-check"></i><b>1.6.7</b> Creating a new list for another movie</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#challenge"><i class="fa fa-check"></i><b>1.7</b> Challenge</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#solutions"><i class="fa fa-check"></i><b>1.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intermediate-r.html"><a href="intermediate-r.html"><i class="fa fa-check"></i><b>2</b> Intermediate R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intermediate-r.html"><a href="intermediate-r.html#conditionals-and-control-flow"><i class="fa fa-check"></i><b>2.1</b> Conditionals and Control Flow</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-relational-operators"><i class="fa fa-check"></i><b>2.1.1</b> Video: Relational Operators</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intermediate-r.html"><a href="intermediate-r.html#equality"><i class="fa fa-check"></i><b>2.1.2</b> Equality</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intermediate-r.html"><a href="intermediate-r.html#greater-and-less-than"><i class="fa fa-check"></i><b>2.1.3</b> Greater and less than</a></li>
+<li class="chapter" data-level="2.1.4" data-path="intermediate-r.html"><a href="intermediate-r.html#compare-vectors"><i class="fa fa-check"></i><b>2.1.4</b> Compare vectors</a></li>
+<li class="chapter" data-level="2.1.5" data-path="intermediate-r.html"><a href="intermediate-r.html#compare-matrices"><i class="fa fa-check"></i><b>2.1.5</b> Compare matrices</a></li>
+<li class="chapter" data-level="2.1.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-logical-operators"><i class="fa fa-check"></i><b>2.1.6</b> Video: Logical Operators</a></li>
+<li class="chapter" data-level="2.1.7" data-path="intermediate-r.html"><a href="intermediate-r.html#and"><i class="fa fa-check"></i><b>2.1.7</b> &amp; and |</a></li>
+<li class="chapter" data-level="2.1.8" data-path="intermediate-r.html"><a href="intermediate-r.html#and-2"><i class="fa fa-check"></i><b>2.1.8</b> &amp; and | (2)</a></li>
+<li class="chapter" data-level="2.1.9" data-path="intermediate-r.html"><a href="intermediate-r.html#question-reverse-the-result"><i class="fa fa-check"></i><b>2.1.9</b> Question: Reverse the result: !</a></li>
+<li class="chapter" data-level="2.1.10" data-path="intermediate-r.html"><a href="intermediate-r.html#blend-it-all-together"><i class="fa fa-check"></i><b>2.1.10</b> Blend it all together</a></li>
+<li class="chapter" data-level="2.1.11" data-path="intermediate-r.html"><a href="intermediate-r.html#video-conditional-statements"><i class="fa fa-check"></i><b>2.1.11</b> Video: Conditional Statements</a></li>
+<li class="chapter" data-level="2.1.12" data-path="intermediate-r.html"><a href="intermediate-r.html#the-if-statement"><i class="fa fa-check"></i><b>2.1.12</b> The if statement</a></li>
+<li class="chapter" data-level="2.1.13" data-path="intermediate-r.html"><a href="intermediate-r.html#add-an-else"><i class="fa fa-check"></i><b>2.1.13</b> Add an else</a></li>
+<li class="chapter" data-level="2.1.14" data-path="intermediate-r.html"><a href="intermediate-r.html#customize-further-else-if"><i class="fa fa-check"></i><b>2.1.14</b> Customize further: else if</a></li>
+<li class="chapter" data-level="2.1.15" data-path="intermediate-r.html"><a href="intermediate-r.html#question-else-if-2.0"><i class="fa fa-check"></i><b>2.1.15</b> Question: Else if 2.0</a></li>
+<li class="chapter" data-level="2.1.16" data-path="intermediate-r.html"><a href="intermediate-r.html#take-control"><i class="fa fa-check"></i><b>2.1.16</b> Take control!</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intermediate-r.html"><a href="intermediate-r.html#loops"><i class="fa fa-check"></i><b>2.2</b> Loops</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-while-loop"><i class="fa fa-check"></i><b>2.2.1</b> Video: While loop</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intermediate-r.html"><a href="intermediate-r.html#write-a-while-loop"><i class="fa fa-check"></i><b>2.2.2</b> Write a while loop</a></li>
+<li class="chapter" data-level="2.2.3" data-path="intermediate-r.html"><a href="intermediate-r.html#throw-in-more-conditionals"><i class="fa fa-check"></i><b>2.2.3</b> Throw in more conditionals</a></li>
+<li class="chapter" data-level="2.2.4" data-path="intermediate-r.html"><a href="intermediate-r.html#stop-the-while-loop-break"><i class="fa fa-check"></i><b>2.2.4</b> Stop the while loop: break</a></li>
+<li class="chapter" data-level="2.2.5" data-path="intermediate-r.html"><a href="intermediate-r.html#build-a-while-loop-from-scratch"><i class="fa fa-check"></i><b>2.2.5</b> Build a while loop from scratch</a></li>
+<li class="chapter" data-level="2.2.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-for-loop"><i class="fa fa-check"></i><b>2.2.6</b> Video: For loop</a></li>
+<li class="chapter" data-level="2.2.7" data-path="intermediate-r.html"><a href="intermediate-r.html#loop-over-a-list"><i class="fa fa-check"></i><b>2.2.7</b> Loop over a list</a></li>
+<li class="chapter" data-level="2.2.8" data-path="intermediate-r.html"><a href="intermediate-r.html#loop-over-a-matrix"><i class="fa fa-check"></i><b>2.2.8</b> Loop over a matrix</a></li>
+<li class="chapter" data-level="2.2.9" data-path="intermediate-r.html"><a href="intermediate-r.html#mix-it-up-with-control-flow"><i class="fa fa-check"></i><b>2.2.9</b> Mix it up with control flow</a></li>
+<li class="chapter" data-level="2.2.10" data-path="intermediate-r.html"><a href="intermediate-r.html#next-you-break-it"><i class="fa fa-check"></i><b>2.2.10</b> Next, you break it</a></li>
+<li class="chapter" data-level="2.2.11" data-path="intermediate-r.html"><a href="intermediate-r.html#build-a-for-loop-from-scratch"><i class="fa fa-check"></i><b>2.2.11</b> Build a for loop from scratch</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intermediate-r.html"><a href="intermediate-r.html#functions"><i class="fa fa-check"></i><b>2.3</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-introduction-to-functions"><i class="fa fa-check"></i><b>2.3.1</b> Video: Introduction to functions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intermediate-r.html"><a href="intermediate-r.html#function-documentation"><i class="fa fa-check"></i><b>2.3.2</b> Function documentation</a></li>
+<li class="chapter" data-level="2.3.3" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function"><i class="fa fa-check"></i><b>2.3.3</b> Use a function</a></li>
+<li class="chapter" data-level="2.3.4" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function-2"><i class="fa fa-check"></i><b>2.3.4</b> Use a function (2)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function-3"><i class="fa fa-check"></i><b>2.3.5</b> Use a function (3)</a></li>
+<li class="chapter" data-level="2.3.6" data-path="intermediate-r.html"><a href="intermediate-r.html#functions-inside-functions"><i class="fa fa-check"></i><b>2.3.6</b> Functions inside functions</a></li>
+<li class="chapter" data-level="2.3.7" data-path="intermediate-r.html"><a href="intermediate-r.html#question-required-or-optional"><i class="fa fa-check"></i><b>2.3.7</b> Question: Required, or optional?</a></li>
+<li class="chapter" data-level="2.3.8" data-path="intermediate-r.html"><a href="intermediate-r.html#video-writing-functions"><i class="fa fa-check"></i><b>2.3.8</b> Video: Writing functions</a></li>
+<li class="chapter" data-level="2.3.9" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function"><i class="fa fa-check"></i><b>2.3.9</b> Write your own function</a></li>
+<li class="chapter" data-level="2.3.10" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function-2"><i class="fa fa-check"></i><b>2.3.10</b> Write your own function (2)</a></li>
+<li class="chapter" data-level="2.3.11" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function-3"><i class="fa fa-check"></i><b>2.3.11</b> Write your own function (3)</a></li>
+<li class="chapter" data-level="2.3.12" data-path="intermediate-r.html"><a href="intermediate-r.html#question-function-scoping"><i class="fa fa-check"></i><b>2.3.12</b> Question: Function scoping</a></li>
+<li class="chapter" data-level="2.3.13" data-path="intermediate-r.html"><a href="intermediate-r.html#question-r-passes-arguments-by-value"><i class="fa fa-check"></i><b>2.3.13</b> Question: R passes arguments by value</a></li>
+<li class="chapter" data-level="2.3.14" data-path="intermediate-r.html"><a href="intermediate-r.html#r-you-functional"><i class="fa fa-check"></i><b>2.3.14</b> R you functional?</a></li>
+<li class="chapter" data-level="2.3.15" data-path="intermediate-r.html"><a href="intermediate-r.html#r-you-functional-2"><i class="fa fa-check"></i><b>2.3.15</b> R you functional? (2)</a></li>
+<li class="chapter" data-level="2.3.16" data-path="intermediate-r.html"><a href="intermediate-r.html#video-r-packages"><i class="fa fa-check"></i><b>2.3.16</b> Video: R packages</a></li>
+<li class="chapter" data-level="2.3.17" data-path="intermediate-r.html"><a href="intermediate-r.html#load-an-r-package"><i class="fa fa-check"></i><b>2.3.17</b> Load an R Package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intermediate-r.html"><a href="intermediate-r.html#the-apply-family"><i class="fa fa-check"></i><b>2.4</b> The apply family</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-a-built-in-r-function"><i class="fa fa-check"></i><b>2.4.1</b> Use lapply with a built-in R function</a></li>
+<li class="chapter" data-level="2.4.2" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-your-own-function"><i class="fa fa-check"></i><b>2.4.2</b> Use lapply with your own function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="intermediate-r.html"><a href="intermediate-r.html#lapply-and-anonymous-functions"><i class="fa fa-check"></i><b>2.4.3</b> lapply and anonymous functions</a></li>
+<li class="chapter" data-level="2.4.4" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-additional-arguments"><i class="fa fa-check"></i><b>2.4.4</b> Use lapply with additional arguments</a></li>
+<li class="chapter" data-level="2.4.5" data-path="intermediate-r.html"><a href="intermediate-r.html#apply-functions-that-return-null"><i class="fa fa-check"></i><b>2.4.5</b> Apply functions that return NULL</a></li>
+<li class="chapter" data-level="2.4.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-sapply"><i class="fa fa-check"></i><b>2.4.6</b> Video: sapply()</a></li>
+<li class="chapter" data-level="2.4.7" data-path="intermediate-r.html"><a href="intermediate-r.html#how-to-use-sapply"><i class="fa fa-check"></i><b>2.4.7</b> How to use sapply</a></li>
+<li class="chapter" data-level="2.4.8" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-your-own-function"><i class="fa fa-check"></i><b>2.4.8</b> sapply with your own function</a></li>
+<li class="chapter" data-level="2.4.9" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-function-returning-vector"><i class="fa fa-check"></i><b>2.4.9</b> sapply with function returning vector</a></li>
+<li class="chapter" data-level="2.4.10" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-cant-simplify-now-what"><i class="fa fa-check"></i><b>2.4.10</b> sapply can’t simplify, now what?</a></li>
+<li class="chapter" data-level="2.4.11" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-functions-that-return-null"><i class="fa fa-check"></i><b>2.4.11</b> sapply with functions that return NULL</a></li>
+<li class="chapter" data-level="2.4.12" data-path="intermediate-r.html"><a href="intermediate-r.html#reverse-engineering-sapply"><i class="fa fa-check"></i><b>2.4.12</b> Reverse engineering sapply</a></li>
+<li class="chapter" data-level="2.4.13" data-path="intermediate-r.html"><a href="intermediate-r.html#video-vapply"><i class="fa fa-check"></i><b>2.4.13</b> Video: vapply</a></li>
+<li class="chapter" data-level="2.4.14" data-path="intermediate-r.html"><a href="intermediate-r.html#use-vapply"><i class="fa fa-check"></i><b>2.4.14</b> Use vapply</a></li>
+<li class="chapter" data-level="2.4.15" data-path="intermediate-r.html"><a href="intermediate-r.html#use-vapply-2"><i class="fa fa-check"></i><b>2.4.15</b> Use vapply (2)</a></li>
+<li class="chapter" data-level="2.4.16" data-path="intermediate-r.html"><a href="intermediate-r.html#from-sapply-to-vapply"><i class="fa fa-check"></i><b>2.4.16</b> From sapply to vapply</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intermediate-r.html"><a href="intermediate-r.html#utilities"><i class="fa fa-check"></i><b>2.5</b> Utilities</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-useful-functions"><i class="fa fa-check"></i><b>2.5.1</b> Video: Useful functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intermediate-r.html"><a href="intermediate-r.html#mathematical-utilities"><i class="fa fa-check"></i><b>2.5.2</b> Mathematical utilities</a></li>
+<li class="chapter" data-level="2.5.3" data-path="intermediate-r.html"><a href="intermediate-r.html#find-the-error"><i class="fa fa-check"></i><b>2.5.3</b> Find the error</a></li>
+<li class="chapter" data-level="2.5.4" data-path="intermediate-r.html"><a href="intermediate-r.html#data-utilities"><i class="fa fa-check"></i><b>2.5.4</b> Data Utilities</a></li>
+<li class="chapter" data-level="2.5.5" data-path="intermediate-r.html"><a href="intermediate-r.html#find-the-error-2"><i class="fa fa-check"></i><b>2.5.5</b> Find the error (2)</a></li>
+<li class="chapter" data-level="2.5.6" data-path="intermediate-r.html"><a href="intermediate-r.html#beat-gauss-using-r"><i class="fa fa-check"></i><b>2.5.6</b> Beat Gauss using R</a></li>
+<li class="chapter" data-level="2.5.7" data-path="intermediate-r.html"><a href="intermediate-r.html#video-regular-expressions"><i class="fa fa-check"></i><b>2.5.7</b> Video: Regular expressions</a></li>
+<li class="chapter" data-level="2.5.8" data-path="intermediate-r.html"><a href="intermediate-r.html#grepl-grep"><i class="fa fa-check"></i><b>2.5.8</b> grepl &amp; grep</a></li>
+<li class="chapter" data-level="2.5.9" data-path="intermediate-r.html"><a href="intermediate-r.html#grepl-grep-2"><i class="fa fa-check"></i><b>2.5.9</b> grepl &amp; grep (2)</a></li>
+<li class="chapter" data-level="2.5.10" data-path="intermediate-r.html"><a href="intermediate-r.html#sub-gsub"><i class="fa fa-check"></i><b>2.5.10</b> sub &amp; gsub</a></li>
+<li class="chapter" data-level="2.5.11" data-path="intermediate-r.html"><a href="intermediate-r.html#sub-gsub-2"><i class="fa fa-check"></i><b>2.5.11</b> sub &amp; gsub (2)</a></li>
+<li class="chapter" data-level="2.5.12" data-path="intermediate-r.html"><a href="intermediate-r.html#video-times-dates"><i class="fa fa-check"></i><b>2.5.12</b> Video: Times &amp; Dates</a></li>
+<li class="chapter" data-level="2.5.13" data-path="intermediate-r.html"><a href="intermediate-r.html#right-here-right-now"><i class="fa fa-check"></i><b>2.5.13</b> Right here, right now</a></li>
+<li class="chapter" data-level="2.5.14" data-path="intermediate-r.html"><a href="intermediate-r.html#create-and-format-dates"><i class="fa fa-check"></i><b>2.5.14</b> Create and format dates</a></li>
+<li class="chapter" data-level="2.5.15" data-path="intermediate-r.html"><a href="intermediate-r.html#create-and-format-times"><i class="fa fa-check"></i><b>2.5.15</b> Create and format times</a></li>
+<li class="chapter" data-level="2.5.16" data-path="intermediate-r.html"><a href="intermediate-r.html#calculations-with-dates"><i class="fa fa-check"></i><b>2.5.16</b> Calculations with Dates</a></li>
+<li class="chapter" data-level="2.5.17" data-path="intermediate-r.html"><a href="intermediate-r.html#calculations-with-times"><i class="fa fa-check"></i><b>2.5.17</b> Calculations with Times</a></li>
+<li class="chapter" data-level="2.5.18" data-path="intermediate-r.html"><a href="intermediate-r.html#time-is-of-the-essence"><i class="fa fa-check"></i><b>2.5.18</b> Time is of the essence</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html#getting-started-with-r-markdown"><i class="fa fa-check"></i><b>3.1</b> Getting started with R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-markdown.html"><a href="r-markdown.html#video-introduction-to-r-markdown"><i class="fa fa-check"></i><b>3.1.1</b> Video: Introduction to R Markdown</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-markdown.html"><a href="r-markdown.html#creating-your-first-r-markdown-file"><i class="fa fa-check"></i><b>3.1.2</b> Creating your first R Markdown file</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-markdown.html"><a href="r-markdown.html#adding-code-chunks-to-your-file"><i class="fa fa-check"></i><b>3.1.3</b> Adding code chunks to your file</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-markdown.html"><a href="r-markdown.html#video-adding-and-formatting-text"><i class="fa fa-check"></i><b>3.1.4</b> Video: Adding and formatting text</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-markdown.html"><a href="r-markdown.html#question-formatting-text"><i class="fa fa-check"></i><b>3.1.5</b> Question: Formatting text</a></li>
+<li class="chapter" data-level="3.1.6" data-path="r-markdown.html"><a href="r-markdown.html#adding-sections-to-your-report"><i class="fa fa-check"></i><b>3.1.6</b> Adding sections to your report</a></li>
+<li class="chapter" data-level="3.1.7" data-path="r-markdown.html"><a href="r-markdown.html#question-including-links-and-images"><i class="fa fa-check"></i><b>3.1.7</b> Question: Including links and images</a></li>
+<li class="chapter" data-level="3.1.8" data-path="r-markdown.html"><a href="r-markdown.html#video-the-yaml-header"><i class="fa fa-check"></i><b>3.1.8</b> Video: The YAML header</a></li>
+<li class="chapter" data-level="3.1.9" data-path="r-markdown.html"><a href="r-markdown.html#editing-the-yaml-header"><i class="fa fa-check"></i><b>3.1.9</b> Editing the YAML header</a></li>
+<li class="chapter" data-level="3.1.10" data-path="r-markdown.html"><a href="r-markdown.html#formatting-the-date"><i class="fa fa-check"></i><b>3.1.10</b> Formatting the date</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-markdown.html"><a href="r-markdown.html#adding-analyses-and-visualizations"><i class="fa fa-check"></i><b>3.2</b> Adding Analyses and Visualizations</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-markdown.html"><a href="r-markdown.html#video-analyzing-the-data"><i class="fa fa-check"></i><b>3.2.1</b> Video: Analyzing the data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-markdown.html"><a href="r-markdown.html#filtering-for-a-specific-country"><i class="fa fa-check"></i><b>3.2.2</b> Filtering for a specific country</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-markdown.html"><a href="r-markdown.html#filtering-for-a-specific-year"><i class="fa fa-check"></i><b>3.2.3</b> Filtering for a specific year</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-markdown.html"><a href="r-markdown.html#referencing-code-results-in-the-report"><i class="fa fa-check"></i><b>3.2.4</b> Referencing code results in the report</a></li>
+<li class="chapter" data-level="3.2.5" data-path="r-markdown.html"><a href="r-markdown.html#video-adding-plots"><i class="fa fa-check"></i><b>3.2.5</b> Video: Adding plots</a></li>
+<li class="chapter" data-level="3.2.6" data-path="r-markdown.html"><a href="r-markdown.html#visualizing-the-investment-annual-summary-data"><i class="fa fa-check"></i><b>3.2.6</b> Visualizing the Investment Annual Summary data</a></li>
+<li class="chapter" data-level="3.2.7" data-path="r-markdown.html"><a href="r-markdown.html#visualizing-all-projects-for-one-country"><i class="fa fa-check"></i><b>3.2.7</b> Visualizing all projects for one country</a></li>
+<li class="chapter" data-level="3.2.8" data-path="r-markdown.html"><a href="r-markdown.html#visualizing-all-projects-for-one-country-and-year"><i class="fa fa-check"></i><b>3.2.8</b> Visualizing all projects for one country and year</a></li>
+<li class="chapter" data-level="3.2.9" data-path="r-markdown.html"><a href="r-markdown.html#video-plot-options"><i class="fa fa-check"></i><b>3.2.9</b> Video: Plot options</a></li>
+<li class="chapter" data-level="3.2.10" data-path="r-markdown.html"><a href="r-markdown.html#setting-chunk-options-globally"><i class="fa fa-check"></i><b>3.2.10</b> Setting chunk options globally</a></li>
+<li class="chapter" data-level="3.2.11" data-path="r-markdown.html"><a href="r-markdown.html#setting-chunk-options-locally"><i class="fa fa-check"></i><b>3.2.11</b> Setting chunk options locally</a></li>
+<li class="chapter" data-level="3.2.12" data-path="r-markdown.html"><a href="r-markdown.html#adding-figure-captions"><i class="fa fa-check"></i><b>3.2.12</b> Adding figure captions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-markdown.html"><a href="r-markdown.html#improving-the-report"><i class="fa fa-check"></i><b>3.3</b> Improving the Report</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-markdown.html"><a href="r-markdown.html#video-organizing-the-report"><i class="fa fa-check"></i><b>3.3.1</b> Video: Organizing the report</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-bulleted-list"><i class="fa fa-check"></i><b>3.3.2</b> Creating a bulleted list</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-numbered-list"><i class="fa fa-check"></i><b>3.3.3</b> Creating a numbered list</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-markdown.html"><a href="r-markdown.html#adding-a-table"><i class="fa fa-check"></i><b>3.3.4</b> Adding a table</a></li>
+<li class="chapter" data-level="3.3.5" data-path="r-markdown.html"><a href="r-markdown.html#video-code-chunk-options"><i class="fa fa-check"></i><b>3.3.5</b> Video: Code chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="r-markdown.html"><a href="r-markdown.html#question-comparing-code-chunk-options"><i class="fa fa-check"></i><b>3.3.6</b> Question: Comparing code chunk options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="r-markdown.html"><a href="r-markdown.html#collapsing-blocks-in-the-knit-report"><i class="fa fa-check"></i><b>3.3.7</b> Collapsing blocks in the knit report</a></li>
+<li class="chapter" data-level="3.3.8" data-path="r-markdown.html"><a href="r-markdown.html#modifying-the-report-using-include-and-echo"><i class="fa fa-check"></i><b>3.3.8</b> Modifying the report using include and echo</a></li>
+<li class="chapter" data-level="3.3.9" data-path="r-markdown.html"><a href="r-markdown.html#video-warnings-messages-and-errors"><i class="fa fa-check"></i><b>3.3.9</b> Video: Warnings, messages, and errors</a></li>
+<li class="chapter" data-level="3.3.10" data-path="r-markdown.html"><a href="r-markdown.html#excluding-messages"><i class="fa fa-check"></i><b>3.3.10</b> Excluding messages</a></li>
+<li class="chapter" data-level="3.3.11" data-path="r-markdown.html"><a href="r-markdown.html#excluding-warnings"><i class="fa fa-check"></i><b>3.3.11</b> Excluding warnings</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-report"><i class="fa fa-check"></i><b>3.4</b> Customizing the Report</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-markdown.html"><a href="r-markdown.html#video-adding-a-table-of-contents"><i class="fa fa-check"></i><b>3.4.1</b> Video: Adding a table of contents</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-markdown.html"><a href="r-markdown.html#adding-the-table-of-contents"><i class="fa fa-check"></i><b>3.4.2</b> Adding the table of contents</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-markdown.html"><a href="r-markdown.html#specifying-headers-and-number-sectioning"><i class="fa fa-check"></i><b>3.4.3</b> Specifying headers and number sectioning</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-markdown.html"><a href="r-markdown.html#adding-table-of-contents-options"><i class="fa fa-check"></i><b>3.4.4</b> Adding table of contents options</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-markdown.html"><a href="r-markdown.html#video-creating-a-report-with-a-parameter"><i class="fa fa-check"></i><b>3.4.5</b> Video: Creating a report with a parameter</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-markdown.html"><a href="r-markdown.html#adding-a-parameter-to-the-report"><i class="fa fa-check"></i><b>3.4.6</b> Adding a parameter to the report</a></li>
+<li class="chapter" data-level="3.4.7" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-report-using-a-parameter"><i class="fa fa-check"></i><b>3.4.7</b> Creating a new report using a parameter</a></li>
+<li class="chapter" data-level="3.4.8" data-path="r-markdown.html"><a href="r-markdown.html#video-multiple-parameters"><i class="fa fa-check"></i><b>3.4.8</b> Video: Multiple parameters</a></li>
+<li class="chapter" data-level="3.4.9" data-path="r-markdown.html"><a href="r-markdown.html#adding-multiple-parameters-to-the-report"><i class="fa fa-check"></i><b>3.4.9</b> Adding multiple parameters to the report</a></li>
+<li class="chapter" data-level="3.4.10" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-report-using-multiple-parameters"><i class="fa fa-check"></i><b>3.4.10</b> Creating a new report using multiple parameters</a></li>
+<li class="chapter" data-level="3.4.11" data-path="r-markdown.html"><a href="r-markdown.html#video-customizing-the-report"><i class="fa fa-check"></i><b>3.4.11</b> Video: Customizing the report</a></li>
+<li class="chapter" data-level="3.4.12" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-report-style"><i class="fa fa-check"></i><b>3.4.12</b> Customizing the report style</a></li>
+<li class="chapter" data-level="3.4.13" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-header-and-table-of-contents"><i class="fa fa-check"></i><b>3.4.13</b> Customizing the header and table of contents</a></li>
+<li class="chapter" data-level="3.4.14" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-title-author-and-date"><i class="fa fa-check"></i><b>3.4.14</b> Customizing the title, author, and date</a></li>
+<li class="chapter" data-level="3.4.15" data-path="r-markdown.html"><a href="r-markdown.html#referencing-the-css-file"><i class="fa fa-check"></i><b>3.4.15</b> Referencing the CSS file</a></li>
+<li class="chapter" data-level="3.4.16" data-path="r-markdown.html"><a href="r-markdown.html#video-congratulations"><i class="fa fa-check"></i><b>3.4.16</b> Video: Congratulations!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#transforming-data-with-dplyr"><i class="fa fa-check"></i><b>4.1</b> Transforming Data with dplyr</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-counties-dataset"><i class="fa fa-check"></i><b>4.1.1</b> Video: The counties dataset</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-understanding-your-data"><i class="fa fa-check"></i><b>4.1.2</b> Question: Understanding your data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-columns"><i class="fa fa-check"></i><b>4.1.3</b> Selecting columns</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-filter-and-arrange-verbs"><i class="fa fa-check"></i><b>4.1.4</b> Video: The filter and arrange verbs</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arranging-observations"><i class="fa fa-check"></i><b>4.1.5</b> Arranging observations</a></li>
+<li class="chapter" data-level="4.1.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filtering-for-conditions"><i class="fa fa-check"></i><b>4.1.6</b> Filtering for conditions</a></li>
+<li class="chapter" data-level="4.1.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filtering-and-arranging"><i class="fa fa-check"></i><b>4.1.7</b> Filtering and arranging</a></li>
+<li class="chapter" data-level="4.1.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-mutate"><i class="fa fa-check"></i><b>4.1.8</b> Video: Mutate</a></li>
+<li class="chapter" data-level="4.1.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#calculating-the-number-of-government-employees"><i class="fa fa-check"></i><b>4.1.9</b> Calculating the number of government employees</a></li>
+<li class="chapter" data-level="4.1.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#calculating-the-percentage-of-women-in-a-county"><i class="fa fa-check"></i><b>4.1.10</b> Calculating the percentage of women in a county</a></li>
+<li class="chapter" data-level="4.1.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select-mutate-filter-and-arrange"><i class="fa fa-check"></i><b>4.1.11</b> Select, mutate, filter, and arrange</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>4.2</b> Aggregating Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-count-verb"><i class="fa fa-check"></i><b>4.2.1</b> Video: The count verb</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#counting-by-region"><i class="fa fa-check"></i><b>4.2.2</b> Counting by region</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#counting-citizens-by-state"><i class="fa fa-check"></i><b>4.2.3</b> Counting citizens by state</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutating-and-counting"><i class="fa fa-check"></i><b>4.2.4</b> Mutating and counting</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-group-by-summarize-and-ungroup-verbs"><i class="fa fa-check"></i><b>4.2.5</b> Video: The group by, summarize and ungroup verbs</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-by-state"><i class="fa fa-check"></i><b>4.2.6</b> Summarizing by state</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-by-state-and-region"><i class="fa fa-check"></i><b>4.2.7</b> Summarizing by state and region</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-top_n-verb"><i class="fa fa-check"></i><b>4.2.8</b> Video: The top_n verb</a></li>
+<li class="chapter" data-level="4.2.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-a-county-from-each-region"><i class="fa fa-check"></i><b>4.2.9</b> Selecting a county from each region</a></li>
+<li class="chapter" data-level="4.2.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#finding-the-highest-income-state-in-each-region"><i class="fa fa-check"></i><b>4.2.10</b> Finding the highest-income state in each region</a></li>
+<li class="chapter" data-level="4.2.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-summarize-top_n-and-count-together"><i class="fa fa-check"></i><b>4.2.11</b> Using summarize, top_n, and count together</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-and-transforming-data"><i class="fa fa-check"></i><b>4.3</b> Selecting and Transforming Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-selecting"><i class="fa fa-check"></i><b>4.3.1</b> Video: Selecting</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-columns-1"><i class="fa fa-check"></i><b>4.3.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select-helpers"><i class="fa fa-check"></i><b>4.3.3</b> Select helpers</a></li>
+<li class="chapter" data-level="4.3.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-rename-verb"><i class="fa fa-check"></i><b>4.3.4</b> Video: The rename verb</a></li>
+<li class="chapter" data-level="4.3.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#renaming-a-column-after-count"><i class="fa fa-check"></i><b>4.3.5</b> Renaming a column after count</a></li>
+<li class="chapter" data-level="4.3.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#renaming-a-column-as-part-of-a-select"><i class="fa fa-check"></i><b>4.3.6</b> Renaming a column as part of a select</a></li>
+<li class="chapter" data-level="4.3.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-transmute-verb"><i class="fa fa-check"></i><b>4.3.7</b> Video: The transmute verb</a></li>
+<li class="chapter" data-level="4.3.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-choosing-among-verbs"><i class="fa fa-check"></i><b>4.3.8</b> Question: Choosing among verbs</a></li>
+<li class="chapter" data-level="4.3.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-transmute"><i class="fa fa-check"></i><b>4.3.9</b> Using transmute</a></li>
+<li class="chapter" data-level="4.3.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-matching-verbs-to-their-definitions"><i class="fa fa-check"></i><b>4.3.10</b> Question: Matching verbs to their definitions</a></li>
+<li class="chapter" data-level="4.3.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#choosing-among-the-four-verbs"><i class="fa fa-check"></i><b>4.3.11</b> Choosing among the four verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#case-study-the-babynames-dataset"><i class="fa fa-check"></i><b>4.4</b> Case Study: The babynames Dataset</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-babynames-data"><i class="fa fa-check"></i><b>4.4.1</b> Video: The babynames data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filtering-and-arranging-for-one-year"><i class="fa fa-check"></i><b>4.4.2</b> Filtering and arranging for one year</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-top_n-with-babynames"><i class="fa fa-check"></i><b>4.4.3</b> Using top_n with babynames</a></li>
+<li class="chapter" data-level="4.4.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#visualizing-names-with-ggplot2"><i class="fa fa-check"></i><b>4.4.4</b> Visualizing names with ggplot2</a></li>
+<li class="chapter" data-level="4.4.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-grouped-mutates"><i class="fa fa-check"></i><b>4.4.5</b> Video: Grouped mutates</a></li>
+<li class="chapter" data-level="4.4.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#finding-the-year-each-name-is-most-common"><i class="fa fa-check"></i><b>4.4.6</b> Finding the year each name is most common</a></li>
+<li class="chapter" data-level="4.4.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#adding-the-total-and-maximum-for-each-name"><i class="fa fa-check"></i><b>4.4.7</b> Adding the total and maximum for each name</a></li>
+<li class="chapter" data-level="4.4.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#visualizing-the-normalized-change-in-popularity"><i class="fa fa-check"></i><b>4.4.8</b> Visualizing the normalized change in popularity</a></li>
+<li class="chapter" data-level="4.4.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-window-functions"><i class="fa fa-check"></i><b>4.4.9</b> Video: Window functions</a></li>
+<li class="chapter" data-level="4.4.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-ratios-to-describe-the-frequency-of-a-name"><i class="fa fa-check"></i><b>4.4.10</b> Using ratios to describe the frequency of a name</a></li>
+<li class="chapter" data-level="4.4.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#biggest-jumps-in-a-name"><i class="fa fa-check"></i><b>4.4.11</b> Biggest jumps in a name</a></li>
+<li class="chapter" data-level="4.4.12" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-contratulations"><i class="fa fa-check"></i><b>4.4.12</b> Video: Contratulations!</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#challenge-1"><i class="fa fa-check"></i><b>4.5</b> Challenge</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#solutions-1"><i class="fa fa-check"></i><b>4.6</b> Solutions</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-1"><i class="fa fa-check"></i><b>4.6.1</b> Question 1</a></li>
+<li class="chapter" data-level="4.6.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-2"><i class="fa fa-check"></i><b>4.6.2</b> Question 2</a></li>
+<li class="chapter" data-level="4.6.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-3"><i class="fa fa-check"></i><b>4.6.3</b> Question 3</a></li>
+<li class="chapter" data-level="4.6.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-4"><i class="fa fa-check"></i><b>4.6.4</b> Question 4</a></li>
+<li class="chapter" data-level="4.6.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-5"><i class="fa fa-check"></i><b>4.6.5</b> Question 5</a></li>
+<li class="chapter" data-level="4.6.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-6"><i class="fa fa-check"></i><b>4.6.6</b> Question 6</a></li>
+<li class="chapter" data-level="4.6.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-7"><i class="fa fa-check"></i><b>4.6.7</b> Question 7</a></li>
+<li class="chapter" data-level="4.6.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-8"><i class="fa fa-check"></i><b>4.6.8</b> Question 8</a></li>
+<li class="chapter" data-level="4.6.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-9"><i class="fa fa-check"></i><b>4.6.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html"><i class="fa fa-check"></i><b>5</b> Cleaning Data in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#common-data-problems"><i class="fa fa-check"></i><b>5.1</b> 1: Common Data Problems</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-data-type-constraints"><i class="fa fa-check"></i><b>5.1.1</b> Video: Data type constraints</a></li>
+<li class="chapter" data-level="5.1.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#question-common-data-types"><i class="fa fa-check"></i><b>5.1.2</b> Question: Common data types</a></li>
+<li class="chapter" data-level="5.1.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#converting-data-types"><i class="fa fa-check"></i><b>5.1.3</b> Converting data types</a></li>
+<li class="chapter" data-level="5.1.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#trimming-strings"><i class="fa fa-check"></i><b>5.1.4</b> Trimming strings</a></li>
+<li class="chapter" data-level="5.1.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-range-constraints"><i class="fa fa-check"></i><b>5.1.5</b> Video: Range constraints</a></li>
+<li class="chapter" data-level="5.1.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#ride-duration-constraints"><i class="fa fa-check"></i><b>5.1.6</b> Ride duration constraints</a></li>
+<li class="chapter" data-level="5.1.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#back-to-the-future"><i class="fa fa-check"></i><b>5.1.7</b> Back to the future</a></li>
+<li class="chapter" data-level="5.1.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-uniqueness-constraints"><i class="fa fa-check"></i><b>5.1.8</b> Video: Uniqueness constraints</a></li>
+<li class="chapter" data-level="5.1.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#full-duplicates"><i class="fa fa-check"></i><b>5.1.9</b> Full duplicates</a></li>
+<li class="chapter" data-level="5.1.10" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#removing-partial-duplicates"><i class="fa fa-check"></i><b>5.1.10</b> Removing partial duplicates</a></li>
+<li class="chapter" data-level="5.1.11" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#aggregating-partial-duplicates"><i class="fa fa-check"></i><b>5.1.11</b> Aggregating partial duplicates</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#categorical-and-text-data"><i class="fa fa-check"></i><b>5.2</b> 2: Categorical and Text Data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-checking-membership"><i class="fa fa-check"></i><b>5.2.1</b> Video: Checking membership</a></li>
+<li class="chapter" data-level="5.2.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#question-members-only"><i class="fa fa-check"></i><b>5.2.2</b> Question: Members only</a></li>
+<li class="chapter" data-level="5.2.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#not-a-member"><i class="fa fa-check"></i><b>5.2.3</b> Not a member</a></li>
+<li class="chapter" data-level="5.2.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-categorical-data-problems"><i class="fa fa-check"></i><b>5.2.4</b> Video: Categorical data problems</a></li>
+<li class="chapter" data-level="5.2.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#identifying-inconsistency"><i class="fa fa-check"></i><b>5.2.5</b> Identifying inconsistency</a></li>
+<li class="chapter" data-level="5.2.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#correcting-inconsistency"><i class="fa fa-check"></i><b>5.2.6</b> Correcting inconsistency</a></li>
+<li class="chapter" data-level="5.2.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#collapsing-categories"><i class="fa fa-check"></i><b>5.2.7</b> Collapsing categories</a></li>
+<li class="chapter" data-level="5.2.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-cleaning-text-data"><i class="fa fa-check"></i><b>5.2.8</b> Video: Cleaning text data</a></li>
+<li class="chapter" data-level="5.2.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#detecting-inconsistent-text-data"><i class="fa fa-check"></i><b>5.2.9</b> Detecting inconsistent text data</a></li>
+<li class="chapter" data-level="5.2.10" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#replacing-and-removing"><i class="fa fa-check"></i><b>5.2.10</b> Replacing and removing</a></li>
+<li class="chapter" data-level="5.2.11" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#invalid-phone-numbers"><i class="fa fa-check"></i><b>5.2.11</b> Invalid phone numbers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#advanced-data-problems"><i class="fa fa-check"></i><b>5.3</b> 3: Advanced Data Problems</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#date-uniformity"><i class="fa fa-check"></i><b>5.3.1</b> Date uniformity</a></li>
+<li class="chapter" data-level="5.3.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#currency-uniformity"><i class="fa fa-check"></i><b>5.3.2</b> Currency uniformity</a></li>
+<li class="chapter" data-level="5.3.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-cross-field-validation"><i class="fa fa-check"></i><b>5.3.3</b> Video: Cross field validation</a></li>
+<li class="chapter" data-level="5.3.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#validating-totals"><i class="fa fa-check"></i><b>5.3.4</b> Validating totals</a></li>
+<li class="chapter" data-level="5.3.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#validating-age"><i class="fa fa-check"></i><b>5.3.5</b> Validating age</a></li>
+<li class="chapter" data-level="5.3.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-completeness"><i class="fa fa-check"></i><b>5.3.6</b> Video: Completeness</a></li>
+<li class="chapter" data-level="5.3.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#question-types-of-missingness"><i class="fa fa-check"></i><b>5.3.7</b> Question: Types of missingness</a></li>
+<li class="chapter" data-level="5.3.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#visualizing-missing-data"><i class="fa fa-check"></i><b>5.3.8</b> Visualizing missing data</a></li>
+<li class="chapter" data-level="5.3.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#treating-missing-data"><i class="fa fa-check"></i><b>5.3.9</b> Treating missing data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#record-linkage"><i class="fa fa-check"></i><b>5.4</b> 4: Record Linkage</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#calculating-distance"><i class="fa fa-check"></i><b>5.4.1</b> Calculating distance</a></li>
+<li class="chapter" data-level="5.4.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#small-distance-small-difference"><i class="fa fa-check"></i><b>5.4.2</b> Small distance, small difference</a></li>
+<li class="chapter" data-level="5.4.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#fixing-typos-with-string-distance"><i class="fa fa-check"></i><b>5.4.3</b> Fixing typos with string distance</a></li>
+<li class="chapter" data-level="5.4.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-generating-and-comparing-pairs"><i class="fa fa-check"></i><b>5.4.4</b> Video: Generating and comparing pairs</a></li>
+<li class="chapter" data-level="5.4.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#exercise-link-or-join"><i class="fa fa-check"></i><b>5.4.5</b> Exercise: Link or join?</a></li>
+<li class="chapter" data-level="5.4.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#pair-blocking"><i class="fa fa-check"></i><b>5.4.6</b> Pair blocking</a></li>
+<li class="chapter" data-level="5.4.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#comparing-pairs"><i class="fa fa-check"></i><b>5.4.7</b> Comparing pairs</a></li>
+<li class="chapter" data-level="5.4.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-scoring-and-linking"><i class="fa fa-check"></i><b>5.4.8</b> Video: Scoring and linking</a></li>
+<li class="chapter" data-level="5.4.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#score-then-select-or-select-then-score"><i class="fa fa-check"></i><b>5.4.9</b> Score then select or select then score?</a></li>
+<li class="chapter" data-level="5.4.10" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#putting-it-together"><i class="fa fa-check"></i><b>5.4.10</b> Putting it together</a></li>
+<li class="chapter" data-level="5.4.11" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-congratulations-1"><i class="fa fa-check"></i><b>5.4.11</b> Video: Congratulations!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introduction-to-data-visualization-with-ggplot2.html"><a href="introduction-to-data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>6</b> Introduction to Data Visualization with ggplot2</a></li>
+<li class="chapter" data-level="7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html"><i class="fa fa-check"></i><b>7</b> Exploratory Data Analysis in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#comics"><i class="fa fa-check"></i><b>7.1</b> Comics</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-exploring-categorical-data"><i class="fa fa-check"></i><b>7.1.1</b> Video: Exploring categorical data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-bar-chart-expectations"><i class="fa fa-check"></i><b>7.1.2</b> Question: Bar chart expectations</a></li>
+<li class="chapter" data-level="7.1.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#contingency-table-review"><i class="fa fa-check"></i><b>7.1.3</b> Contingency table review</a></li>
+<li class="chapter" data-level="7.1.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#dropping-levels"><i class="fa fa-check"></i><b>7.1.4</b> Dropping levels</a></li>
+<li class="chapter" data-level="7.1.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#side-by-side-barcharts"><i class="fa fa-check"></i><b>7.1.5</b> Side-by-side barcharts</a></li>
+<li class="chapter" data-level="7.1.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-bar-chart-interpretation"><i class="fa fa-check"></i><b>7.1.6</b> Question: Bar chart interpretation</a></li>
+<li class="chapter" data-level="7.1.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-counts-vs.-proportions"><i class="fa fa-check"></i><b>7.1.7</b> Video: Counts vs. proportions</a></li>
+<li class="chapter" data-level="7.1.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-conditional-proportions"><i class="fa fa-check"></i><b>7.1.8</b> Question: Conditional proportions</a></li>
+<li class="chapter" data-level="7.1.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#counts-vs.-proportions-2"><i class="fa fa-check"></i><b>7.1.9</b> Counts vs. proportions (2)</a></li>
+<li class="chapter" data-level="7.1.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-distribution-of-one-variable"><i class="fa fa-check"></i><b>7.1.10</b> Video: Distribution of one variable</a></li>
+<li class="chapter" data-level="7.1.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#marginal-barchart"><i class="fa fa-check"></i><b>7.1.11</b> Marginal barchart</a></li>
+<li class="chapter" data-level="7.1.12" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#conditional-barchart"><i class="fa fa-check"></i><b>7.1.12</b> Conditional barchart</a></li>
+<li class="chapter" data-level="7.1.13" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#improve-piechart"><i class="fa fa-check"></i><b>7.1.13</b> Improve piechart</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#cars"><i class="fa fa-check"></i><b>7.2</b> Cars</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-exploring-numerical-data"><i class="fa fa-check"></i><b>7.2.1</b> Video: Exploring numerical data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#faceted-histogram"><i class="fa fa-check"></i><b>7.2.2</b> Faceted histogram</a></li>
+<li class="chapter" data-level="7.2.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#boxplots-and-density-plots"><i class="fa fa-check"></i><b>7.2.3</b> Boxplots and density plots</a></li>
+<li class="chapter" data-level="7.2.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#compare-distribution-via-plots"><i class="fa fa-check"></i><b>7.2.4</b> Compare distribution via plots</a></li>
+<li class="chapter" data-level="7.2.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-distribution-of-one-variable-1"><i class="fa fa-check"></i><b>7.2.5</b> Video: Distribution of one variable</a></li>
+<li class="chapter" data-level="7.2.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#marginal-and-conditional-histograms"><i class="fa fa-check"></i><b>7.2.6</b> Marginal and conditional histograms</a></li>
+<li class="chapter" data-level="7.2.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-marginal-and-conditional-histograms-interpretation"><i class="fa fa-check"></i><b>7.2.7</b> Question: Marginal and conditional histograms interpretation</a></li>
+<li class="chapter" data-level="7.2.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#three-binwidths"><i class="fa fa-check"></i><b>7.2.8</b> Three binwidths</a></li>
+<li class="chapter" data-level="7.2.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-three-binwidths-interpretation"><i class="fa fa-check"></i><b>7.2.9</b> Question: Three binwidths interpretation</a></li>
+<li class="chapter" data-level="7.2.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-box-plots"><i class="fa fa-check"></i><b>7.2.10</b> Video: Box plots</a></li>
+<li class="chapter" data-level="7.2.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#box-plots-for-outliers"><i class="fa fa-check"></i><b>7.2.11</b> Box plots for outliers</a></li>
+<li class="chapter" data-level="7.2.12" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#plot-selection"><i class="fa fa-check"></i><b>7.2.12</b> Plot selection</a></li>
+<li class="chapter" data-level="7.2.13" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-visualization-in-higher-dimensions"><i class="fa fa-check"></i><b>7.2.13</b> Video: Visualization in higher dimensions</a></li>
+<li class="chapter" data-level="7.2.14" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#variable-plot"><i class="fa fa-check"></i><b>7.2.14</b> 3 variable plot</a></li>
+<li class="chapter" data-level="7.2.15" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-interpret-3-var-plot"><i class="fa fa-check"></i><b>7.2.15</b> Question: Interpret 3 var plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#gapminder"><i class="fa fa-check"></i><b>7.3</b> Gapminder</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-measures-of-center"><i class="fa fa-check"></i><b>7.3.1</b> Video: Measures of center</a></li>
+<li class="chapter" data-level="7.3.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-choice-of-center-measure"><i class="fa fa-check"></i><b>7.3.2</b> Question: Choice of center measure</a></li>
+<li class="chapter" data-level="7.3.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#calculate-center-measures"><i class="fa fa-check"></i><b>7.3.3</b> Calculate center measures</a></li>
+<li class="chapter" data-level="7.3.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-measures-of-variability"><i class="fa fa-check"></i><b>7.3.4</b> Video: Measures of variability</a></li>
+<li class="chapter" data-level="7.3.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#calculate-spread-measures"><i class="fa fa-check"></i><b>7.3.5</b> Calculate spread measures</a></li>
+<li class="chapter" data-level="7.3.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#choose-measures-for-center-and-spread"><i class="fa fa-check"></i><b>7.3.6</b> Choose measures for center and spread</a></li>
+<li class="chapter" data-level="7.3.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-shape-and-transformations"><i class="fa fa-check"></i><b>7.3.7</b> Video: Shape and transformations</a></li>
+<li class="chapter" data-level="7.3.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#describe-the-shape"><i class="fa fa-check"></i><b>7.3.8</b> Describe the shape</a></li>
+<li class="chapter" data-level="7.3.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#transformations"><i class="fa fa-check"></i><b>7.3.9</b> Transformations</a></li>
+<li class="chapter" data-level="7.3.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-outliers"><i class="fa fa-check"></i><b>7.3.10</b> Video: Outliers</a></li>
+<li class="chapter" data-level="7.3.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#identify-outliers"><i class="fa fa-check"></i><b>7.3.11</b> Identify outliers</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#email"><i class="fa fa-check"></i><b>7.4</b> Email</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-introducing-the-data"><i class="fa fa-check"></i><b>7.4.1</b> Video: Introducing the data</a></li>
+<li class="chapter" data-level="7.4.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and-num_char"><i class="fa fa-check"></i><b>7.4.2</b> Spam and num_char</a></li>
+<li class="chapter" data-level="7.4.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and-num_char-interpretation"><i class="fa fa-check"></i><b>7.4.3</b> Spam and num_char interpretation</a></li>
+<li class="chapter" data-level="7.4.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and"><i class="fa fa-check"></i><b>7.4.4</b> Spam and !!!</a></li>
+<li class="chapter" data-level="7.4.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and-interpretation"><i class="fa fa-check"></i><b>7.4.5</b> Spam and !!! interpretation</a></li>
+<li class="chapter" data-level="7.4.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-check-in-1"><i class="fa fa-check"></i><b>7.4.6</b> Video: Check-in 1</a></li>
+<li class="chapter" data-level="7.4.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#collapsing-levels"><i class="fa fa-check"></i><b>7.4.7</b> Collapsing levels</a></li>
+<li class="chapter" data-level="7.4.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-image-and-spam-interpretation"><i class="fa fa-check"></i><b>7.4.8</b> Question: Image and spam interpretation</a></li>
+<li class="chapter" data-level="7.4.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#data-integrity"><i class="fa fa-check"></i><b>7.4.9</b> Data Integrity</a></li>
+<li class="chapter" data-level="7.4.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#answering-questions-with-chains"><i class="fa fa-check"></i><b>7.4.10</b> Answering questions with chains</a></li>
+<li class="chapter" data-level="7.4.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-check-in-2"><i class="fa fa-check"></i><b>7.4.11</b> Video: Check-in 2</a></li>
+<li class="chapter" data-level="7.4.12" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#whats-in-a-number"><i class="fa fa-check"></i><b>7.4.12</b> What’s in a number?</a></li>
+<li class="chapter" data-level="7.4.13" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#whats-in-a-number-interpretation"><i class="fa fa-check"></i><b>7.4.13</b> What’s in a number interpretation</a></li>
+<li class="chapter" data-level="7.4.14" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-conclusion"><i class="fa fa-check"></i><b>7.4.14</b> Video: Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#challenge-2"><i class="fa fa-check"></i><b>7.5</b> Challenge</a></li>
+<li class="chapter" data-level="7.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#solutions-1-data-cleaning-and-summarizing-with-dplyr"><i class="fa fa-check"></i><b>7.6</b> Solutions 1: Data cleaning and summarizing with dplyr</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-the-united-nations-voting-dataset"><i class="fa fa-check"></i><b>7.6.1</b> Video: The United Nations Voting Dataset</a></li>
+<li class="chapter" data-level="7.6.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#filtering-rows"><i class="fa fa-check"></i><b>7.6.2</b> Filtering rows</a></li>
+<li class="chapter" data-level="7.6.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#adding-a-year-column"><i class="fa fa-check"></i><b>7.6.3</b> Adding a year column</a></li>
+<li class="chapter" data-level="7.6.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#adding-a-country-column"><i class="fa fa-check"></i><b>7.6.4</b> Adding a country column</a></li>
+<li class="chapter" data-level="7.6.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-grouping-and-summarizing"><i class="fa fa-check"></i><b>7.6.5</b> Video: Grouping and summarizing</a></li>
+<li class="chapter" data-level="7.6.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-the-full-dataset"><i class="fa fa-check"></i><b>7.6.6</b> Summarizing the full dataset</a></li>
+<li class="chapter" data-level="7.6.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-by-year"><i class="fa fa-check"></i><b>7.6.7</b> Summarizing by year</a></li>
+<li class="chapter" data-level="7.6.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-by-country"><i class="fa fa-check"></i><b>7.6.8</b> Summarizing by country</a></li>
+<li class="chapter" data-level="7.6.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-sorting-and-filtering-summarized-data"><i class="fa fa-check"></i><b>7.6.9</b> Video: Sorting and filtering summarized data</a></li>
+<li class="chapter" data-level="7.6.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#sorting-by-percentage-of-yes-votes"><i class="fa fa-check"></i><b>7.6.10</b> Sorting by percentage of “yes” votes</a></li>
+<li class="chapter" data-level="7.6.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#filtering-summarized-output"><i class="fa fa-check"></i><b>7.6.11</b> Filtering summarized output</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#solutions-2-visualization-with-ggplot2"><i class="fa fa-check"></i><b>7.7</b> Solutions 2: Visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-visualization-with-ggplot2"><i class="fa fa-check"></i><b>7.7.1</b> Video: Visualization with ggplot2</a></li>
+<li class="chapter" data-level="7.7.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#choosing-an-aesthetic"><i class="fa fa-check"></i><b>7.7.2</b> Choosing an aesthetic</a></li>
+<li class="chapter" data-level="7.7.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#other-ggplot2-layers"><i class="fa fa-check"></i><b>7.7.3</b> Other ggplot2 layers</a></li>
+<li class="chapter" data-level="7.7.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-visualizing-by-country"><i class="fa fa-check"></i><b>7.7.4</b> Video: Visualizing by country</a></li>
+<li class="chapter" data-level="7.7.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-by-year-and-country"><i class="fa fa-check"></i><b>7.7.5</b> Summarizing by year and country</a></li>
+<li class="chapter" data-level="7.7.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#plotting-just-the-uk-over-time"><i class="fa fa-check"></i><b>7.7.6</b> Plotting just the UK over time</a></li>
+<li class="chapter" data-level="7.7.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#plotting-multiple-countries"><i class="fa fa-check"></i><b>7.7.7</b> Plotting multiple countries</a></li>
+<li class="chapter" data-level="7.7.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-faceting-by-country"><i class="fa fa-check"></i><b>7.7.8</b> Video: Faceting by country</a></li>
+<li class="chapter" data-level="7.7.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#faceting-the-time-series"><i class="fa fa-check"></i><b>7.7.9</b> Faceting the time series</a></li>
+<li class="chapter" data-level="7.7.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#faceting-with-free-y-axis"><i class="fa fa-check"></i><b>7.7.10</b> Faceting with free y-axis</a></li>
+<li class="chapter" data-level="7.7.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#choose-your-own-countries"><i class="fa fa-check"></i><b>7.7.11</b> Choose your own countries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#solutions-3-tidy-modeling-with-broom"><i class="fa fa-check"></i><b>7.8</b> Solutions 3: Tidy modeling with broom</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-linear-regression"><i class="fa fa-check"></i><b>7.8.1</b> Video: Linear regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="correlation-and-regression-in-r.html"><a href="correlation-and-regression-in-r.html"><i class="fa fa-check"></i><b>8</b> Correlation and Regression in R</a></li>
+<li class="chapter" data-level="9" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>9</b> Intermediate Data Visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html#statistics"><i class="fa fa-check"></i><b>9.1</b> Statistics</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html#video-stats-with-geoms"><i class="fa fa-check"></i><b>9.1.1</b> Video: Stats with geoms</a></li>
+<li class="chapter" data-level="9.1.2" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html#smoothing"><i class="fa fa-check"></i><b>9.1.2</b> Smoothing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tree-based-models-in-r.html"><a href="tree-based-models-in-r.html"><i class="fa fa-check"></i><b>10</b> Tree-Based Models in R</a></li>
+<li class="chapter" data-level="11" data-path="end-of-semester-project.html"><a href="end-of-semester-project.html"><i class="fa fa-check"></i><b>11</b> End-of-semester project</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Business</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cleaning-data-in-r" class="section level1" number="5">
+<h1><span class="header-section-number">Module 5</span> Cleaning Data in R</h1>
+<p>It’s commonly said that data scientists spend 80% of their time cleaning and manipulating data and only 20% of their time analyzing it. The time spent cleaning is vital since analyzing dirty data can lead you to draw inaccurate conclusions.</p>
+<p>In this course, you’ll learn how to clean dirty data. Using R, you’ll learn how to identify values that don’t look right and fix dirty data by converting data types, filling in missing values, and using fuzzy string matching. As you learn, you’ll brush up on your skills by working with real-world datasets, including bike-share trips, customer asset portfolios, and restaurant reviews—developing the skills you need to go from raw data to awesome insights as quickly and accurately as possible!</p>
+<div id="common-data-problems" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> 1: Common Data Problems</h2>
+<p>In this chapter, you’ll learn how to overcome some of the most common dirty data problems. You’ll convert data types, apply range constraints to remove future data points, and remove duplicated data points to avoid double-counting.</p>
+<div id="video-data-type-constraints" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Video: Data type constraints</h3>
+<p>Errors can be introduced by typos and misspellings. Dirty data can the data science workflow before we even access the data, and if we don’t address these errors early on, they can follow us all the way through the workflow.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/howdirtydatacanimpactthedatascienceworkflow.png" style="width:85.0%" alt="" />
+<p class="caption">Errors appearing throughout the data science workflow. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<p>A quick reminder of data type constraints:</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/datatypesandrdatatypes.png" style="width:50.0%" alt="" />
+<p class="caption">Data types vs. data types in R. <em>Source: DataCamp</em></p>
+</div>
+</center>
+</div>
+<div id="question-common-data-types" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Question: Common data types</h3>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/questioncommondatatypes.png" style="width:85.0%" alt="" />
+<p class="caption">Solution. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<p>Correctly identifying what type your data is is one of the easiest ways to avoid hampering your analysis due to data type constraints in the long run.</p>
+</div>
+<div id="converting-data-types" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Converting data types</h3>
+<p>Throughout this chapter, you’ll be working with San Francisco bike share ride data called <code>bike_share_rides</code>. It contains information on start and end stations of each trip, the trip duration, and some user information.</p>
+<p>Before beginning to analyze any dataset, it’s important to take a look at the different types of columns you’ll be working with, which you can do using glimpse().</p>
+<p>In this exercise, you’ll take a look at the data types contained in bike_share_rides and see how an incorrect data type can flaw your analysis.</p>
+<p><code>dplyr</code> was previously loaded, so we just load <code>assertive</code>. <code>bike_share_rides</code> is not available so code requiring it will not be loaded.</p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="cleaning-data-in-r.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load assertive package</span></span>
+<span id="cb655-2"><a href="cleaning-data-in-r.html#cb655-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(assertive)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="cleaning-data-in-r.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Glimpse at bike_share_rides</span></span>
+<span id="cb656-2"><a href="cleaning-data-in-r.html#cb656-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bike_share_rides)</span>
+<span id="cb656-3"><a href="cleaning-data-in-r.html#cb656-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb656-4"><a href="cleaning-data-in-r.html#cb656-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of user_birth_year</span></span>
+<span id="cb656-5"><a href="cleaning-data-in-r.html#cb656-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bike_share_rides<span class="sc">$</span>user_birth_year)</span></code></pre></div>
+<p><strong>Question</strong></p>
+<p>The summary statistics of <code>user_birth_year</code> don’t seem to offer much useful information about the different birth years in our dataset. Why do you think that is?</p>
+<ul>
+<li><p>The <code>user_birth_year</code> column is not of the correct type and should be converted to a character.</p></li>
+<li><p>The <code>user_birth_year</code> column has an infinite set of possible values and should be converted to a factor.</p></li>
+<li><p>The <code>user_birth_year</code> column represents groupings of data and should be converted to a factor. [Correct]</p></li>
+</ul>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="cleaning-data-in-r.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert user_birth_year to factor: user_birth_year_fct</span></span>
+<span id="cb657-2"><a href="cleaning-data-in-r.html#cb657-2" aria-hidden="true" tabindex="-1"></a>bike_share_rides <span class="ot">&lt;-</span> bike_share_rides <span class="sc">%&gt;%</span></span>
+<span id="cb657-3"><a href="cleaning-data-in-r.html#cb657-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">user_birth_year_fct =</span> <span class="fu">as.factor</span>(user_birth_year))</span>
+<span id="cb657-4"><a href="cleaning-data-in-r.html#cb657-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb657-5"><a href="cleaning-data-in-r.html#cb657-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert user_birth_year_fct is a factor</span></span>
+<span id="cb657-6"><a href="cleaning-data-in-r.html#cb657-6" aria-hidden="true" tabindex="-1"></a><span class="fu">assert_is_factor</span>(bike_share_rides<span class="sc">$</span>user_birth_year_fct)</span>
+<span id="cb657-7"><a href="cleaning-data-in-r.html#cb657-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb657-8"><a href="cleaning-data-in-r.html#cb657-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of user_birth_year_fct</span></span>
+<span id="cb657-9"><a href="cleaning-data-in-r.html#cb657-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bike_share_rides<span class="sc">$</span>user_birth_year_fct)</span></code></pre></div>
+<p>Looking at the new summary statistics, more riders were born in <code>1988</code> than any other year.</p>
+</div>
+<div id="trimming-strings" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Trimming strings</h3>
+<p>In the previous exercise, you were able to identify the correct data type and convert <code>user_birth_year</code> to the correct type, allowing you to extract counts that gave you a bit more insight into the dataset.</p>
+<p>Another common dirty data problem is having extra bits like percent signs or periods in numbers, causing them to be read in as <code>character</code>s. In order to be able to crunch these numbers, the extra bits need to be removed and the numbers need to be converted from <code>character</code> to <code>numeric</code>. In this exercise, you’ll need to convert the <code>duration</code> column from <code>character</code> to <code>numeric</code>, but before this can happen, the word <code>"minutes"</code> needs to be removed from each value.</p>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="cleaning-data-in-r.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load stringr package</span></span>
+<span id="cb658-2"><a href="cleaning-data-in-r.html#cb658-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.5.3</code></pre>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="cleaning-data-in-r.html#cb660-1" aria-hidden="true" tabindex="-1"></a>bike_share_rides <span class="ot">&lt;-</span> bike_share_rides <span class="sc">%&gt;%</span></span>
+<span id="cb660-2"><a href="cleaning-data-in-r.html#cb660-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove &#39;minutes&#39; from duration: duration_trimmed</span></span>
+<span id="cb660-3"><a href="cleaning-data-in-r.html#cb660-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration_trimmed =</span> <span class="fu">str_remove</span>(duration, <span class="st">&quot;minutes&quot;</span>),</span>
+<span id="cb660-4"><a href="cleaning-data-in-r.html#cb660-4" aria-hidden="true" tabindex="-1"></a>         <span class="co"># Convert duration_trimmed to numeric: duration_mins</span></span>
+<span id="cb660-5"><a href="cleaning-data-in-r.html#cb660-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">duration_mins =</span> <span class="fu">as.numeric</span>(duration_trimmed))</span>
+<span id="cb660-6"><a href="cleaning-data-in-r.html#cb660-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb660-7"><a href="cleaning-data-in-r.html#cb660-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Glimpse at bike_share_rides</span></span>
+<span id="cb660-8"><a href="cleaning-data-in-r.html#cb660-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(bike_share_rides)</span>
+<span id="cb660-9"><a href="cleaning-data-in-r.html#cb660-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb660-10"><a href="cleaning-data-in-r.html#cb660-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert duration_mins is numeric</span></span>
+<span id="cb660-11"><a href="cleaning-data-in-r.html#cb660-11" aria-hidden="true" tabindex="-1"></a><span class="fu">assert_is_numeric</span>(bike_share_rides<span class="sc">$</span>duration_mins)</span>
+<span id="cb660-12"><a href="cleaning-data-in-r.html#cb660-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb660-13"><a href="cleaning-data-in-r.html#cb660-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean duration</span></span>
+<span id="cb660-14"><a href="cleaning-data-in-r.html#cb660-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bike_share_rides<span class="sc">$</span>duration_mins)</span></code></pre></div>
+<p>By removing characters and converting to a numeric type, you were able to figure out that the average ride duration is about 13 minutes - not bad for a city like San Francisco!</p>
+</div>
+<div id="video-range-constraints" class="section level3" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Video: Range constraints</h3>
+<p>What to do about about values outside of a variable’s allowed range?</p>
+<ul>
+<li>We could remove these rows from the data frame, but this should only be done when a small proportion of the values are out of range; otherwise we would significantly increase the amount of bias in our dataset.</li>
+<li>Treat these values as missing (<code>NA</code>).</li>
+<li>Replace them with the range limit, e.g. replace a rating of <code>6</code> on a <code>1</code> to <code>5</code> rating scale with <code>5</code>.</li>
+<li>Replace with other value based on domain knowledge and/or knowledge of dataset, e.g. replace with average rating.</li>
+</ul>
+</div>
+<div id="ride-duration-constraints" class="section level3" number="5.1.6">
+<h3><span class="header-section-number">5.1.6</span> Ride duration constraints</h3>
+<p>Values that are out of range can throw off an analysis, so it’s important to catch them early on. In this exercise, you’ll be examining the <code>duration_min</code> column more closely. Bikes are not allowed to be kept out for <strong>more than 24 hours</strong>, or 1440 minutes at a time, but issues with some of the bikes caused inaccurate recording of the time they were returned.</p>
+<p>In this exercise, you’ll replace erroneous data with the range limit (1440 minutes), however, you could just as easily replace these values with <code>NA</code>s.</p>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="cleaning-data-in-r.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create breaks</span></span>
+<span id="cb661-2"><a href="cleaning-data-in-r.html#cb661-2" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(bike_share_rides<span class="sc">$</span>duration_min), <span class="dv">0</span>, <span class="dv">1440</span>, <span class="fu">max</span>(bike_share_rides<span class="sc">$</span>duration_min))</span>
+<span id="cb661-3"><a href="cleaning-data-in-r.html#cb661-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb661-4"><a href="cleaning-data-in-r.html#cb661-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of duration_min</span></span>
+<span id="cb661-5"><a href="cleaning-data-in-r.html#cb661-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bike_share_rides, <span class="fu">aes</span>(duration_min)) <span class="sc">+</span></span>
+<span id="cb661-6"><a href="cleaning-data-in-r.html#cb661-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">breaks =</span> breaks)</span>
+<span id="cb661-7"><a href="cleaning-data-in-r.html#cb661-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb661-8"><a href="cleaning-data-in-r.html#cb661-8" aria-hidden="true" tabindex="-1"></a><span class="co"># duration_min_const: replace vals of duration_min &gt; 1440 with 1440</span></span>
+<span id="cb661-9"><a href="cleaning-data-in-r.html#cb661-9" aria-hidden="true" tabindex="-1"></a>bike_share_rides <span class="ot">&lt;-</span> bike_share_rides <span class="sc">%&gt;%</span></span>
+<span id="cb661-10"><a href="cleaning-data-in-r.html#cb661-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration_min_const =</span> <span class="fu">replace</span>(duration_min, duration_min <span class="sc">&gt;</span> <span class="dv">1440</span>, <span class="dv">1440</span>))</span>
+<span id="cb661-11"><a href="cleaning-data-in-r.html#cb661-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb661-12"><a href="cleaning-data-in-r.html#cb661-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure all values of duration_min_const are between 0 and 1440</span></span>
+<span id="cb661-13"><a href="cleaning-data-in-r.html#cb661-13" aria-hidden="true" tabindex="-1"></a><span class="fu">assert_all_are_in_closed_range</span>(bike_share_rides<span class="sc">$</span>duration_min_const, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">1440</span>)</span></code></pre></div>
+<p>The method of replacing erroneous data with the range limit works well, but you could just as easily replace these values with <code>NA</code>s or something else instead.</p>
+</div>
+<div id="back-to-the-future" class="section level3" number="5.1.7">
+<h3><span class="header-section-number">5.1.7</span> Back to the future</h3>
+<p>Something has gone wrong and it looks like you have data with dates from the future, which is way outside of the date range you expected to be working with. To fix this, you’ll need to remove any rides from the dataset that have a <code>date</code> in the future. Before you can do this, the <code>date</code> column needs to be converted from a <code>character</code> to a <code>Date</code>. Having these as <code>Date</code> objects will make it much easier to figure out which rides are from the future, since R makes it easy to check if one <code>Date</code> object is before (<code>&lt;</code>) or after (<code>&gt;</code>) another.</p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="cleaning-data-in-r.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date to Date type</span></span>
+<span id="cb662-2"><a href="cleaning-data-in-r.html#cb662-2" aria-hidden="true" tabindex="-1"></a>bike_share_rides <span class="ot">&lt;-</span> bike_share_rides <span class="sc">%&gt;%</span></span>
+<span id="cb662-3"><a href="cleaning-data-in-r.html#cb662-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))</span>
+<span id="cb662-4"><a href="cleaning-data-in-r.html#cb662-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb662-5"><a href="cleaning-data-in-r.html#cb662-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure all dates are in the past</span></span>
+<span id="cb662-6"><a href="cleaning-data-in-r.html#cb662-6" aria-hidden="true" tabindex="-1"></a><span class="fu">assert_all_are_in_past</span>(bike_share_rides<span class="sc">$</span>date)</span>
+<span id="cb662-7"><a href="cleaning-data-in-r.html#cb662-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb662-8"><a href="cleaning-data-in-r.html#cb662-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for rides that occurred before or on today&#39;s date</span></span>
+<span id="cb662-9"><a href="cleaning-data-in-r.html#cb662-9" aria-hidden="true" tabindex="-1"></a>bike_share_rides_past <span class="ot">&lt;-</span> bike_share_rides <span class="sc">%&gt;%</span></span>
+<span id="cb662-10"><a href="cleaning-data-in-r.html#cb662-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&lt;=</span> <span class="fu">today</span>())</span>
+<span id="cb662-11"><a href="cleaning-data-in-r.html#cb662-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb662-12"><a href="cleaning-data-in-r.html#cb662-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure all dates from bike_share_rides_past are in the past</span></span>
+<span id="cb662-13"><a href="cleaning-data-in-r.html#cb662-13" aria-hidden="true" tabindex="-1"></a><span class="fu">assert_all_are_in_past</span>(bike_share_rides_past<span class="sc">$</span>date)</span></code></pre></div>
+<p>Handling data from the future like this is much easier than trying to verify the data’s correctness by time traveling.</p>
+</div>
+<div id="video-uniqueness-constraints" class="section level3" number="5.1.8">
+<h3><span class="header-section-number">5.1.8</span> Video: Uniqueness constraints</h3>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/duplicateentries.png" style="width:55.0%" alt="" />
+<p class="caption">Duplicate entries. <em>Source: DataCamp</em></p>
+</div>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/sourceofduplicates.png" style="width:90.0%" alt="" />
+<p class="caption">Source of duplicates. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<ul>
+<li>Full duplicates: Two rows have the exact same entries in every column.</li>
+<li>Partial duplicates: Two rows have the exact same entries in some columns.</li>
+</ul>
+</div>
+<div id="full-duplicates" class="section level3" number="5.1.9">
+<h3><span class="header-section-number">5.1.9</span> Full duplicates</h3>
+<p>You’ve been notified that an update has been made to the bike sharing data pipeline to make it more efficient, but that duplicates are more likely to be generated as a result. To make sure that you can continue using the same scripts to run your weekly analyses about ride statistics, you’ll need to ensure that any duplicates in the dataset are removed first.</p>
+<p>When multiple rows of a data frame share the same values for all columns, they’re <strong>full duplicates</strong> of each other. Removing duplicates like this is important, since having the same value repeated multiple times can alter summary statistics like the mean and median. Each ride, including its <code>ride_id</code> should be unique.</p>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="cleaning-data-in-r.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of full duplicates</span></span>
+<span id="cb663-2"><a href="cleaning-data-in-r.html#cb663-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(bike_share_rides))</span>
+<span id="cb663-3"><a href="cleaning-data-in-r.html#cb663-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb663-4"><a href="cleaning-data-in-r.html#cb663-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove duplicates</span></span>
+<span id="cb663-5"><a href="cleaning-data-in-r.html#cb663-5" aria-hidden="true" tabindex="-1"></a>bike_share_rides_unique <span class="ot">&lt;-</span> <span class="fu">distinct</span>(bike_share_rides)</span>
+<span id="cb663-6"><a href="cleaning-data-in-r.html#cb663-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb663-7"><a href="cleaning-data-in-r.html#cb663-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the full duplicates in bike_share_rides_unique</span></span>
+<span id="cb663-8"><a href="cleaning-data-in-r.html#cb663-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(bike_share_rides_unique))</span></code></pre></div>
+<p>Removing full duplicates will ensure that summary statistics aren’t altered by repeated data points.</p>
+</div>
+<div id="removing-partial-duplicates" class="section level3" number="5.1.10">
+<h3><span class="header-section-number">5.1.10</span> Removing partial duplicates</h3>
+<p>Now that you’ve identified and removed the full duplicates, it’s time to check for partial duplicates. Partial duplicates are a bit tricker to deal with than full duplicates. In this exercise, you’ll first identify any partial duplicates and then practice the most common technique to deal with them, which involves dropping all partial duplicates, keeping only the first.</p>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="cleaning-data-in-r.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find duplicated ride_ids</span></span>
+<span id="cb664-2"><a href="cleaning-data-in-r.html#cb664-2" aria-hidden="true" tabindex="-1"></a>bike_share_rides <span class="sc">%&gt;%</span> </span>
+<span id="cb664-3"><a href="cleaning-data-in-r.html#cb664-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Count the number of occurrences of each ride_id</span></span>
+<span id="cb664-4"><a href="cleaning-data-in-r.html#cb664-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(ride_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb664-5"><a href="cleaning-data-in-r.html#cb664-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter for rows with a count &gt; 1</span></span>
+<span id="cb664-6"><a href="cleaning-data-in-r.html#cb664-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb664-7"><a href="cleaning-data-in-r.html#cb664-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb664-8"><a href="cleaning-data-in-r.html#cb664-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove full and partial duplicates</span></span>
+<span id="cb664-9"><a href="cleaning-data-in-r.html#cb664-9" aria-hidden="true" tabindex="-1"></a>bike_share_rides_unique <span class="ot">&lt;-</span> bike_share_rides <span class="sc">%&gt;%</span></span>
+<span id="cb664-10"><a href="cleaning-data-in-r.html#cb664-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Only based on ride_id instead of all cols</span></span>
+<span id="cb664-11"><a href="cleaning-data-in-r.html#cb664-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(ride_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb664-12"><a href="cleaning-data-in-r.html#cb664-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb664-13"><a href="cleaning-data-in-r.html#cb664-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Find duplicated ride_ids in bike_share_rides_unique</span></span>
+<span id="cb664-14"><a href="cleaning-data-in-r.html#cb664-14" aria-hidden="true" tabindex="-1"></a>bike_share_rides_unique <span class="sc">%&gt;%</span></span>
+<span id="cb664-15"><a href="cleaning-data-in-r.html#cb664-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Count the number of occurrences of each ride_id</span></span>
+<span id="cb664-16"><a href="cleaning-data-in-r.html#cb664-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(ride_id) <span class="sc">%&gt;%</span></span>
+<span id="cb664-17"><a href="cleaning-data-in-r.html#cb664-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter for rows with a count &gt; 1</span></span>
+<span id="cb664-18"><a href="cleaning-data-in-r.html#cb664-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>It’s important to consider the data you’re working with before removing partial duplicates, since sometimes it’s expected that there will be partial duplicates in a dataset, such as if the same customer makes multiple purchases.</p>
+</div>
+<div id="aggregating-partial-duplicates" class="section level3" number="5.1.11">
+<h3><span class="header-section-number">5.1.11</span> Aggregating partial duplicates</h3>
+<p>Another way of handling partial duplicates is to compute a summary statistic of the values that differ between partial duplicates, such as mean, median, maximum, or minimum. This can come in handy when you’re not sure how your data was collected and want an average, or if based on domain knowledge, you’d rather have too high of an estimate than too low of an estimate (or vice versa).</p>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="cleaning-data-in-r.html#cb665-1" aria-hidden="true" tabindex="-1"></a>bike_share_rides <span class="sc">%&gt;%</span></span>
+<span id="cb665-2"><a href="cleaning-data-in-r.html#cb665-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group by ride_id and date</span></span>
+<span id="cb665-3"><a href="cleaning-data-in-r.html#cb665-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ride_id, date) <span class="sc">%&gt;%</span></span>
+<span id="cb665-4"><a href="cleaning-data-in-r.html#cb665-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add duration_min_avg column</span></span>
+<span id="cb665-5"><a href="cleaning-data-in-r.html#cb665-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">duration_min_avg =</span> <span class="fu">mean</span>(duration_min) ) <span class="sc">%&gt;%</span></span>
+<span id="cb665-6"><a href="cleaning-data-in-r.html#cb665-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove duplicates based on ride_id and date, keep all cols</span></span>
+<span id="cb665-7"><a href="cleaning-data-in-r.html#cb665-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(ride_id, date, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb665-8"><a href="cleaning-data-in-r.html#cb665-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove duration_min column</span></span>
+<span id="cb665-9"><a href="cleaning-data-in-r.html#cb665-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>duration_min)</span></code></pre></div>
+<p>Aggregation of partial duplicates allows you to keep some information about all data points instead of keeping information about just one data point.</p>
+<hr />
+</div>
+</div>
+<div id="categorical-and-text-data" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> 2: Categorical and Text Data</h2>
+<p>Categorical and text data can often be some of the messiest parts of a dataset due to their unstructured nature. In this chapter, you’ll learn how to fix whitespace and capitalization inconsistencies in category labels, collapse multiple categories into one, and reformat strings for consistency.</p>
+<div id="video-checking-membership" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Video: Checking membership</h3>
+<p>In R, categories are stored as <code>factor</code>s in R. They are stored as numbers, and each number has a corresponding label.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/factors.png" style="width:70.0%" alt="" />
+<p class="caption">Factors. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<ul>
+<li>How many levels do the categorical variables above have?</li>
+</ul>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/valuesthatdontbelong.png" style="width:70.0%" alt="" />
+<p class="caption">Values that don’t belong. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<p>How do we end up with values outside those allowed by our factors?</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/howdoweendupwiththesevalues.png" style="width:70.0%" alt="" />
+<p class="caption"><em>Source: DataCamp</em></p>
+</div>
+</center>
+<p>Filtering joins are a type of join thaat keeps or removes observations from the first table, but doesn’t add any new columns.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/semijoinsandantijoins.png" style="width:50.0%" alt="" />
+<p class="caption">Semi-joins vs. anti-joins. <em>Source: DataCamp</em></p>
+</div>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/valuesthatarentfactors.png" style="width:50.0%" alt="" />
+<p class="caption">Values that aren’t factors. <em>Source: DataCamp</em></p>
+</div>
+</center>
+</div>
+<div id="question-members-only" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Question: Members only</h3>
+<p>So far in the course, you’ve learned about a number of different problems you can run into when you have dirty data, including</p>
+<ul>
+<li><strong>data type constraints</strong>,</li>
+<li><strong>range constraints</strong>,</li>
+<li><strong>uniqueness constraints</strong>, and</li>
+<li><strong>membership constraints</strong>.</li>
+</ul>
+<p>It’s important to be able to correctly identify the type of problem you’re dealing with so that you can treat it correctly. In this exercise, you’ll practice identifying these problems by mapping dirty data scenarios to their constraint type.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/questionmembershipconstraintorother.png" style="width:70.0%" alt="" />
+<p class="caption">Solution. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<p>Being able to identify what kinds of errors are in your data is important so that you know how to go about fixing them.</p>
+</div>
+<div id="not-a-member" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Not a member</h3>
+<p>Now that you’ve practiced identifying membership constraint problems, it’s time to fix these problems in a new dataset. Throughout this chapter, you’ll be working with a dataset called <code>sfo_survey</code>, containing survey responses from passengers taking flights from San Francisco International Airport (SFO). Participants were asked questions about the airport’s cleanliness, wait times, safety, and their overall satisfaction.</p>
+<p>There were a few issues during data collection that resulted in some inconsistencies in the dataset. In this exercise, you’ll be working with the <code>dest_size</code> column, which categorizes the size of the destination airport that the passengers were flying to. A data frame called <code>dest_sizes</code> is available that contains all the possible destination sizes. Your mission is to find rows with invalid <code>dest_sizes</code> and remove them from the data frame.</p>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="cleaning-data-in-r.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of occurrences of dest_size</span></span>
+<span id="cb666-2"><a href="cleaning-data-in-r.html#cb666-2" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb666-3"><a href="cleaning-data-in-r.html#cb666-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest_size)</span>
+<span id="cb666-4"><a href="cleaning-data-in-r.html#cb666-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb666-5"><a href="cleaning-data-in-r.html#cb666-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find bad dest_size rows</span></span>
+<span id="cb666-6"><a href="cleaning-data-in-r.html#cb666-6" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb666-7"><a href="cleaning-data-in-r.html#cb666-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join with dest_sizes data frame to get bad dest_size rows</span></span>
+<span id="cb666-8"><a href="cleaning-data-in-r.html#cb666-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(dest_sizes, <span class="at">by =</span> <span class="st">&quot;dest_size&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb666-9"><a href="cleaning-data-in-r.html#cb666-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select id, airline, destination, and dest_size cols</span></span>
+<span id="cb666-10"><a href="cleaning-data-in-r.html#cb666-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, airline, destination, dest_size)</span>
+<span id="cb666-11"><a href="cleaning-data-in-r.html#cb666-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb666-12"><a href="cleaning-data-in-r.html#cb666-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove bad dest_size rows</span></span>
+<span id="cb666-13"><a href="cleaning-data-in-r.html#cb666-13" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span> </span>
+<span id="cb666-14"><a href="cleaning-data-in-r.html#cb666-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Join with dest_sizes</span></span>
+<span id="cb666-15"><a href="cleaning-data-in-r.html#cb666-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(dest_sizes, <span class="at">by =</span> <span class="st">&quot;dest_size&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb666-16"><a href="cleaning-data-in-r.html#cb666-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Count the number of each dest_size</span></span>
+<span id="cb666-17"><a href="cleaning-data-in-r.html#cb666-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest_size)</span></code></pre></div>
+<p>Anti-joins can help you identify the rows that are causing issues, and semi-joins can remove the issue-causing rows. In the next lesson, you’ll learn about other ways to deal with bad values so that you don’t have to lose rows of data.</p>
+</div>
+<div id="video-categorical-data-problems" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Video: Categorical data problems</h3>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/categoricaldataproblems.png" style="width:70.0%" alt="" />
+<p class="caption">Categorical data problems <em>Source: DataCamp</em></p>
+</div>
+</center>
+</div>
+<div id="identifying-inconsistency" class="section level3" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> Identifying inconsistency</h3>
+<p>In the video exercise, you learned about different kinds of inconsistencies that can occur within categories, making it look like a variable has more categories than it should.</p>
+<p>In this exercise, you’ll continue working with the <code>sfo_survey</code> dataset. You’ll examine the <code>dest_size</code> column again as well as the <code>cleanliness</code> column and determine what kind of issues, if any, these two categorical variables face.</p>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="cleaning-data-in-r.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count dest_size</span></span>
+<span id="cb667-2"><a href="cleaning-data-in-r.html#cb667-2" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb667-3"><a href="cleaning-data-in-r.html#cb667-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest_size)</span>
+<span id="cb667-4"><a href="cleaning-data-in-r.html#cb667-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb667-5"><a href="cleaning-data-in-r.html#cb667-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Count cleanliness</span></span>
+<span id="cb667-6"><a href="cleaning-data-in-r.html#cb667-6" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb667-7"><a href="cleaning-data-in-r.html#cb667-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(cleanliness)</span></code></pre></div>
+<p>In the next exercise, you’ll fix these inconsistencies to get more accurate counts.</p>
+</div>
+<div id="correcting-inconsistency" class="section level3" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> Correcting inconsistency</h3>
+<p>Now that you’ve identified that <code>dest_size</code> has whitespace inconsistencies and <code>cleanliness</code> has capitalization inconsistencies, you’ll use the new tools at your disposal to fix the inconsistent values in <code>sfo_survey</code> instead of removing the data points entirely, which could add bias to your dataset <strong>if more than 5% of the data points</strong> need to be dropped.</p>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="cleaning-data-in-r.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add new columns to sfo_survey</span></span>
+<span id="cb668-2"><a href="cleaning-data-in-r.html#cb668-2" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="ot">&lt;-</span> sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb668-3"><a href="cleaning-data-in-r.html#cb668-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># dest_size_trimmed: dest_size without whitespace</span></span>
+<span id="cb668-4"><a href="cleaning-data-in-r.html#cb668-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dest_size_trimmed =</span> <span class="fu">str_trim</span>(dest_size),</span>
+<span id="cb668-5"><a href="cleaning-data-in-r.html#cb668-5" aria-hidden="true" tabindex="-1"></a>         <span class="co"># cleanliness_lower: cleanliness converted to lowercase</span></span>
+<span id="cb668-6"><a href="cleaning-data-in-r.html#cb668-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">cleanliness_lower =</span> <span class="fu">str_to_lower</span>(cleanliness))</span>
+<span id="cb668-7"><a href="cleaning-data-in-r.html#cb668-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb668-8"><a href="cleaning-data-in-r.html#cb668-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count values of dest_size_trimmed</span></span>
+<span id="cb668-9"><a href="cleaning-data-in-r.html#cb668-9" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb668-10"><a href="cleaning-data-in-r.html#cb668-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest_size_trimmed)</span>
+<span id="cb668-11"><a href="cleaning-data-in-r.html#cb668-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb668-12"><a href="cleaning-data-in-r.html#cb668-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Count values of cleanliness_lower</span></span>
+<span id="cb668-13"><a href="cleaning-data-in-r.html#cb668-13" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb668-14"><a href="cleaning-data-in-r.html#cb668-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(cleanliness_lower)</span></code></pre></div>
+<p>You were able to convert seven-category data into four-category data, which will help your analysis go more smoothly.</p>
+</div>
+<div id="collapsing-categories" class="section level3" number="5.2.7">
+<h3><span class="header-section-number">5.2.7</span> Collapsing categories</h3>
+<p>One of the tablets that participants filled out the <code>sfo_survey</code> on was not properly configured, allowing the response for <code>dest_region</code> to be free text instead of a dropdown menu. This resulted in some inconsistencies in the <code>dest_region</code> variable that you’ll need to correct in this exercise to ensure that the numbers you report to your boss are as accurate as possible.</p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="cleaning-data-in-r.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count categories of dest_region</span></span>
+<span id="cb669-2"><a href="cleaning-data-in-r.html#cb669-2" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb669-3"><a href="cleaning-data-in-r.html#cb669-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest_region)</span>
+<span id="cb669-4"><a href="cleaning-data-in-r.html#cb669-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb669-5"><a href="cleaning-data-in-r.html#cb669-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Categories to map to Europe</span></span>
+<span id="cb669-6"><a href="cleaning-data-in-r.html#cb669-6" aria-hidden="true" tabindex="-1"></a>europe_categories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;EU&quot;</span>, <span class="st">&quot;eur&quot;</span>, <span class="st">&quot;Europ&quot;</span>)</span>
+<span id="cb669-7"><a href="cleaning-data-in-r.html#cb669-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb669-8"><a href="cleaning-data-in-r.html#cb669-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new col dest_region_collapsed</span></span>
+<span id="cb669-9"><a href="cleaning-data-in-r.html#cb669-9" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb669-10"><a href="cleaning-data-in-r.html#cb669-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Map all categories in europe_categories to Europe</span></span>
+<span id="cb669-11"><a href="cleaning-data-in-r.html#cb669-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dest_region_collapsed =</span> <span class="fu">fct_collapse</span>(dest_region, </span>
+<span id="cb669-12"><a href="cleaning-data-in-r.html#cb669-12" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">Europe =</span> europe_categories)) <span class="sc">%&gt;%</span></span>
+<span id="cb669-13"><a href="cleaning-data-in-r.html#cb669-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Count categories of dest_region_collapsed</span></span>
+<span id="cb669-14"><a href="cleaning-data-in-r.html#cb669-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest_region_collapsed)</span></code></pre></div>
+<p>You’ve reduced the number of categories from 12 to 9, and you can now be confident that 401 of the survey participants were heading to Europe.</p>
+</div>
+<div id="video-cleaning-text-data" class="section level3" number="5.2.8">
+<h3><span class="header-section-number">5.2.8</span> Video: Cleaning text data</h3>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/textdata.png" alt="" />
+<p class="caption">Text data. Source: DataCamp</p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/unstructureddataproblems.png" alt="" />
+<p class="caption">Unstructured data problems. Source: DataCamp</p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/morecomplextextproblems.png" alt="" />
+<p class="caption">More complex text problems. Source: DataCamp</p>
+</div>
+</center>
+</div>
+<div id="detecting-inconsistent-text-data" class="section level3" number="5.2.9">
+<h3><span class="header-section-number">5.2.9</span> Detecting inconsistent text data</h3>
+<p>You’ve recently received some news that the customer support team wants to ask the SFO survey participants some follow-up questions. However, the auto-dialer that the call center uses isn’t able to parse all of the phone numbers since they’re all in different formats. After some investigation, you found that some phone numbers are written with hyphens (<code>-</code>) and some are written with parentheses (<code>(</code>,<code>)</code>). In this exercise, you’ll figure out which phone numbers have these issues so that you know which ones need fixing.</p>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="cleaning-data-in-r.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for rows with &quot;-&quot; in the phone column</span></span>
+<span id="cb670-2"><a href="cleaning-data-in-r.html#cb670-2" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb670-3"><a href="cleaning-data-in-r.html#cb670-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(phone, <span class="st">&quot;-&quot;</span>))</span>
+<span id="cb670-4"><a href="cleaning-data-in-r.html#cb670-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb670-5"><a href="cleaning-data-in-r.html#cb670-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for rows with &quot;(&quot; or &quot;)&quot; in the phone column</span></span>
+<span id="cb670-6"><a href="cleaning-data-in-r.html#cb670-6" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb670-7"><a href="cleaning-data-in-r.html#cb670-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(phone, <span class="fu">fixed</span>(<span class="st">&quot;(&quot;</span>)) <span class="sc">|</span> <span class="fu">str_detect</span>(phone, <span class="fu">fixed</span>(<span class="st">&quot;)&quot;</span>)))</span></code></pre></div>
+<p>Now that you’ve identified the inconsistencies in the <code>phone</code> column, it’s time to remove unnecessary characters to make the follow-up survey go as smoothly as possible.</p>
+</div>
+<div id="replacing-and-removing" class="section level3" number="5.2.10">
+<h3><span class="header-section-number">5.2.10</span> Replacing and removing</h3>
+<p>In the last exercise, you saw that the <code>phone</code> column of <code>sfo_data</code> is plagued with unnecessary parentheses and hyphens. The customer support team has requested that all phone numbers be in the format “<code>123 456 7890</code>”. In this exercise, you’ll use your new <code>stringr</code> skills to fulfill this request.</p>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="cleaning-data-in-r.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove parentheses from phone column</span></span>
+<span id="cb671-2"><a href="cleaning-data-in-r.html#cb671-2" aria-hidden="true" tabindex="-1"></a>phone_no_parens <span class="ot">&lt;-</span> sfo_survey<span class="sc">$</span>phone <span class="sc">%&gt;%</span></span>
+<span id="cb671-3"><a href="cleaning-data-in-r.html#cb671-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove &quot;(&quot;s</span></span>
+<span id="cb671-4"><a href="cleaning-data-in-r.html#cb671-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_remove_all</span>(<span class="fu">fixed</span>(<span class="st">&quot;(&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb671-5"><a href="cleaning-data-in-r.html#cb671-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove &quot;)&quot;s</span></span>
+<span id="cb671-6"><a href="cleaning-data-in-r.html#cb671-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_remove_all</span>(<span class="fu">fixed</span>(<span class="st">&quot;)&quot;</span>))</span>
+<span id="cb671-7"><a href="cleaning-data-in-r.html#cb671-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb671-8"><a href="cleaning-data-in-r.html#cb671-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add phone_no_parens as column</span></span>
+<span id="cb671-9"><a href="cleaning-data-in-r.html#cb671-9" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb671-10"><a href="cleaning-data-in-r.html#cb671-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(sfo_survey, phone_no_parens)</span>
+<span id="cb671-11"><a href="cleaning-data-in-r.html#cb671-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb671-12"><a href="cleaning-data-in-r.html#cb671-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add phone_no_parens as column</span></span>
+<span id="cb671-13"><a href="cleaning-data-in-r.html#cb671-13" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb671-14"><a href="cleaning-data-in-r.html#cb671-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phone_no_parens =</span> phone_no_parens,</span>
+<span id="cb671-15"><a href="cleaning-data-in-r.html#cb671-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Replace all hyphens in phone_no_parens with spaces</span></span>
+<span id="cb671-16"><a href="cleaning-data-in-r.html#cb671-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">phone_clean =</span> <span class="fu">str_replace_all</span>(phone_no_parens, <span class="st">&quot;-&quot;</span>, <span class="st">&quot; &quot;</span>))</span></code></pre></div>
+<p>Now that your phone numbers are all in a single format, the machines in the call center will be able to auto-dial the numbers, making it easier to ask participants follow-up questions.</p>
+</div>
+<div id="invalid-phone-numbers" class="section level3" number="5.2.11">
+<h3><span class="header-section-number">5.2.11</span> Invalid phone numbers</h3>
+<p>The customer support team is grateful for your work so far, but during their first day of calling participants, they ran into some phone numbers that were invalid. In this exercise, you’ll remove any rows with invalid phone numbers so that these faulty numbers don’t keep slowing the team down.</p>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="cleaning-data-in-r.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check out the invalid numbers</span></span>
+<span id="cb672-2"><a href="cleaning-data-in-r.html#cb672-2" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb672-3"><a href="cleaning-data-in-r.html#cb672-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_length</span>(phone) <span class="sc">!=</span> <span class="dv">12</span>)</span>
+<span id="cb672-4"><a href="cleaning-data-in-r.html#cb672-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb672-5"><a href="cleaning-data-in-r.html#cb672-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with invalid numbers</span></span>
+<span id="cb672-6"><a href="cleaning-data-in-r.html#cb672-6" aria-hidden="true" tabindex="-1"></a>sfo_survey <span class="sc">%&gt;%</span></span>
+<span id="cb672-7"><a href="cleaning-data-in-r.html#cb672-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_length</span>(phone) <span class="sc">==</span> <span class="dv">12</span>)</span></code></pre></div>
+<p>Thanks to your savvy string skills, the follow-up survey will be done in no time!</p>
+<hr />
+</div>
+</div>
+<div id="advanced-data-problems" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> 3: Advanced Data Problems</h2>
+<p>In this chapter, you’ll dive into more advanced data cleaning problems, such as ensuring that weights are all written in kilograms instead of pounds. You’ll also gain invaluable skills that will help you verify that values have been added correctly and that missing values don’t negatively impact your analyses.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/uniformity.png" style="width:85.0%" alt="" />
+<p class="caption">Uniformity. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/sourcesofuniformityissues.png" style="width:85.0%" alt="" />
+<p class="caption">Sources of uniformity issues. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/whattodo.png" style="width:85.0%" alt="" />
+<p class="caption">What to do about a lack of uniformity? <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/dateuniformity.png" style="width:85.0%" alt="" />
+<p class="caption">Date uniformity. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/ambiguousdates.png" style="width:85.0%" alt="" />
+<p class="caption">Ambiguous dates. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<div id="date-uniformity" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Date uniformity</h3>
+<p>In this chapter, you work at an asset management company and you’ll be working with the <code>accounts</code> dataset, which contains information about each customer, the amount in their account, and the date their account was opened. Your boss has asked you to calculate some summary statistics about the average value of each account and whether the age of the account is associated with a higher or lower account value. Before you can do this, you need to make sure that the <code>accounts</code> dataset you’ve been given doesn’t contain any uniformity problems. In this exercise, you’ll investigate the <code>date_opened</code> column and clean it up so that all the dates are in the same format.</p>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="cleaning-data-in-r.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check out the accounts data frame</span></span>
+<span id="cb673-2"><a href="cleaning-data-in-r.html#cb673-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(accounts)</span>
+<span id="cb673-3"><a href="cleaning-data-in-r.html#cb673-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb673-4"><a href="cleaning-data-in-r.html#cb673-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the date formats</span></span>
+<span id="cb673-5"><a href="cleaning-data-in-r.html#cb673-5" aria-hidden="true" tabindex="-1"></a>formats <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;%Y-%m-%d&quot;</span>, <span class="st">&quot;%B %d, %Y&quot;</span>)</span>
+<span id="cb673-6"><a href="cleaning-data-in-r.html#cb673-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb673-7"><a href="cleaning-data-in-r.html#cb673-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert dates to the same format</span></span>
+<span id="cb673-8"><a href="cleaning-data-in-r.html#cb673-8" aria-hidden="true" tabindex="-1"></a>accounts <span class="sc">%&gt;%</span></span>
+<span id="cb673-9"><a href="cleaning-data-in-r.html#cb673-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date_opened_clean =</span> <span class="fu">parse_date_time</span>(date_opened, <span class="at">orders =</span> formats))</span></code></pre></div>
+<p>Now that the <code>date_opened</code> dates are in the same format, you’ll be able to use them for some plotting in the next exercise.</p>
+</div>
+<div id="currency-uniformity" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Currency uniformity</h3>
+<p>Now that your dates are in order, you’ll need to correct any unit differences. When you first plot the data, you’ll notice that there’s a group of very high values, and a group of relatively lower values. The bank has two different offices - one in New York, and one in Tokyo, so you suspect that the accounts managed by the Tokyo office are in Japanese yen instead of U.S. dollars. Luckily, you have a data frame called <code>account_offices</code> that indicates which office manages each customer’s account, so you can use this information to figure out which <code>total</code>s need to be converted from yen to dollars.</p>
+<p>The formula to convert yen to dollars is <code>USD = JPY / 104</code>.</p>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="cleaning-data-in-r.html#cb674-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot of opening date and total amount</span></span>
+<span id="cb674-2"><a href="cleaning-data-in-r.html#cb674-2" aria-hidden="true" tabindex="-1"></a>accounts <span class="sc">%&gt;%</span></span>
+<span id="cb674-3"><a href="cleaning-data-in-r.html#cb674-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_opened, <span class="at">y =</span> total)) <span class="sc">+</span></span>
+<span id="cb674-4"><a href="cleaning-data-in-r.html#cb674-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb674-5"><a href="cleaning-data-in-r.html#cb674-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb674-6"><a href="cleaning-data-in-r.html#cb674-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Left join accounts and account_offices by id</span></span>
+<span id="cb674-7"><a href="cleaning-data-in-r.html#cb674-7" aria-hidden="true" tabindex="-1"></a>accounts <span class="sc">%&gt;%</span></span>
+<span id="cb674-8"><a href="cleaning-data-in-r.html#cb674-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(account_offices, <span class="at">by=</span><span class="st">&quot;id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb674-9"><a href="cleaning-data-in-r.html#cb674-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert totals from the Tokyo office to USD</span></span>
+<span id="cb674-10"><a href="cleaning-data-in-r.html#cb674-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_usd =</span> <span class="fu">ifelse</span>(office <span class="sc">==</span> <span class="st">&quot;Tokyo&quot;</span>, total <span class="sc">/</span> <span class="dv">104</span>, total)) <span class="sc">%&gt;%</span></span>
+<span id="cb674-11"><a href="cleaning-data-in-r.html#cb674-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scatter plot of opening date vs total_usd</span></span>
+<span id="cb674-12"><a href="cleaning-data-in-r.html#cb674-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_opened, <span class="at">y =</span> total_usd)) <span class="sc">+</span></span>
+<span id="cb674-13"><a href="cleaning-data-in-r.html#cb674-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p>The points in your last scatter plot all fall within a much smaller range now and you’ll be able to accurately assess the differences between accounts from different countries.</p>
+</div>
+<div id="video-cross-field-validation" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Video: Cross field validation</h3>
+<ul>
+<li>Cross field validation</li>
+<li>Does this value make sense based on other values?</li>
+</ul>
+<p>Link: <a href="https://www.buzzfeednews.com/article/katienotopoulos/graphs-that-lied-to-us" class="uri">https://www.buzzfeednews.com/article/katienotopoulos/graphs-that-lied-to-us</a></p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/whattodowithnonsensedata.png" style="width:85.0%" alt="" />
+<p class="caption">What to do with nonsense data. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<p>(Note, impute means to assign (a value) to something by inference from the value of the products or processes to which it contributes.)</p>
+</div>
+<div id="validating-totals" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Validating totals</h3>
+<p>In this lesson, you’ll continue to work with the <code>accounts</code> data frame, but this time, you have a bit more information about each account. There are three different funds that account holders can store their money in. In this exercise, you’ll validate whether the <code>total</code> amount in each account is equal to the sum of the amount in <code>fund_A</code>, <code>fund_B</code>, and <code>fund_C.</code> If there are any accounts that don’t match up, you can look into them further to see what went wrong in the bookkeeping that led to inconsistencies.</p>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="cleaning-data-in-r.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find invalid totals</span></span>
+<span id="cb675-2"><a href="cleaning-data-in-r.html#cb675-2" aria-hidden="true" tabindex="-1"></a>accounts <span class="sc">%&gt;%</span></span>
+<span id="cb675-3"><a href="cleaning-data-in-r.html#cb675-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theoretical_total: sum of the three funds</span></span>
+<span id="cb675-4"><a href="cleaning-data-in-r.html#cb675-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">theoretical_total =</span> fund_A <span class="sc">+</span> fund_B <span class="sc">+</span> fund_C) <span class="sc">%&gt;%</span></span>
+<span id="cb675-5"><a href="cleaning-data-in-r.html#cb675-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find accounts where total doesn&#39;t match theoretical_total</span></span>
+<span id="cb675-6"><a href="cleaning-data-in-r.html#cb675-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(theoretical_total <span class="sc">!=</span> total)</span></code></pre></div>
+<p>By using cross field validation, you’ve been able to detect values that don’t make sense. How you choose to handle these values will depend on the dataset.</p>
+</div>
+<div id="validating-age" class="section level3" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Validating age</h3>
+<p>Now that you found some inconsistencies in the <code>total</code> amounts, you’re suspicious that there may also be inconsistencies in the <code>acct_agecolumn</code>, and you want to see if these inconsistencies are related. Using the skills you learned from the video exercise, you’ll need to validate the age of each account and see if rows with inconsistent <code>acct_ages</code> are the same ones that had inconsistent <code>total</code>s.</p>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="cleaning-data-in-r.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find invalid acct_age</span></span>
+<span id="cb676-2"><a href="cleaning-data-in-r.html#cb676-2" aria-hidden="true" tabindex="-1"></a>accounts <span class="sc">%&gt;%</span></span>
+<span id="cb676-3"><a href="cleaning-data-in-r.html#cb676-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># theoretical_age: age of acct based on date_opened</span></span>
+<span id="cb676-4"><a href="cleaning-data-in-r.html#cb676-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">theoretical_age =</span> <span class="fu">floor</span>(<span class="fu">as.numeric</span>(date_opened <span class="sc">%--%</span> <span class="fu">today</span>(), <span class="st">&quot;years&quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb676-5"><a href="cleaning-data-in-r.html#cb676-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter for rows where acct_age is different from theoretical_age</span></span>
+<span id="cb676-6"><a href="cleaning-data-in-r.html#cb676-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(theoretical_age <span class="sc">!=</span> acct_age)</span></code></pre></div>
+<p>There are three accounts that all have ages off by one year, but none of them are the same as the accounts that had <code>total</code> inconsistencies, so it looks like these two bookkeeping errors may not be related.</p>
+</div>
+<div id="video-completeness" class="section level3" number="5.3.6">
+<h3><span class="header-section-number">5.3.6</span> Video: Completeness</h3>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/whatismissingdata.png" style="width:85.0%" alt="" />
+<p class="caption">What is missing data. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/typesofmissingness.png" style="width:85.0%" alt="" />
+<p class="caption">Types of missingness. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/dealingwithmissingdata.png" style="width:85.0%" alt="" />
+<p class="caption">Dealing with missing data. <em>Source: DataCamp</em></p>
+</div>
+</center>
+</div>
+<div id="question-types-of-missingness" class="section level3" number="5.3.7">
+<h3><span class="header-section-number">5.3.7</span> Question: Types of missingness</h3>
+<p>You just learned about the three flavors of missing data: missing completely at random (MCAR), missing at random (MAR), and missing not at random (MNAR). In this exercise, you’ll solidify your new knowledge by mapping examples to the types of missingness.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/questiontypesofmissingness.png" style="width:85.0%" alt="" />
+<p class="caption">Question types of missingness. <em>Source: DataCamp</em></p>
+</div>
+</center>
+</div>
+<div id="visualizing-missing-data" class="section level3" number="5.3.8">
+<h3><span class="header-section-number">5.3.8</span> Visualizing missing data</h3>
+<p>Dealing with missing data is one of the most common tasks in data science. There are a variety of types of missingness, as well as a variety of types of solutions to missing data.</p>
+<p>You just received a new version of the <code>accounts</code> data frame containing data on the amount held and amount invested for new and existing customers. However, there are rows with missing <code>inv_amount</code> values.</p>
+<p>You know for a fact that most customers below 25 do not have investment accounts yet, and suspect it could be driving the missingness.</p>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="cleaning-data-in-r.html#cb677-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the missing values by column</span></span>
+<span id="cb677-2"><a href="cleaning-data-in-r.html#cb677-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(accounts)</span>
+<span id="cb677-3"><a href="cleaning-data-in-r.html#cb677-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb677-4"><a href="cleaning-data-in-r.html#cb677-4" aria-hidden="true" tabindex="-1"></a>accounts <span class="sc">%&gt;%</span></span>
+<span id="cb677-5"><a href="cleaning-data-in-r.html#cb677-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># missing_inv: Is inv_amount missing?</span></span>
+<span id="cb677-6"><a href="cleaning-data-in-r.html#cb677-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">missing_inv =</span> <span class="fu">is.na</span>(inv_amount)) <span class="sc">%&gt;%</span></span>
+<span id="cb677-7"><a href="cleaning-data-in-r.html#cb677-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Group by missing_inv</span></span>
+<span id="cb677-8"><a href="cleaning-data-in-r.html#cb677-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(missing_inv) <span class="sc">%&gt;%</span></span>
+<span id="cb677-9"><a href="cleaning-data-in-r.html#cb677-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate mean age for each missing_inv group</span></span>
+<span id="cb677-10"><a href="cleaning-data-in-r.html#cb677-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<p>Since the average age for <code>missing_inv = TRUE</code> is 22 and the average age for <code>missing_inv = FALSE</code> is 44, it is likely that the <code>inv_amount</code> variable is missing mostly in young customers.</p>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="cleaning-data-in-r.html#cb678-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by age and visualize missing vals</span></span>
+<span id="cb678-2"><a href="cleaning-data-in-r.html#cb678-2" aria-hidden="true" tabindex="-1"></a>accounts <span class="sc">%&gt;%</span></span>
+<span id="cb678-3"><a href="cleaning-data-in-r.html#cb678-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(age) <span class="sc">%&gt;%</span></span>
+<span id="cb678-4"><a href="cleaning-data-in-r.html#cb678-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vis_miss</span>()</span></code></pre></div>
+<p>Investigating summary statistics based on missingness is a great way to determine if data is missing completely at random or missing at random.</p>
+</div>
+<div id="treating-missing-data" class="section level3" number="5.3.9">
+<h3><span class="header-section-number">5.3.9</span> Treating missing data</h3>
+<p>In this exercise, you’re working with another version of the <code>accounts</code> data that contains missing values for both the <code>cust_id</code> and <code>acct_amount</code> columns.</p>
+<p>You want to figure out how many unique customers the bank has, as well as the average amount held by customers. You know that rows with missing <code>cust_id</code> don’t really help you, and that on average, the <code>acct_amount</code> is usually 5 times the amount of <code>inv_amount.</code></p>
+<p>In this exercise, you will drop rows of <code>accounts</code> with missing <code>cust_ids</code>, and impute missing values of <code>inv_amount</code> with some domain knowledge.</p>
+<p>We’ll need to install and load the <code>assertive</code> package.</p>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="cleaning-data-in-r.html#cb679-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create accounts_clean</span></span>
+<span id="cb679-2"><a href="cleaning-data-in-r.html#cb679-2" aria-hidden="true" tabindex="-1"></a>accounts_clean <span class="ot">&lt;-</span> accounts <span class="sc">%&gt;%</span></span>
+<span id="cb679-3"><a href="cleaning-data-in-r.html#cb679-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter to remove rows with missing cust_id</span></span>
+<span id="cb679-4"><a href="cleaning-data-in-r.html#cb679-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(cust_id)) <span class="sc">%&gt;%</span></span>
+<span id="cb679-5"><a href="cleaning-data-in-r.html#cb679-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add new col acct_amount_filled with replaced NAs</span></span>
+<span id="cb679-6"><a href="cleaning-data-in-r.html#cb679-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">acct_amount_filled =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(acct_amount), inv_amount <span class="sc">*</span> <span class="dv">5</span>, acct_amount))</span>
+<span id="cb679-7"><a href="cleaning-data-in-r.html#cb679-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb679-8"><a href="cleaning-data-in-r.html#cb679-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert that cust_id has no missing vals</span></span>
+<span id="cb679-9"><a href="cleaning-data-in-r.html#cb679-9" aria-hidden="true" tabindex="-1"></a><span class="fu">assert_all_are_not_na</span>(accounts_clean<span class="sc">$</span>cust_id)</span>
+<span id="cb679-10"><a href="cleaning-data-in-r.html#cb679-10" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb679-11"><a href="cleaning-data-in-r.html#cb679-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(accounts_clean<span class="sc">$</span>cust_id))</span>
+<span id="cb679-12"><a href="cleaning-data-in-r.html#cb679-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb679-13"><a href="cleaning-data-in-r.html#cb679-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Assert that acct_amount_filled has no missing vals</span></span>
+<span id="cb679-14"><a href="cleaning-data-in-r.html#cb679-14" aria-hidden="true" tabindex="-1"></a><span class="fu">assert_all_are_not_na</span>(accounts_clean<span class="sc">$</span>acct_amount_filled)</span></code></pre></div>
+<p>Since your assertions passed, there’s no missing data left, and you can definitely bank on nailing your analysis!</p>
+<hr />
+</div>
+</div>
+<div id="record-linkage" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> 4: Record Linkage</h2>
+<p>Record linkage is a powerful technique used to merge multiple datasets together, used when values have typos or different spellings. In this chapter, you’ll learn how to link records by calculating the similarity between strings—you’ll then use your new skills to join two restaurant review datasets into one clean master dataset.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/minimumeditdistance.png" style="width:85.0%" alt="" />
+<p class="caption">Minimum edit distance. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/editdistanceof1.png" style="width:85.0%" alt="" />
+<p class="caption">Edit distance = 1. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/editdistanceof4.png" style="width:85.0%" alt="" />
+<p class="caption">Edit distance = 4. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/typesofeditdistance.png" style="width:85.0%" alt="" />
+<p class="caption">Types of edit distance. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/comparingstringstocleandata.png" style="width:85.0%" alt="" />
+<p class="caption">Comparing strings to clean data. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<div id="calculating-distance" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Calculating distance</h3>
+<p>In the video exercise, you saw how to use Damerau-Levenshtein distance to identify how similar two strings are. As a reminder, Damerau-Levenshtein distance is the <strong>minimum number of steps</strong> needed to get from <em>String A</em> to <em>String B</em>, using these operations:</p>
+<ul>
+<li><strong>Insertion</strong> of a new character.</li>
+<li><strong>Deletion</strong> of an existing character.</li>
+<li><strong>Substitution</strong> of an existing character.</li>
+<li><strong>Transposition</strong> of two existing consecutive characters.</li>
+</ul>
+<p>Substituting and inserting is the best way to get from <code>"puffin"</code> to <code>"muffins"</code>. In the next exercise, you’ll calculate string distances using R functions.</p>
+</div>
+<div id="small-distance-small-difference" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Small distance, small difference</h3>
+<p>In the video exercise, you learned that there are multiple ways to calculate how similar or different two strings are. Now you’ll practice using the <code>stringdist</code> package to compute string distances using various methods. It’s important to be familiar with different methods, as some methods work better on certain datasets, while others work better on other datasets.</p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="cleaning-data-in-r.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringdist)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;stringdist&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="cleaning-data-in-r.html#cb683-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Damerau-Levenshtein distance</span></span>
+<span id="cb683-2"><a href="cleaning-data-in-r.html#cb683-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stringdist</span>(<span class="st">&quot;las angelos&quot;</span>, <span class="st">&quot;los angeles&quot;</span>, <span class="at">method =</span> <span class="st">&quot;dl&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="cleaning-data-in-r.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate LCS distance</span></span>
+<span id="cb685-2"><a href="cleaning-data-in-r.html#cb685-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stringdist</span>(<span class="st">&quot;las angelos&quot;</span>, <span class="st">&quot;los angeles&quot;</span>, <span class="at">method =</span> <span class="st">&quot;lcs&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p><strong>The Jaccard method</strong>
+1. Count the total number of distinct elements in the two strings.
+2. Count the number of those elements which appear in both strings.
+3. Divide the latter by the former and multiply by 100.</p>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="cleaning-data-in-r.html#cb687-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Jaccard distance</span></span>
+<span id="cb687-2"><a href="cleaning-data-in-r.html#cb687-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stringdist</span>(<span class="st">&quot;las angelos&quot;</span>, <span class="st">&quot;los angeles&quot;</span>, <span class="at">method =</span> <span class="st">&quot;jaccard&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>As there are no elements in the first string that aren’t in the second string, and vice versa, the Jaccard method finds no difference between the two strings. In this way, the Jaccard method treats the strings more as sets of letters rather than sequences of letters.</p>
+<p>In the next exercise, you’ll use Damerau-Levenshtein distance to map typo-ridden cities to their true spellings.</p>
+</div>
+<div id="fixing-typos-with-string-distance" class="section level3" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Fixing typos with string distance</h3>
+<p>In this chapter, one of the datasets you’ll be working with, <code>zagat</code>, is a set of restaurants in New York, Los Angeles, Atlanta, San Francisco, and Las Vegas. The data is from Zagat, a company that collects restaurant reviews, and includes the restaurant names, addresses, phone numbers, as well as other restaurant information.</p>
+<p>The <code>city</code> column contains the name of the city that the restaurant is located in. However, there are a number of typos throughout the column. Your task is to map each city to one of the five correctly-spelled cities contained in the cities data frame.</p>
+<p>We’ll need to install and load <code>fuzzyjoin</code> package.</p>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="cleaning-data-in-r.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fuzzyjoin)</span></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="cleaning-data-in-r.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of each city variation</span></span>
+<span id="cb690-2"><a href="cleaning-data-in-r.html#cb690-2" aria-hidden="true" tabindex="-1"></a>zagat <span class="sc">%&gt;%</span></span>
+<span id="cb690-3"><a href="cleaning-data-in-r.html#cb690-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(city)</span>
+<span id="cb690-4"><a href="cleaning-data-in-r.html#cb690-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb690-5"><a href="cleaning-data-in-r.html#cb690-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Join zagat and cities and look at results</span></span>
+<span id="cb690-6"><a href="cleaning-data-in-r.html#cb690-6" aria-hidden="true" tabindex="-1"></a>zagat <span class="sc">%&gt;%</span></span>
+<span id="cb690-7"><a href="cleaning-data-in-r.html#cb690-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Left join based on stringdist using city and city_actual cols</span></span>
+<span id="cb690-8"><a href="cleaning-data-in-r.html#cb690-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stringdist_left_join</span>(cities, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;city&quot;</span> <span class="ot">=</span> <span class="st">&quot;city_actual&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb690-9"><a href="cleaning-data-in-r.html#cb690-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select the name, city, and city_actual cols</span></span>
+<span id="cb690-10"><a href="cleaning-data-in-r.html#cb690-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, city, city_actual)</span></code></pre></div>
+<p>Now that you’ve created consistent spelling for each city, it will be much easier to compute summary statistics by city.</p>
+</div>
+<div id="video-generating-and-comparing-pairs" class="section level3" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Video: Generating and comparing pairs</h3>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/whenjoinswontwork.png" style="width:85.0%" alt="" />
+<p class="caption">When joins wont work. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/whatisrecordlinkage.png" style="width:85.0%" alt="" />
+<p class="caption">What is record linkage? <em>Source: DataCamp</em></p>
+</div>
+</center>
+</div>
+<div id="exercise-link-or-join" class="section level3" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> Exercise: Link or join?</h3>
+<p>Similar to joins, record linkage is the act of linking data from different sources regarding the same entity. But unlike joins, record linkage does not require exact matches between different pairs of data, and instead can find close matches using string similarity. This is why record linkage is effective when there are no common unique keys between the data sources you can rely upon when linking data sources such as a unique identifier.</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/linkorjoin.png" style="width:85.0%" alt="" />
+<p class="caption">Link or join. <em>Source: DataCamp</em></p>
+</div>
+</center>
+<p>Don’t make things more complicated than they need to be: record linkage is a powerful tool, but it’s more complex than using a traditional join.</p>
+</div>
+<div id="pair-blocking" class="section level3" number="5.4.6">
+<h3><span class="header-section-number">5.4.6</span> Pair blocking</h3>
+<p>Zagat and Fodor’s are both companies that gather restaurant reviews. The <code>zagat</code> and <code>fodors</code> datasets both contain information about various restaurants, including addresses, phone numbers, and cuisine types. Some restaurants appear in both datasets, but don’t necessarily have the same exact name or phone number written down. In this chapter, you’ll work towards figuring out which restaurants appear in both datasets.</p>
+<p>The first step towards this goal is to generate pairs of records so that you can compare them. In this exercise, you’ll first generate all possible pairs, and then use your newly-cleaned city column as a blocking variable.</p>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="cleaning-data-in-r.html#cb691-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load reclin</span></span>
+<span id="cb691-2"><a href="cleaning-data-in-r.html#cb691-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reclin)</span>
+<span id="cb691-3"><a href="cleaning-data-in-r.html#cb691-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb691-4"><a href="cleaning-data-in-r.html#cb691-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate all possible pairs</span></span>
+<span id="cb691-5"><a href="cleaning-data-in-r.html#cb691-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pair_blocking</span>(zagat, fodors)</span>
+<span id="cb691-6"><a href="cleaning-data-in-r.html#cb691-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb691-7"><a href="cleaning-data-in-r.html#cb691-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate all possible pairs</span></span>
+<span id="cb691-8"><a href="cleaning-data-in-r.html#cb691-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pair_blocking</span>(zagat, fodors, <span class="at">blocking_var =</span> <span class="st">&quot;city&quot;</span>)</span></code></pre></div>
+<p>By using <code>city</code> as a blocking variable, you were able to reduce the number of pairs you’ll need to compare from 165,230 pairs to 40,532.</p>
+</div>
+<div id="comparing-pairs" class="section level3" number="5.4.7">
+<h3><span class="header-section-number">5.4.7</span> Comparing pairs</h3>
+<p>Now that you’ve generated the pairs of restaurants, it’s time to compare them. You can easily customize how you perform your comparisons using the by and default_comparator arguments. There’s no right answer as to what each should be set to, so in this exercise, you’ll try a couple options out.</p>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="cleaning-data-in-r.html#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate pairs</span></span>
+<span id="cb692-2"><a href="cleaning-data-in-r.html#cb692-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pair_blocking</span>(zagat, fodors, <span class="at">blocking_var =</span> <span class="st">&quot;city&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb692-3"><a href="cleaning-data-in-r.html#cb692-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compare pairs by name using lcs()</span></span>
+<span id="cb692-4"><a href="cleaning-data-in-r.html#cb692-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compare_pairs</span>(<span class="at">by =</span><span class="st">&quot;name&quot;</span>,</span>
+<span id="cb692-5"><a href="cleaning-data-in-r.html#cb692-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">default_comparator =</span> <span class="fu">lcs</span>())</span>
+<span id="cb692-6"><a href="cleaning-data-in-r.html#cb692-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb692-7"><a href="cleaning-data-in-r.html#cb692-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate pairs</span></span>
+<span id="cb692-8"><a href="cleaning-data-in-r.html#cb692-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pair_blocking</span>(zagat, fodors, <span class="at">blocking_var =</span> <span class="st">&quot;city&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb692-9"><a href="cleaning-data-in-r.html#cb692-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compare pairs by name using lcs()</span></span>
+<span id="cb692-10"><a href="cleaning-data-in-r.html#cb692-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compare_pairs</span>(<span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;phone&quot;</span>, <span class="st">&quot;addr&quot;</span>),</span>
+<span id="cb692-11"><a href="cleaning-data-in-r.html#cb692-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">default_comparator =</span> <span class="fu">jaro_winkler</span>())</span></code></pre></div>
+<p>Choosing a comparator and the columns to compare is highly dataset-dependent, so it’s best to try out different combinations to see which works best on the dataset you’re working with. Next, you’ll build on your string comparison skills and learn about record linkage!</p>
+</div>
+<div id="video-scoring-and-linking" class="section level3" number="5.4.8">
+<h3><span class="header-section-number">5.4.8</span> Video: Scoring and linking</h3>
+</div>
+<div id="score-then-select-or-select-then-score" class="section level3" number="5.4.9">
+<h3><span class="header-section-number">5.4.9</span> Score then select or select then score?</h3>
+<p>Record linkage requires a number of steps that can be difficult to keep straight. In this exercise, you’ll solidify your knowledge of the record linkage process so that it’s a breeze when you code it yourself!</p>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/questionorderforrecordlinkage.png" style="width:85.0%" alt="" />
+<p class="caption">Question order for record linkage. <em>Source: DataCamp</em></p>
+</div>
+</center>
+</div>
+<div id="putting-it-together" class="section level3" number="5.4.10">
+<h3><span class="header-section-number">5.4.10</span> Putting it together</h3>
+<p>During this chapter, you’ve cleaned up the <code>city</code> column of <code>zagat</code> using string similarity, as well as generated and compared pairs of restaurants from <code>zagat</code> and <code>fodors.</code> The end is near - all that’s left to do is score and select pairs and link the data together, and you’ll be able to begin your analysis in no time!</p>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="cleaning-data-in-r.html#cb693-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create pairs</span></span>
+<span id="cb693-2"><a href="cleaning-data-in-r.html#cb693-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pair_blocking</span>(zagat, fodors, <span class="at">blocking_var =</span> <span class="st">&quot;city&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb693-3"><a href="cleaning-data-in-r.html#cb693-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Compare pairs</span></span>
+<span id="cb693-4"><a href="cleaning-data-in-r.html#cb693-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compare_pairs</span>(<span class="at">by =</span> <span class="st">&quot;name&quot;</span>, <span class="at">default_comparator =</span> <span class="fu">jaro_winkler</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb693-5"><a href="cleaning-data-in-r.html#cb693-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Score pairs</span></span>
+<span id="cb693-6"><a href="cleaning-data-in-r.html#cb693-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">score_problink</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb693-7"><a href="cleaning-data-in-r.html#cb693-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select pairs</span></span>
+<span id="cb693-8"><a href="cleaning-data-in-r.html#cb693-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_n_to_m</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb693-9"><a href="cleaning-data-in-r.html#cb693-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Link data </span></span>
+<span id="cb693-10"><a href="cleaning-data-in-r.html#cb693-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">link</span>()</span></code></pre></div>
+<p>Now that your two datasets are merged, you can use the data to figure out if there are certain characteristics that make a restaurant more likely to be reviewed by Zagat or Fodor’s.</p>
+</div>
+<div id="video-congratulations-1" class="section level3" number="5.4.11">
+<h3><span class="header-section-number">5.4.11</span> Video: Congratulations!</h3>
+<center>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/mod5ch1summary.png" style="width:50.0%" alt="" />
+<p class="caption">Module 5, chapter 1 summary. <em>Source: DataCamp</em></p>
+</div>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/mod5ch2summary.png" style="width:50.0%" alt="" />
+<p class="caption">Module 5, chapter 2 summary. <em>Source: DataCamp</em></p>
+</div>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/mod5ch3summary.png" style="width:50.0%" alt="" />
+<p class="caption">Module 5, chapter 3 summary. <em>Source: DataCamp</em></p>
+</div>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/mod5ch4summary.png" style="width:50.0%" alt="" />
+<p class="caption">Module 5, chapter 4 summary. <em>Source: DataCamp</em></p>
+</div>
+<div class="figure">
+<img src="C:/Users/user/Documents/R/RProgforBus/mod5furthercourses.png" style="width:50.0%" alt="" />
+<p class="caption">Module 5 - further courses. <em>Source: DataCamp</em></p>
+</div>
+</center>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-manipulation-with-dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-data-visualization-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ijcwebb/wonderland/edit/master/05-cleaning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ijcwebb/wonderland/blob/master/05-cleaning.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 6 Fourth Topic | R Programming for Business</title>
+  <meta name="description" content="Module 6 Fourth Topic | R Programming for Business" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 6 Fourth Topic | R Programming for Business" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 6 Fourth Topic | R Programming for Business" />
+  
+  
+  
+
+<meta name="author" content="Iain Webb" />
+
+
+<meta name="date" content="2020-12-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="fourth-topic-1.html"/>
+<link rel="next" href="fourth-topic-3.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Wonderland</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#intro-to-basics"><i class="fa fa-check"></i><b>1.1</b> Intro to basics</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#how-it-works"><i class="fa fa-check"></i><b>1.1.1</b> How it works</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#arithmetic-with-r"><i class="fa fa-check"></i><b>1.1.2</b> Arithmetic with R</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#variable-assignment"><i class="fa fa-check"></i><b>1.1.3</b> Variable assignment</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#variable-assignment-2"><i class="fa fa-check"></i><b>1.1.4</b> Variable assignment (2)</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#variable-assignment-3"><i class="fa fa-check"></i><b>1.1.5</b> Variable assignment (3)</a></li>
+<li class="chapter" data-level="1.1.6" data-path="index.html"><a href="index.html#apples-and-oranges"><i class="fa fa-check"></i><b>1.1.6</b> Apples and oranges</a></li>
+<li class="chapter" data-level="1.1.7" data-path="index.html"><a href="index.html#basic-data-types-in-r"><i class="fa fa-check"></i><b>1.1.7</b> Basic data types in R</a></li>
+<li class="chapter" data-level="1.1.8" data-path="index.html"><a href="index.html#whats-the-data-type"><i class="fa fa-check"></i><b>1.1.8</b> What’s the data type?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#vectors"><i class="fa fa-check"></i><b>1.2</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#create-a-vector"><i class="fa fa-check"></i><b>1.2.1</b> Create a vector</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#create-a-vector-2"><i class="fa fa-check"></i><b>1.2.2</b> Create a vector (2)</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#create-a-vector-3"><i class="fa fa-check"></i><b>1.2.3</b> Create a vector (3)</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#naming-a-vector"><i class="fa fa-check"></i><b>1.2.4</b> Naming a vector</a></li>
+<li class="chapter" data-level="1.2.5" data-path="index.html"><a href="index.html#naming-a-vector-2"><i class="fa fa-check"></i><b>1.2.5</b> Naming a vector (2)</a></li>
+<li class="chapter" data-level="1.2.6" data-path="index.html"><a href="index.html#calculating-total-winnings"><i class="fa fa-check"></i><b>1.2.6</b> Calculating total winnings</a></li>
+<li class="chapter" data-level="1.2.7" data-path="index.html"><a href="index.html#calculating-total-winnings-2"><i class="fa fa-check"></i><b>1.2.7</b> Calculating total winnings (2)</a></li>
+<li class="chapter" data-level="1.2.8" data-path="index.html"><a href="index.html#calculating-total-winnings-3"><i class="fa fa-check"></i><b>1.2.8</b> Calculating total winnings (3)</a></li>
+<li class="chapter" data-level="1.2.9" data-path="index.html"><a href="index.html#comparing-total-winnings"><i class="fa fa-check"></i><b>1.2.9</b> Comparing total winnings</a></li>
+<li class="chapter" data-level="1.2.10" data-path="index.html"><a href="index.html#vector-selection-the-good-times"><i class="fa fa-check"></i><b>1.2.10</b> Vector selection: the good times</a></li>
+<li class="chapter" data-level="1.2.11" data-path="index.html"><a href="index.html#vector-selection-the-good-times-2"><i class="fa fa-check"></i><b>1.2.11</b> Vector selection: the good times (2)</a></li>
+<li class="chapter" data-level="1.2.12" data-path="index.html"><a href="index.html#vector-selection-the-good-times-3"><i class="fa fa-check"></i><b>1.2.12</b> Vector selection: the good times (3)</a></li>
+<li class="chapter" data-level="1.2.13" data-path="index.html"><a href="index.html#vector-selection-the-good-times-4"><i class="fa fa-check"></i><b>1.2.13</b> Vector selection: the good times (4)</a></li>
+<li class="chapter" data-level="1.2.14" data-path="index.html"><a href="index.html#selection-by-comparison---step-1"><i class="fa fa-check"></i><b>1.2.14</b> Selection by comparison - Step 1</a></li>
+<li class="chapter" data-level="1.2.15" data-path="index.html"><a href="index.html#selection-by-comparison---step-2"><i class="fa fa-check"></i><b>1.2.15</b> Selection by comparison - Step 2</a></li>
+<li class="chapter" data-level="1.2.16" data-path="index.html"><a href="index.html#advanced-selection"><i class="fa fa-check"></i><b>1.2.16</b> Advanced selection</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#matrices"><i class="fa fa-check"></i><b>1.3</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#whats-a-matrix"><i class="fa fa-check"></i><b>1.3.1</b> What’s a matrix?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#analyze-matrices-you-shall"><i class="fa fa-check"></i><b>1.3.2</b> Analyze matrices, you shall</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#naming-a-matrix"><i class="fa fa-check"></i><b>1.3.3</b> Naming a matrix</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#calculating-the-worldwide-box-office"><i class="fa fa-check"></i><b>1.3.4</b> Calculating the worldwide box office</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#using-dimnames"><i class="fa fa-check"></i><b>1.3.5</b> Using dimnames()</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#adding-a-column-for-the-worldwide-box-office"><i class="fa fa-check"></i><b>1.3.6</b> Adding a column for the Worldwide box office</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#adding-a-row"><i class="fa fa-check"></i><b>1.3.7</b> Adding a row</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#the-total-box-office-revenue-for-the-entire-saga"><i class="fa fa-check"></i><b>1.3.8</b> The total box office revenue for the entire saga</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#selection-of-matrix-elements"><i class="fa fa-check"></i><b>1.3.9</b> Selection of matrix elements</a></li>
+<li class="chapter" data-level="1.3.10" data-path="index.html"><a href="index.html#a-little-arithmetic-with-matrices"><i class="fa fa-check"></i><b>1.3.10</b> A little arithmetic with matrices</a></li>
+<li class="chapter" data-level="1.3.11" data-path="index.html"><a href="index.html#a-little-arithmetic-with-matrices-2"><i class="fa fa-check"></i><b>1.3.11</b> A little arithmetic with matrices (2)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#factors"><i class="fa fa-check"></i><b>1.4</b> Factors</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it"><i class="fa fa-check"></i><b>1.4.1</b> What’s a factor and why would you use it?</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it-2"><i class="fa fa-check"></i><b>1.4.2</b> What’s a factor and why would you use it? (2)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it-3"><i class="fa fa-check"></i><b>1.4.3</b> What’s a factor and why would you use it? (3)</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#factor-levels"><i class="fa fa-check"></i><b>1.4.4</b> Factor levels</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#summarizing-a-factor"><i class="fa fa-check"></i><b>1.4.5</b> Summarizing a factor</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#battle-of-the-sexes"><i class="fa fa-check"></i><b>1.4.6</b> Battle of the sexes</a></li>
+<li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#ordered-factors"><i class="fa fa-check"></i><b>1.4.7</b> Ordered factors</a></li>
+<li class="chapter" data-level="1.4.8" data-path="index.html"><a href="index.html#ordered-factors-2"><i class="fa fa-check"></i><b>1.4.8</b> Ordered factors (2)</a></li>
+<li class="chapter" data-level="1.4.9" data-path="index.html"><a href="index.html#comparing-ordered-factors"><i class="fa fa-check"></i><b>1.4.9</b> Comparing ordered factors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#data-frames"><i class="fa fa-check"></i><b>1.5</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#whats-a-data-frame"><i class="fa fa-check"></i><b>1.5.1</b> What’s a data frame?</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#quick-have-a-look-at-your-data-set"><i class="fa fa-check"></i><b>1.5.2</b> Quick, have a look at your data set</a></li>
+<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#have-a-look-at-the-structure"><i class="fa fa-check"></i><b>1.5.3</b> Have a look at the structure</a></li>
+<li class="chapter" data-level="1.5.4" data-path="index.html"><a href="index.html#creating-a-data-frame"><i class="fa fa-check"></i><b>1.5.4</b> Creating a data frame</a></li>
+<li class="chapter" data-level="1.5.5" data-path="index.html"><a href="index.html#creating-a-data-frame-2"><i class="fa fa-check"></i><b>1.5.5</b> Creating a data frame (2)</a></li>
+<li class="chapter" data-level="1.5.6" data-path="index.html"><a href="index.html#selection-of-data-frame-elements"><i class="fa fa-check"></i><b>1.5.6</b> Selection of data frame elements</a></li>
+<li class="chapter" data-level="1.5.7" data-path="index.html"><a href="index.html#selection-of-data-frame-elements-2"><i class="fa fa-check"></i><b>1.5.7</b> Selection of data frame elements (2)</a></li>
+<li class="chapter" data-level="1.5.8" data-path="index.html"><a href="index.html#only-planets-with-rings"><i class="fa fa-check"></i><b>1.5.8</b> Only planets with rings</a></li>
+<li class="chapter" data-level="1.5.9" data-path="index.html"><a href="index.html#only-planets-with-rings-2"><i class="fa fa-check"></i><b>1.5.9</b> Only planets with rings (2)</a></li>
+<li class="chapter" data-level="1.5.10" data-path="index.html"><a href="index.html#only-planets-with-rings-but-shorter"><i class="fa fa-check"></i><b>1.5.10</b> Only planets with rings but shorter</a></li>
+<li class="chapter" data-level="1.5.11" data-path="index.html"><a href="index.html#sorting"><i class="fa fa-check"></i><b>1.5.11</b> Sorting</a></li>
+<li class="chapter" data-level="1.5.12" data-path="index.html"><a href="index.html#sorting-your-data-frame"><i class="fa fa-check"></i><b>1.5.12</b> Sorting your data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#lists"><i class="fa fa-check"></i><b>1.6</b> Lists</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#lists-why-would-you-need-them"><i class="fa fa-check"></i><b>1.6.1</b> Lists, why would you need them?</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#lists-why-would-you-need-them-2"><i class="fa fa-check"></i><b>1.6.2</b> Lists, why would you need them? (2)</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#creating-a-list"><i class="fa fa-check"></i><b>1.6.3</b> Creating a list</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#creating-a-named-list"><i class="fa fa-check"></i><b>1.6.4</b> Creating a named list</a></li>
+<li class="chapter" data-level="1.6.5" data-path="index.html"><a href="index.html#creating-a-named-list-2"><i class="fa fa-check"></i><b>1.6.5</b> Creating a named list (2)</a></li>
+<li class="chapter" data-level="1.6.6" data-path="index.html"><a href="index.html#selecting-elements-from-a-list"><i class="fa fa-check"></i><b>1.6.6</b> Selecting elements from a list</a></li>
+<li class="chapter" data-level="1.6.7" data-path="index.html"><a href="index.html#creating-a-new-list-for-another-movie"><i class="fa fa-check"></i><b>1.6.7</b> Creating a new list for another movie</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#challenge"><i class="fa fa-check"></i><b>1.7</b> Challenge</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#solutions"><i class="fa fa-check"></i><b>1.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intermediate-r.html"><a href="intermediate-r.html"><i class="fa fa-check"></i><b>2</b> Intermediate R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intermediate-r.html"><a href="intermediate-r.html#conditionals-and-control-flow"><i class="fa fa-check"></i><b>2.1</b> Conditionals and Control Flow</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-relational-operators"><i class="fa fa-check"></i><b>2.1.1</b> Video: Relational Operators</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intermediate-r.html"><a href="intermediate-r.html#equality"><i class="fa fa-check"></i><b>2.1.2</b> Equality</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intermediate-r.html"><a href="intermediate-r.html#greater-and-less-than"><i class="fa fa-check"></i><b>2.1.3</b> Greater and less than</a></li>
+<li class="chapter" data-level="2.1.4" data-path="intermediate-r.html"><a href="intermediate-r.html#compare-vectors"><i class="fa fa-check"></i><b>2.1.4</b> Compare vectors</a></li>
+<li class="chapter" data-level="2.1.5" data-path="intermediate-r.html"><a href="intermediate-r.html#compare-matrices"><i class="fa fa-check"></i><b>2.1.5</b> Compare matrices</a></li>
+<li class="chapter" data-level="2.1.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-logical-operators"><i class="fa fa-check"></i><b>2.1.6</b> Video: Logical Operators</a></li>
+<li class="chapter" data-level="2.1.7" data-path="intermediate-r.html"><a href="intermediate-r.html#and"><i class="fa fa-check"></i><b>2.1.7</b> &amp; and |</a></li>
+<li class="chapter" data-level="2.1.8" data-path="intermediate-r.html"><a href="intermediate-r.html#and-2"><i class="fa fa-check"></i><b>2.1.8</b> &amp; and | (2)</a></li>
+<li class="chapter" data-level="2.1.9" data-path="intermediate-r.html"><a href="intermediate-r.html#question-reverse-the-result"><i class="fa fa-check"></i><b>2.1.9</b> Question: Reverse the result: !</a></li>
+<li class="chapter" data-level="2.1.10" data-path="intermediate-r.html"><a href="intermediate-r.html#blend-it-all-together"><i class="fa fa-check"></i><b>2.1.10</b> Blend it all together</a></li>
+<li class="chapter" data-level="2.1.11" data-path="intermediate-r.html"><a href="intermediate-r.html#video-conditional-statements"><i class="fa fa-check"></i><b>2.1.11</b> Video: Conditional Statements</a></li>
+<li class="chapter" data-level="2.1.12" data-path="intermediate-r.html"><a href="intermediate-r.html#the-if-statement"><i class="fa fa-check"></i><b>2.1.12</b> The if statement</a></li>
+<li class="chapter" data-level="2.1.13" data-path="intermediate-r.html"><a href="intermediate-r.html#add-an-else"><i class="fa fa-check"></i><b>2.1.13</b> Add an else</a></li>
+<li class="chapter" data-level="2.1.14" data-path="intermediate-r.html"><a href="intermediate-r.html#customize-further-else-if"><i class="fa fa-check"></i><b>2.1.14</b> Customize further: else if</a></li>
+<li class="chapter" data-level="2.1.15" data-path="intermediate-r.html"><a href="intermediate-r.html#question-else-if-2.0"><i class="fa fa-check"></i><b>2.1.15</b> Question: Else if 2.0</a></li>
+<li class="chapter" data-level="2.1.16" data-path="intermediate-r.html"><a href="intermediate-r.html#take-control"><i class="fa fa-check"></i><b>2.1.16</b> Take control!</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intermediate-r.html"><a href="intermediate-r.html#loops"><i class="fa fa-check"></i><b>2.2</b> Loops</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-while-loop"><i class="fa fa-check"></i><b>2.2.1</b> Video: While loop</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intermediate-r.html"><a href="intermediate-r.html#write-a-while-loop"><i class="fa fa-check"></i><b>2.2.2</b> Write a while loop</a></li>
+<li class="chapter" data-level="2.2.3" data-path="intermediate-r.html"><a href="intermediate-r.html#throw-in-more-conditionals"><i class="fa fa-check"></i><b>2.2.3</b> Throw in more conditionals</a></li>
+<li class="chapter" data-level="2.2.4" data-path="intermediate-r.html"><a href="intermediate-r.html#stop-the-while-loop-break"><i class="fa fa-check"></i><b>2.2.4</b> Stop the while loop: break</a></li>
+<li class="chapter" data-level="2.2.5" data-path="intermediate-r.html"><a href="intermediate-r.html#build-a-while-loop-from-scratch"><i class="fa fa-check"></i><b>2.2.5</b> Build a while loop from scratch</a></li>
+<li class="chapter" data-level="2.2.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-for-loop"><i class="fa fa-check"></i><b>2.2.6</b> Video: For loop</a></li>
+<li class="chapter" data-level="2.2.7" data-path="intermediate-r.html"><a href="intermediate-r.html#loop-over-a-list"><i class="fa fa-check"></i><b>2.2.7</b> Loop over a list</a></li>
+<li class="chapter" data-level="2.2.8" data-path="intermediate-r.html"><a href="intermediate-r.html#loop-over-a-matrix"><i class="fa fa-check"></i><b>2.2.8</b> Loop over a matrix</a></li>
+<li class="chapter" data-level="2.2.9" data-path="intermediate-r.html"><a href="intermediate-r.html#mix-it-up-with-control-flow"><i class="fa fa-check"></i><b>2.2.9</b> Mix it up with control flow</a></li>
+<li class="chapter" data-level="2.2.10" data-path="intermediate-r.html"><a href="intermediate-r.html#next-you-break-it"><i class="fa fa-check"></i><b>2.2.10</b> Next, you break it</a></li>
+<li class="chapter" data-level="2.2.11" data-path="intermediate-r.html"><a href="intermediate-r.html#build-a-for-loop-from-scratch"><i class="fa fa-check"></i><b>2.2.11</b> Build a for loop from scratch</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intermediate-r.html"><a href="intermediate-r.html#functions"><i class="fa fa-check"></i><b>2.3</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-introduction-to-functions"><i class="fa fa-check"></i><b>2.3.1</b> Video: Introduction to functions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intermediate-r.html"><a href="intermediate-r.html#function-documentation"><i class="fa fa-check"></i><b>2.3.2</b> Function documentation</a></li>
+<li class="chapter" data-level="2.3.3" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function"><i class="fa fa-check"></i><b>2.3.3</b> Use a function</a></li>
+<li class="chapter" data-level="2.3.4" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function-2"><i class="fa fa-check"></i><b>2.3.4</b> Use a function (2)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function-3"><i class="fa fa-check"></i><b>2.3.5</b> Use a function (3)</a></li>
+<li class="chapter" data-level="2.3.6" data-path="intermediate-r.html"><a href="intermediate-r.html#functions-inside-functions"><i class="fa fa-check"></i><b>2.3.6</b> Functions inside functions</a></li>
+<li class="chapter" data-level="2.3.7" data-path="intermediate-r.html"><a href="intermediate-r.html#question-required-or-optional"><i class="fa fa-check"></i><b>2.3.7</b> Question: Required, or optional?</a></li>
+<li class="chapter" data-level="2.3.8" data-path="intermediate-r.html"><a href="intermediate-r.html#video-writing-functions"><i class="fa fa-check"></i><b>2.3.8</b> Video: Writing functions</a></li>
+<li class="chapter" data-level="2.3.9" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function"><i class="fa fa-check"></i><b>2.3.9</b> Write your own function</a></li>
+<li class="chapter" data-level="2.3.10" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function-2"><i class="fa fa-check"></i><b>2.3.10</b> Write your own function (2)</a></li>
+<li class="chapter" data-level="2.3.11" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function-3"><i class="fa fa-check"></i><b>2.3.11</b> Write your own function (3)</a></li>
+<li class="chapter" data-level="2.3.12" data-path="intermediate-r.html"><a href="intermediate-r.html#question-function-scoping"><i class="fa fa-check"></i><b>2.3.12</b> Question: Function scoping</a></li>
+<li class="chapter" data-level="2.3.13" data-path="intermediate-r.html"><a href="intermediate-r.html#question-r-passes-arguments-by-value"><i class="fa fa-check"></i><b>2.3.13</b> Question: R passes arguments by value</a></li>
+<li class="chapter" data-level="2.3.14" data-path="intermediate-r.html"><a href="intermediate-r.html#r-you-functional"><i class="fa fa-check"></i><b>2.3.14</b> R you functional?</a></li>
+<li class="chapter" data-level="2.3.15" data-path="intermediate-r.html"><a href="intermediate-r.html#r-you-functional-2"><i class="fa fa-check"></i><b>2.3.15</b> R you functional? (2)</a></li>
+<li class="chapter" data-level="2.3.16" data-path="intermediate-r.html"><a href="intermediate-r.html#video-r-packages"><i class="fa fa-check"></i><b>2.3.16</b> Video: R packages</a></li>
+<li class="chapter" data-level="2.3.17" data-path="intermediate-r.html"><a href="intermediate-r.html#load-an-r-package"><i class="fa fa-check"></i><b>2.3.17</b> Load an R Package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intermediate-r.html"><a href="intermediate-r.html#the-apply-family"><i class="fa fa-check"></i><b>2.4</b> The apply family</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-a-built-in-r-function"><i class="fa fa-check"></i><b>2.4.1</b> Use lapply with a built-in R function</a></li>
+<li class="chapter" data-level="2.4.2" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-your-own-function"><i class="fa fa-check"></i><b>2.4.2</b> Use lapply with your own function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="intermediate-r.html"><a href="intermediate-r.html#lapply-and-anonymous-functions"><i class="fa fa-check"></i><b>2.4.3</b> lapply and anonymous functions</a></li>
+<li class="chapter" data-level="2.4.4" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-additional-arguments"><i class="fa fa-check"></i><b>2.4.4</b> Use lapply with additional arguments</a></li>
+<li class="chapter" data-level="2.4.5" data-path="intermediate-r.html"><a href="intermediate-r.html#apply-functions-that-return-null"><i class="fa fa-check"></i><b>2.4.5</b> Apply functions that return NULL</a></li>
+<li class="chapter" data-level="2.4.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-sapply"><i class="fa fa-check"></i><b>2.4.6</b> Video: sapply()</a></li>
+<li class="chapter" data-level="2.4.7" data-path="intermediate-r.html"><a href="intermediate-r.html#how-to-use-sapply"><i class="fa fa-check"></i><b>2.4.7</b> How to use sapply</a></li>
+<li class="chapter" data-level="2.4.8" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-your-own-function"><i class="fa fa-check"></i><b>2.4.8</b> sapply with your own function</a></li>
+<li class="chapter" data-level="2.4.9" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-function-returning-vector"><i class="fa fa-check"></i><b>2.4.9</b> sapply with function returning vector</a></li>
+<li class="chapter" data-level="2.4.10" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-cant-simplify-now-what"><i class="fa fa-check"></i><b>2.4.10</b> sapply can’t simplify, now what?</a></li>
+<li class="chapter" data-level="2.4.11" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-functions-that-return-null"><i class="fa fa-check"></i><b>2.4.11</b> sapply with functions that return NULL</a></li>
+<li class="chapter" data-level="2.4.12" data-path="intermediate-r.html"><a href="intermediate-r.html#reverse-engineering-sapply"><i class="fa fa-check"></i><b>2.4.12</b> Reverse engineering sapply</a></li>
+<li class="chapter" data-level="2.4.13" data-path="intermediate-r.html"><a href="intermediate-r.html#video-vapply"><i class="fa fa-check"></i><b>2.4.13</b> Video: vapply</a></li>
+<li class="chapter" data-level="2.4.14" data-path="intermediate-r.html"><a href="intermediate-r.html#use-vapply"><i class="fa fa-check"></i><b>2.4.14</b> Use vapply</a></li>
+<li class="chapter" data-level="2.4.15" data-path="intermediate-r.html"><a href="intermediate-r.html#use-vapply-2"><i class="fa fa-check"></i><b>2.4.15</b> Use vapply (2)</a></li>
+<li class="chapter" data-level="2.4.16" data-path="intermediate-r.html"><a href="intermediate-r.html#from-sapply-to-vapply"><i class="fa fa-check"></i><b>2.4.16</b> From sapply to vapply</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intermediate-r.html"><a href="intermediate-r.html#utilities"><i class="fa fa-check"></i><b>2.5</b> Utilities</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-useful-functions"><i class="fa fa-check"></i><b>2.5.1</b> Video: Useful functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intermediate-r.html"><a href="intermediate-r.html#mathematical-utilities"><i class="fa fa-check"></i><b>2.5.2</b> Mathematical utilities</a></li>
+<li class="chapter" data-level="2.5.3" data-path="intermediate-r.html"><a href="intermediate-r.html#find-the-error"><i class="fa fa-check"></i><b>2.5.3</b> Find the error</a></li>
+<li class="chapter" data-level="2.5.4" data-path="intermediate-r.html"><a href="intermediate-r.html#data-utilities"><i class="fa fa-check"></i><b>2.5.4</b> Data Utilities</a></li>
+<li class="chapter" data-level="2.5.5" data-path="intermediate-r.html"><a href="intermediate-r.html#find-the-error-2"><i class="fa fa-check"></i><b>2.5.5</b> Find the error (2)</a></li>
+<li class="chapter" data-level="2.5.6" data-path="intermediate-r.html"><a href="intermediate-r.html#beat-gauss-using-r"><i class="fa fa-check"></i><b>2.5.6</b> Beat Gauss using R</a></li>
+<li class="chapter" data-level="2.5.7" data-path="intermediate-r.html"><a href="intermediate-r.html#video-regular-expressions"><i class="fa fa-check"></i><b>2.5.7</b> Video: Regular expressions</a></li>
+<li class="chapter" data-level="2.5.8" data-path="intermediate-r.html"><a href="intermediate-r.html#grepl-grep"><i class="fa fa-check"></i><b>2.5.8</b> grepl &amp; grep</a></li>
+<li class="chapter" data-level="2.5.9" data-path="intermediate-r.html"><a href="intermediate-r.html#grepl-grep-2"><i class="fa fa-check"></i><b>2.5.9</b> grepl &amp; grep (2)</a></li>
+<li class="chapter" data-level="2.5.10" data-path="intermediate-r.html"><a href="intermediate-r.html#sub-gsub"><i class="fa fa-check"></i><b>2.5.10</b> sub &amp; gsub</a></li>
+<li class="chapter" data-level="2.5.11" data-path="intermediate-r.html"><a href="intermediate-r.html#sub-gsub-2"><i class="fa fa-check"></i><b>2.5.11</b> sub &amp; gsub (2)</a></li>
+<li class="chapter" data-level="2.5.12" data-path="intermediate-r.html"><a href="intermediate-r.html#video-times-dates"><i class="fa fa-check"></i><b>2.5.12</b> Video: Times &amp; Dates</a></li>
+<li class="chapter" data-level="2.5.13" data-path="intermediate-r.html"><a href="intermediate-r.html#right-here-right-now"><i class="fa fa-check"></i><b>2.5.13</b> Right here, right now</a></li>
+<li class="chapter" data-level="2.5.14" data-path="intermediate-r.html"><a href="intermediate-r.html#create-and-format-dates"><i class="fa fa-check"></i><b>2.5.14</b> Create and format dates</a></li>
+<li class="chapter" data-level="2.5.15" data-path="intermediate-r.html"><a href="intermediate-r.html#create-and-format-times"><i class="fa fa-check"></i><b>2.5.15</b> Create and format times</a></li>
+<li class="chapter" data-level="2.5.16" data-path="intermediate-r.html"><a href="intermediate-r.html#calculations-with-dates"><i class="fa fa-check"></i><b>2.5.16</b> Calculations with Dates</a></li>
+<li class="chapter" data-level="2.5.17" data-path="intermediate-r.html"><a href="intermediate-r.html#calculations-with-times"><i class="fa fa-check"></i><b>2.5.17</b> Calculations with Times</a></li>
+<li class="chapter" data-level="2.5.18" data-path="intermediate-r.html"><a href="intermediate-r.html#time-is-of-the-essence"><i class="fa fa-check"></i><b>2.5.18</b> Time is of the essence</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
+<li class="chapter" data-level="4" data-path="fourth-topic.html"><a href="fourth-topic.html"><i class="fa fa-check"></i><b>4</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="fourth-topic.html"><a href="fourth-topic.html#challenge-4"><i class="fa fa-check"></i><b>4.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="fourth-topic.html"><a href="fourth-topic.html#question-1"><i class="fa fa-check"></i><b>4.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="4.1.2" data-path="fourth-topic.html"><a href="fourth-topic.html#question-2"><i class="fa fa-check"></i><b>4.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="4.1.3" data-path="fourth-topic.html"><a href="fourth-topic.html#question-3"><i class="fa fa-check"></i><b>4.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="4.1.4" data-path="fourth-topic.html"><a href="fourth-topic.html#question-4"><i class="fa fa-check"></i><b>4.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="4.1.5" data-path="fourth-topic.html"><a href="fourth-topic.html#question-5"><i class="fa fa-check"></i><b>4.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="4.1.6" data-path="fourth-topic.html"><a href="fourth-topic.html#question-6"><i class="fa fa-check"></i><b>4.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="4.1.7" data-path="fourth-topic.html"><a href="fourth-topic.html#question-7"><i class="fa fa-check"></i><b>4.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="4.1.8" data-path="fourth-topic.html"><a href="fourth-topic.html#question-8"><i class="fa fa-check"></i><b>4.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="4.1.9" data-path="fourth-topic.html"><a href="fourth-topic.html#question-9"><i class="fa fa-check"></i><b>4.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html"><i class="fa fa-check"></i><b>5</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#challenge-4-1"><i class="fa fa-check"></i><b>5.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-1-1"><i class="fa fa-check"></i><b>5.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="5.1.2" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-2-1"><i class="fa fa-check"></i><b>5.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="5.1.3" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-3-1"><i class="fa fa-check"></i><b>5.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="5.1.4" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-4-1"><i class="fa fa-check"></i><b>5.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="5.1.5" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-5-1"><i class="fa fa-check"></i><b>5.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="5.1.6" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-6-1"><i class="fa fa-check"></i><b>5.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="5.1.7" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-7-1"><i class="fa fa-check"></i><b>5.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="5.1.8" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-8-1"><i class="fa fa-check"></i><b>5.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="5.1.9" data-path="fourth-topic-1.html"><a href="fourth-topic-1.html#question-9-1"><i class="fa fa-check"></i><b>5.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html"><i class="fa fa-check"></i><b>6</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#challenge-4-2"><i class="fa fa-check"></i><b>6.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-1-2"><i class="fa fa-check"></i><b>6.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="6.1.2" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-2-2"><i class="fa fa-check"></i><b>6.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="6.1.3" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-3-2"><i class="fa fa-check"></i><b>6.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="6.1.4" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-4-2"><i class="fa fa-check"></i><b>6.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="6.1.5" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-5-2"><i class="fa fa-check"></i><b>6.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="6.1.6" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-6-2"><i class="fa fa-check"></i><b>6.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="6.1.7" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-7-2"><i class="fa fa-check"></i><b>6.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="6.1.8" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-8-2"><i class="fa fa-check"></i><b>6.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="6.1.9" data-path="fourth-topic-2.html"><a href="fourth-topic-2.html#question-9-2"><i class="fa fa-check"></i><b>6.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html"><i class="fa fa-check"></i><b>7</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#challenge-4-3"><i class="fa fa-check"></i><b>7.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-1-3"><i class="fa fa-check"></i><b>7.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="7.1.2" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-2-3"><i class="fa fa-check"></i><b>7.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="7.1.3" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-3-3"><i class="fa fa-check"></i><b>7.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="7.1.4" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-4-3"><i class="fa fa-check"></i><b>7.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="7.1.5" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-5-3"><i class="fa fa-check"></i><b>7.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="7.1.6" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-6-3"><i class="fa fa-check"></i><b>7.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="7.1.7" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-7-3"><i class="fa fa-check"></i><b>7.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="7.1.8" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-8-3"><i class="fa fa-check"></i><b>7.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="7.1.9" data-path="fourth-topic-3.html"><a href="fourth-topic-3.html#question-9-3"><i class="fa fa-check"></i><b>7.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html"><i class="fa fa-check"></i><b>8</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#challenge-4-4"><i class="fa fa-check"></i><b>8.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-1-4"><i class="fa fa-check"></i><b>8.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="8.1.2" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-2-4"><i class="fa fa-check"></i><b>8.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="8.1.3" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-3-4"><i class="fa fa-check"></i><b>8.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="8.1.4" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-4-4"><i class="fa fa-check"></i><b>8.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="8.1.5" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-5-4"><i class="fa fa-check"></i><b>8.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="8.1.6" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-6-4"><i class="fa fa-check"></i><b>8.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="8.1.7" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-7-4"><i class="fa fa-check"></i><b>8.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="8.1.8" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-8-4"><i class="fa fa-check"></i><b>8.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="8.1.9" data-path="fourth-topic-4.html"><a href="fourth-topic-4.html#question-9-4"><i class="fa fa-check"></i><b>8.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html"><i class="fa fa-check"></i><b>9</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#challenge-4-5"><i class="fa fa-check"></i><b>9.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-1-5"><i class="fa fa-check"></i><b>9.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="9.1.2" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-2-5"><i class="fa fa-check"></i><b>9.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="9.1.3" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-3-5"><i class="fa fa-check"></i><b>9.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="9.1.4" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-4-5"><i class="fa fa-check"></i><b>9.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="9.1.5" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-5-5"><i class="fa fa-check"></i><b>9.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="9.1.6" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-6-5"><i class="fa fa-check"></i><b>9.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="9.1.7" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-7-5"><i class="fa fa-check"></i><b>9.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="9.1.8" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-8-5"><i class="fa fa-check"></i><b>9.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="9.1.9" data-path="fourth-topic-5.html"><a href="fourth-topic-5.html#question-9-5"><i class="fa fa-check"></i><b>9.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html"><i class="fa fa-check"></i><b>10</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#challenge-4-6"><i class="fa fa-check"></i><b>10.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-1-6"><i class="fa fa-check"></i><b>10.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="10.1.2" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-2-6"><i class="fa fa-check"></i><b>10.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="10.1.3" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-3-6"><i class="fa fa-check"></i><b>10.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="10.1.4" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-4-6"><i class="fa fa-check"></i><b>10.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="10.1.5" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-5-6"><i class="fa fa-check"></i><b>10.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="10.1.6" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-6-6"><i class="fa fa-check"></i><b>10.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="10.1.7" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-7-6"><i class="fa fa-check"></i><b>10.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="10.1.8" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-8-6"><i class="fa fa-check"></i><b>10.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="10.1.9" data-path="fourth-topic-6.html"><a href="fourth-topic-6.html#question-9-6"><i class="fa fa-check"></i><b>10.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html"><i class="fa fa-check"></i><b>11</b> Fourth Topic</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#challenge-4-7"><i class="fa fa-check"></i><b>11.1</b> Challenge 4</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-1-7"><i class="fa fa-check"></i><b>11.1.1</b> Question 1</a></li>
+<li class="chapter" data-level="11.1.2" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-2-7"><i class="fa fa-check"></i><b>11.1.2</b> Question 2</a></li>
+<li class="chapter" data-level="11.1.3" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-3-7"><i class="fa fa-check"></i><b>11.1.3</b> Question 3</a></li>
+<li class="chapter" data-level="11.1.4" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-4-7"><i class="fa fa-check"></i><b>11.1.4</b> Question 4</a></li>
+<li class="chapter" data-level="11.1.5" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-5-7"><i class="fa fa-check"></i><b>11.1.5</b> Question 5</a></li>
+<li class="chapter" data-level="11.1.6" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-6-7"><i class="fa fa-check"></i><b>11.1.6</b> Question 6</a></li>
+<li class="chapter" data-level="11.1.7" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-7-7"><i class="fa fa-check"></i><b>11.1.7</b> Question 7</a></li>
+<li class="chapter" data-level="11.1.8" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-8-7"><i class="fa fa-check"></i><b>11.1.8</b> Question 8</a></li>
+<li class="chapter" data-level="11.1.9" data-path="fourth-topic-7.html"><a href="fourth-topic-7.html#question-9-7"><i class="fa fa-check"></i><b>11.1.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Business</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fourth-topic-2" class="section level1" number="6">
+<h1><span class="header-section-number">Module 6</span> Fourth Topic</h1>
+<div id="challenge-4-2" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Challenge 4</h2>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="fourth-topic-2.html#cb607-1" aria-hidden="true" tabindex="-1"></a>sw <span class="ot">&lt;-</span> dplyr<span class="sc">::</span>starwars <span class="co"># Create sw dataframe</span></span>
+<span id="cb607-2"><a href="fourth-topic-2.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sw)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 13
+##   name  height  mass hair_color
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     
+## 1 Luke~    172    77 blond     
+## 2 C-3PO    167    75 &lt;NA&gt;      
+## 3 R2-D2     96    32 &lt;NA&gt;      
+## 4 Dart~    202   136 none      
+## 5 Leia~    150    49 brown     
+## 6 Owen~    178   120 brown, gr~
+## # ... with 9 more variables:
+## #   skin_color &lt;chr&gt;,
+## #   eye_color &lt;chr&gt;,
+## #   birth_year &lt;dbl&gt;, gender &lt;chr&gt;,
+## #   homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;</code></pre>
+<div id="question-1-2" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Question 1</h3>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="fourth-topic-2.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(sw) <span class="co"># 1.a.</span></span></code></pre></div>
+<pre><code>## [1] 87 13</code></pre>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="fourth-topic-2.html#cb611-1" aria-hidden="true" tabindex="-1"></a>dim.sw <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sw)<span class="sc">*</span><span class="fu">ncol</span>(sw) <span class="co"># 1.b.</span></span></code></pre></div>
+</div>
+<div id="question-2-2" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Question 2</h3>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="fourth-topic-2.html#cb612-1" aria-hidden="true" tabindex="-1"></a>na.cells <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(sw)) <span class="co"># 2.a.</span></span>
+<span id="cb612-2"><a href="fourth-topic-2.html#cb612-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb612-3"><a href="fourth-topic-2.html#cb612-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>na.cells<span class="sc">/</span>dim.sw,<span class="dv">1</span>) <span class="co"># 2.b.</span></span></code></pre></div>
+<pre><code>## [1] 8.9</code></pre>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="fourth-topic-2.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sw[,<span class="fu">colSums</span>(<span class="fu">is.na</span>(sw)) <span class="sc">==</span> <span class="fu">max</span>(<span class="fu">colSums</span>(<span class="fu">is.na</span>(sw)))]) <span class="co"># 2.c.</span></span></code></pre></div>
+<pre><code>## [1] &quot;birth_year&quot;</code></pre>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="fourth-topic-2.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sw, <span class="fu">is.na</span>(homeworld)<span class="sc">==</span><span class="cn">TRUE</span> <span class="sc">&amp;</span> (<span class="fu">is.na</span>(birth_year)<span class="sc">==</span><span class="cn">FALSE</span> <span class="sc">|</span> <span class="fu">is.na</span>(mass)<span class="sc">==</span><span class="cn">FALSE</span>))  <span class="co"># 2.d.</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 x 13
+##   name  height  mass hair_color
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;     
+## 1 Yoda      66    17 white     
+## 2 IG-88    200   140 none      
+## 3 Qui-~    193    89 brown     
+## # ... with 9 more variables:
+## #   skin_color &lt;chr&gt;,
+## #   eye_color &lt;chr&gt;,
+## #   birth_year &lt;dbl&gt;, gender &lt;chr&gt;,
+## #   homeworld &lt;chr&gt;, species &lt;chr&gt;,
+## #   films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;</code></pre>
+</div>
+<div id="question-3-2" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Question 3</h3>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="fourth-topic-2.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(sw<span class="sc">$</span>species)) <span class="co"># 3.</span></span></code></pre></div>
+<pre><code>## [1] 38</code></pre>
+</div>
+<div id="question-4-2" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Question 4</h3>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="fourth-topic-2.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">which</span>(sw<span class="sc">$</span>species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>)) <span class="co"># 4.a.i</span></span></code></pre></div>
+<pre><code>## [1] 35</code></pre>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="fourth-topic-2.html#cb622-1" aria-hidden="true" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="co"># 4.a.ii.</span></span>
+<span id="cb622-2"><a href="fourth-topic-2.html#cb622-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species<span class="sc">==</span><span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb622-3"><a href="fourth-topic-2.html#cb622-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb622-4"><a href="fourth-topic-2.html#cb622-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+## # Groups:   gender [2]
+##   gender     n
+##   &lt;chr&gt;  &lt;int&gt;
+## 1 female     9
+## 2 male      26</code></pre>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="fourth-topic-2.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(sw, <span class="fu">is.na</span>(gender) <span class="sc">|</span> (gender <span class="sc">!=</span> <span class="st">&quot;male&quot;</span> <span class="sc">&amp;</span> gender <span class="sc">!=</span> <span class="st">&quot;female&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># 4.b.</span></span>
+<span id="cb624-2"><a href="fourth-topic-2.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1     6</code></pre>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="fourth-topic-2.html#cb626-1" aria-hidden="true" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="co"># 4.c.</span></span>
+<span id="cb626-2"><a href="fourth-topic-2.html#cb626-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, gender) <span class="sc">%&gt;%</span> <span class="co"># Creates piles of similarly sexed members of the same species</span></span>
+<span id="cb626-3"><a href="fourth-topic-2.html#cb626-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span> <span class="co"># Produces a table of tallies of the above groups</span></span>
+<span id="cb626-4"><a href="fourth-topic-2.html#cb626-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> <span class="co"># Groups within this table of tallies</span></span>
+<span id="cb626-5"><a href="fourth-topic-2.html#cb626-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span> <span class="co"># Produces a tally of the numbers of members of the groups above</span></span>
+<span id="cb626-6"><a href="fourth-topic-2.html#cb626-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+## # Groups:   species [5]
+##   species      n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 Droid        2
+## 2 Human        2
+## 3 Kaminoan     2
+## 4 Twi&#39;lek      2
+## 5 &lt;NA&gt;         2</code></pre>
+</div>
+<div id="question-5-2" class="section level3" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> Question 5</h3>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="fourth-topic-2.html#cb628-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> <span class="co"># 5.a.</span></span>
+<span id="cb628-2"><a href="fourth-topic-2.html#cb628-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb628-3"><a href="fourth-topic-2.html#cb628-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span>
+<span id="cb628-4"><a href="fourth-topic-2.html#cb628-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb628-5"><a href="fourth-topic-2.html#cb628-5" aria-hidden="true" tabindex="-1"></a>my_cols <span class="ot">&lt;-</span> unikn<span class="sc">::</span><span class="fu">usecol</span>(<span class="fu">c</span>(Pinky, Seegruen, Seeblau, Grau))</span>
+<span id="cb628-6"><a href="fourth-topic-2.html#cb628-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sw, <span class="fu">aes</span>(<span class="at">x =</span> gender)) <span class="sc">+</span> <span class="co"># 5.b.</span></span>
+<span id="cb628-7"><a href="fourth-topic-2.html#cb628-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> gender)) <span class="sc">+</span></span>
+<span id="cb628-8"><a href="fourth-topic-2.html#cb628-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sex distribtion of the sw universe&quot;</span>,</span>
+<span id="cb628-9"><a href="fourth-topic-2.html#cb628-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">tag =</span> <span class="st">&quot;5.b.&quot;</span>,</span>
+<span id="cb628-10"><a href="fourth-topic-2.html#cb628-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb628-11"><a href="fourth-topic-2.html#cb628-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb628-12"><a href="fourth-topic-2.html#cb628-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Using raw data sw.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb628-13"><a href="fourth-topic-2.html#cb628-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Gender:&quot;</span>, <span class="at">values =</span> my_cols, <span class="at">na.value =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb628-14"><a href="fourth-topic-2.html#cb628-14" aria-hidden="true" tabindex="-1"></a>  ds4psy<span class="sc">::</span><span class="fu">theme_ds4psy</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-336-1.png" width="672" /></p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="fourth-topic-2.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y =</span> n)) <span class="sc">+</span> <span class="co"># 5.c., adding y=n to the aes()</span></span>
+<span id="cb629-2"><a href="fourth-topic-2.html#cb629-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> gender), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> <span class="co"># Adding stat=&quot;identity&quot; to the aes()</span></span>
+<span id="cb629-3"><a href="fourth-topic-2.html#cb629-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Sex distribtion of the sw universe&quot;</span>,</span>
+<span id="cb629-4"><a href="fourth-topic-2.html#cb629-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">tag =</span> <span class="st">&quot;5.c.&quot;</span>,</span>
+<span id="cb629-5"><a href="fourth-topic-2.html#cb629-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb629-6"><a href="fourth-topic-2.html#cb629-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb629-7"><a href="fourth-topic-2.html#cb629-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Using raw data sw.&quot;</span>) <span class="sc">+</span></span>
+<span id="cb629-8"><a href="fourth-topic-2.html#cb629-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Gender:&quot;</span>, <span class="at">values =</span> my_cols, <span class="at">na.value =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb629-9"><a href="fourth-topic-2.html#cb629-9" aria-hidden="true" tabindex="-1"></a>  ds4psy<span class="sc">::</span><span class="fu">theme_ds4psy</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-336-2.png" width="672" /></p>
+</div>
+<div id="question-6-2" class="section level3" number="6.1.6">
+<h3><span class="header-section-number">6.1.6</span> Question 6</h3>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="fourth-topic-2.html#cb630-1" aria-hidden="true" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="co"># 6.a.</span></span>
+<span id="cb630-2"><a href="fourth-topic-2.html#cb630-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld) <span class="sc">%&gt;%</span> </span>
+<span id="cb630-3"><a href="fourth-topic-2.html#cb630-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb630-4"><a href="fourth-topic-2.html#cb630-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 49 x 2
+## # Groups:   homeworld [49]
+##    homeworld     n
+##    &lt;chr&gt;     &lt;int&gt;
+##  1 Naboo        11
+##  2 Tatooine     10
+##  3 &lt;NA&gt;         10
+##  4 Alderaan      3
+##  5 Coruscant     3
+##  6 Kamino        3
+##  7 Corellia      2
+##  8 Kashyyyk      2
+##  9 Mirial        2
+## 10 Ryloth        2
+## # ... with 39 more rows</code></pre>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="fourth-topic-2.html#cb632-1" aria-hidden="true" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="co"># 6.b.</span></span>
+<span id="cb632-2"><a href="fourth-topic-2.html#cb632-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(homeworld <span class="sc">==</span> <span class="st">&quot;Naboo&quot;</span>, eye_color <span class="sc">==</span> <span class="st">&quot;orange&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb632-3"><a href="fourth-topic-2.html#cb632-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb632-4"><a href="fourth-topic-2.html#cb632-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mn_height =</span><span class="fu">mean</span>(height))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##       n mn_height
+##   &lt;int&gt;     &lt;dbl&gt;
+## 1     3      209.</code></pre>
+</div>
+<div id="question-7-2" class="section level3" number="6.1.7">
+<h3><span class="header-section-number">6.1.7</span> Question 7</h3>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="fourth-topic-2.html#cb634-1" aria-hidden="true" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="co"># 7.</span></span>
+<span id="cb634-2"><a href="fourth-topic-2.html#cb634-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Droid&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb634-3"><a href="fourth-topic-2.html#cb634-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb634-4"><a href="fourth-topic-2.html#cb634-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">not_NA_h =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(height)),</span>
+<span id="cb634-5"><a href="fourth-topic-2.html#cb634-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">md_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
+<span id="cb634-6"><a href="fourth-topic-2.html#cb634-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mn_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
+<span id="cb634-7"><a href="fourth-topic-2.html#cb634-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_height =</span> <span class="fu">sd</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##       n not_NA_h md_height mn_height
+##   &lt;int&gt;    &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1     5        4       132       140
+## # ... with 1 more variable:
+## #   sd_height &lt;dbl&gt;</code></pre>
+</div>
+<div id="question-8-2" class="section level3" number="6.1.8">
+<h3><span class="header-section-number">6.1.8</span> Question 8</h3>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="fourth-topic-2.html#cb636-1" aria-hidden="true" tabindex="-1"></a>h_m <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span> <span class="co"># 8.a.</span></span>
+<span id="cb636-2"><a href="fourth-topic-2.html#cb636-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb636-3"><a href="fourth-topic-2.html#cb636-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mn_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb636-4"><a href="fourth-topic-2.html#cb636-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mn_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb636-5"><a href="fourth-topic-2.html#cb636-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb636-6"><a href="fourth-topic-2.html#cb636-6" aria-hidden="true" tabindex="-1"></a>h_m <span class="sc">%&gt;%</span> <span class="co"># 8.b.</span></span>
+<span id="cb636-7"><a href="fourth-topic-2.html#cb636-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mn_height) <span class="sc">%&gt;%</span> </span>
+<span id="cb636-8"><a href="fourth-topic-2.html#cb636-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   species        mn_height mn_mass
+##   &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Yoda&#39;s species        66      17
+## 2 Aleena                79      15
+## 3 Ewok                  88      20</code></pre>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="fourth-topic-2.html#cb638-1" aria-hidden="true" tabindex="-1"></a>h_m <span class="sc">%&gt;%</span> <span class="co"># 8.c.</span></span>
+<span id="cb638-2"><a href="fourth-topic-2.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mn_mass)) <span class="sc">%&gt;%</span> </span>
+<span id="cb638-3"><a href="fourth-topic-2.html#cb638-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   species mn_height mn_mass
+##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Hutt          175    1358
+## 2 Kaleesh       216     159
+## 3 Wookiee       231     124</code></pre>
+</div>
+<div id="question-9-2" class="section level3" number="6.1.9">
+<h3><span class="header-section-number">6.1.9</span> Question 9</h3>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="fourth-topic-2.html#cb640-1" aria-hidden="true" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="co"># 9.a.</span></span>
+<span id="cb640-2"><a href="fourth-topic-2.html#cb640-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(species)) <span class="sc">%&gt;%</span> </span>
+<span id="cb640-3"><a href="fourth-topic-2.html#cb640-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb640-4"><a href="fourth-topic-2.html#cb640-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb640-5"><a href="fourth-topic-2.html#cb640-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb640-6"><a href="fourth-topic-2.html#cb640-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   species     n
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 Human      35
+## 2 Droid       5
+## 3 Gungan      3</code></pre>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="fourth-topic-2.html#cb642-1" aria-hidden="true" tabindex="-1"></a>sw <span class="sc">%&gt;%</span> <span class="co"># 9.b.</span></span>
+<span id="cb642-2"><a href="fourth-topic-2.html#cb642-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, homeworld, mass) <span class="sc">%&gt;%</span> </span>
+<span id="cb642-3"><a href="fourth-topic-2.html#cb642-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld) <span class="sc">%&gt;%</span> </span>
+<span id="cb642-4"><a href="fourth-topic-2.html#cb642-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mn_mass =</span> <span class="fu">mean</span>(mass, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb642-5"><a href="fourth-topic-2.html#cb642-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">lighter =</span> mass <span class="sc">&lt;</span> (mn_mass<span class="sc">*</span><span class="fl">0.8</span>)</span>
+<span id="cb642-6"><a href="fourth-topic-2.html#cb642-6" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span> </span>
+<span id="cb642-7"><a href="fourth-topic-2.html#cb642-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(lighter <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 5
+## # Groups:   homeworld [4]
+##   name  homeworld  mass mn_mass
+##   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 R2-D2 Naboo        32    64.2
+## 2 Leia~ Alderaan     49    64  
+## 3 R5-D4 Tatooine     32    85.4
+## 4 Yoda  &lt;NA&gt;         17    82  
+## 5 Padm~ Naboo        45    64.2
+## # ... with 1 more variable:
+## #   lighter &lt;lgl&gt;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fourth-topic-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fourth-topic-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ijcwebb/wonderland/edit/master/06-ggplot2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ijcwebb/wonderland/blob/master/06-ggplot2.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

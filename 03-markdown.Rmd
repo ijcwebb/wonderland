@@ -1,0 +1,243 @@
+# R Markdown
+
+R Markdown is an easy to use formatting language you can use to reveal insights from data and author your findings as a PDF, HTML file, or Shiny app. In this course, you'll learn how to create and modify each element of a Markdown file, including the code, text, and metadata. You'll analyze data with dplyr, create visualizations with ggplot2, and author your analyses and plots as reports. You’ll gain hands-on experience of building reports as you work with real-world data from the International Finance Corporation (IFC)—learning how to efficiently organize reports using code chunk options, create lists and tables, and include a table of contents. By the end of the course, you'll have the skills you need to add your brand’s fonts and colors using parameters and Cascading Style Sheets (CSS), to make your reports stand out.
+
+## Getting started with R Markdown
+
+In this chapter, you'll learn about the three components of a Markdown file: the code, the text, and the metadata. You'll also learn to add and modify each of these elements to your own reports, as you create your first Markdown files.
+
+### Video: Introduction to R Markdown
+
+### Creating your first R Markdown file
+Throughout the course, you'll be working on creating an investment report using two datasets from the World Bank IFC. The first dataset, `investment_annual_summary`, provides the summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018. To get started on your report, you first want to print out the dataset.
+
+To create your report, you'll need to edit the Markdown file shown on the right of the DataCamp console, as described in the instructions, then press the green "Knit HTML" button to knit the file and see the resulting HTML file. We'll discuss other output types later in the course.
+
+Because this textbook is written using R Markdown, I'll be including the R Markdown output for this chapter [here](https://rpubs.com/ijcwebb/rprogforbus-module3).
+
+In each exercise, the first code chunk in the Markdown file will load the `readr` package and the datasets you'll be using in the exercise. You'll learn more about the details of this code chunk later in the course, but you won't need to modify it for any of the exercises in this chapter.
+
+As you can see from the output, adding the dataset name to the code chunk and knitting the document resulted in the dataset being printed in your report. You can also see from the report that the dataset has 42 rows, and that each row contains information about the ``fiscal_year`, `region`, and `dollars_in_millions` for the investments made that year.
+
+### Adding code chunks to your file
+When creating your own reports, one of the first things you'll want to do is add some code! In the video, we discussed how you can add your own code by adding code chunks. Previously, we looked at the `investment_annual_summary` dataset we'll be using throughout the course. In this exercise, let's take a look at the annual summary dataset as well as the other dataset we'll be using, `investment_services_projects`.
+
+From the report, you can see that the `investment_services_project` dataset contains information about each individual project and includes a lot more variables than the `investment_annual_summary` dataset. You'll be exploring both of these datasets in much more depth in the coming exercises as you create your investment report!
+
+### Video: Adding and formatting text
+
+### Question: Formatting text
+
+### Adding sections to your report
+Previously, you added the names of the datasets you'll be using to build your report to the Markdown file that will be used to create the report. Now, you'll add some headers and text to the document to provide some additional detail about the datasets to the audience who will read the report.
+
+As you can see from the report, the more hashes you place in front of the text, the smaller the header will be when you knit the file.
+
+### Question: Including links and images
+
+### Video: The YAML header
+
+### Editing the YAML header
+The YAML header contains the metadata for your report and includes information like the title, author, and output format. In this exercise, you'll update your report by adding some more detail about who created the report and when it was created.
+
+Remember, you can add the date to your report manually by entering the date as a string. However, adding the date with `Sys.Date()` is much more efficient and scalable, since it will ensure that the date is updated automatically each time you edit and knit your file.
+
+### Formatting the date
+Now that your report includes some more high-level detail, you'd like to include the date using a different format. Be sure to refer to the tables of date formatting options from the video below.
+
+![](/Users/user/Documents/R/RProgforBus/dateformattingoptiontables.png) Source: DataCamp
+
+Keep in mind that there are many text and numeric options for formatting the date of your report. Now that you understand each of the elements of the Markdown file, and how to modify them, you're ready to add more detail to your Investment Report!
+
+---
+
+## Adding Analyses and Visualizations
+
+In this chapter, you’ll use dplyr to begin to analyze the World Bank IFC datasets and include the analyses in your report. You’ll then create visualizations of the data using ggplot2 and learn to modify how the plots display in your knit report.
+
+### Video: Analyzing the data
+
+### Filtering for a specific country
+Previously, you learned how to filter the data to find out more information about projects that occurred in Indonesia. Now, you'll build a report that provides this information for another country that's included in the `investment_services_project` data. In this exercise, you'll begin filtering the data to gather information about projects that occurred in Brazil.
+
+From the report, you can see that there were a total of 88 projects in Brazil during the 2012 to 2018 fiscal years.
+
+### Filtering for a specific year
+Now that you've filtered the data for the projects in a specific country, you can filter the results further to look at all projects that occurred in the 2018 fiscal year. Recall, the fiscal year starts on July 1st of the previous year and ends on June 30th of the year of interest.
+
+Now your report includes information about all projects that occurred in Brazil during the 2012 to 2018 fiscal years and the projects that occurred in the 2018 fiscal year. Next, you'll learn how to create and add plots to these reports, so that your audience is able to visualize this information when they read the final report.
+
+### Referencing code results in the report
+In this exercise, you'll use `summarize()` and `brazil_investment_projects_2018` to find the total investment amount for all projects in Brazil in the 2018 fiscal year. Then, you'll add text to the report to include the information and reference the code results in the text, so that the calculated amount is printed in the text of the report when you knit the file.
+
+Now, if you update the analysis and the `brazil_investment_projects_2018_total` amount changes, you won't need to modify the amount manually in the sentence that describes the information. Instead, since the object name is referenced in the text, the report will update automatically the next time the report is knit.
+
+### Video: Adding plots
+
+### Visualizing the Investment Annual Summary data
+Now that you have all of the data ready for the report you're creating, you can start making plots that will be included in the report to help your audience visualize the data when they're reading the report. You'll start by creating a line plot of the `investment_annual_summary` data.
+
+Notice that for each region, the highest investments were made during the 2013 or 2014 fiscal years. This is an example of an insight you might want to include as text in the final report.
+
+### Visualizing all projects for one country
+Previously, you created a line plot using the `investment_annual_summary`. Now, you'll use the data you filtered to create scatterplots that summarize the information about the projects that occurred in Brazil.
+
+Notice the warning message in the report that tells us that there were 7 rows removed that contain missing values. You'll learn how to handle warning messages later in the course, but this may be something you’d want to include in the text of your report to specify which data points were excluded from the plot and why.
+
+### Visualizing all projects for one country and year
+Now, you'll create a line plot using the data that was filtered for all projects that occurred in Brazil in the 2018 fiscal year. In the previous exercises, the labels were added for you. While creating this plot, you'll gain some experience adding your own labels that will appear when you knit the report.
+
+Now your report has plots for the Investment Annual Summary data, as well as for all projects in Brazil during the 2012 to 2018 fiscal years and all projects in the 2018 fiscal year. Now that you've created these plots for your report, you'll learn some of the options you have for formatting how the plots appear in the final report.
+
+### Video: Plot options
+
+### Setting chunk options globally
+Now that your plots are ready to include in your report, you can modify how they appear once the file is knit. Previously, you learned the difference between setting options globally and setting them locally. In this exercise, you'll set options for the figures globally, which means the options will apply to all figures throughout the code chunks in the report.
+
+Recall, the options for `fig.align` are `'left'`, `'right'`, and `'center'`. These options can be set globally or locally, depending on whether or not you want all figures to appear uniformly throughout the report, or if you want the options to vary by figure.
+
+### Setting chunk options locally
+When creating a report, you may want to set the chunk options locally so that the figure display in the final report varies. The `investment_annual_summary` data provides helpful background information, but the focus of the report is on projects in Brazil. In this exercise, you'll modify the chunk options locally so that the plots that display information about projects in Brazil appear slightly larger in the final report than the plot that provides the overview of the Investment Annual Summary data.
+
+You can see in the final report that the plots that display information about projects in Brazil are slightly larger than the plot that provides the Investment Annual Summary overview. Notice that the `fig.align = center` option remained in the `setup` code chunk at the top, so this option has been set globally and determines the alignment for all figures in the report.
+
+Also note that you can override globally set options with locally set ones. For example, if you wanted all figures to display at 50% width except for two figures you wanted to be larger, you could include `out.width = '50%'` in the global options but `out.width = '95%'` in the local options of the two figures.
+
+### Adding figure captions
+Now that the figures have been modified, you'll add some captions to label the figures and provide some information about what is displayed in each plot.
+
+Now you can see that each figure is labeled in the final report and includes a caption that describes what each plot displays.
+
+---
+
+## Improving the Report
+Now that you've learned how to add, label, and modify code chunks, you'll learn about code chunk options. You can use these to determine whether the code and results appear in the knit report. You'll also discover how to create lists and tables to include in your report.
+
+### Video: Organizing the report
+
+### Creating a bulleted list
+Previously, you learned how to add text to your Markdown file to include additional information for your audience. Now, you'll create a bulleted list to specify which regions are included in the `investment_annual_summary` data. Refer to the image below from the video to recall the list of regions that should be included in your table.
+
+![](/Users/user/Documents/R/RProgforBus/Bulleted list of regions.png) Source: DataCamp
+
+Remember, you can structure the list formatting by adding indentation before an item on the list.
+
+### Creating a numbered list
+When adding a list to your report, you can use either bulleted or numbered lists. In this exercise, you'll modify the bulleted list of regions from the previous exercise to create a numbered list.
+
+Adding a numbered list to the report is a helpful way to quickly display the total number of regions that are included in the data.
+
+### Adding a table
+Previously, you printed the datasets used in your report to your report so that the audience was able to look through the data themselves. Now, you'll create a table of the `investment_region_summary` to display this information more clearly to your audience. The `investment_region_summary` provides the total of all investments for each region from the 2012 to 2018 fiscal years.
+
+Now your report begins with a list of all regions in the `investment_annual_summary` data, as well as a table that summarizes the total investments that were made to each region across the 2012 to 2018 fiscal years.
+
+### Video: Code chunk options
+
+### Question: Comparing code chunk options
+
+- `include=FALSE`: Code runs but does not appears in report, results do not appear.
+- `echo=FALSE`: Code runs but does not appear in the report, results appear.
+- `eval=FALSE`: Code appears in report but does not run, results do not appear.
+
+The other option you recently learned is `collapse`, which was the only option you've learned so far that has a default of `FALSE`.
+
+### Collapsing blocks in the knit report
+By default, the `collapse` option is set to `FALSE`, and the code and any output appear in the knit file in separate blocks. You encountered this earlier when creating plots of the data. In this exercise, you'll modify the Markdown file so that the code and resulting warning messages appear in the same block.
+
+Notice that the warning messages for the plots now appear as comments in the same block as the code that creates the plot, instead of being separated into an individual block. You'll learn more about warning messages and how to specify whether or not they are included in the report soon!
+
+### Modifying the report using include and echo
+The exercises in the course have used `include = FALSE` to prevent the code and results of the `setup` and `data` chunks from appearing in the knit report. Although you won't modify those options, since the code and results from those chunks should be excluded from the report, it's important to note how they impact the final report.
+
+In this exercise, you'll use the `echo` option to modify whether or not the code appears in the report.
+
+Even though the code no longer displays in the knit report, the results of the code still appears. This is an option you'll want to use if your report is being written for a non-technical audience, who is interested in the results but may not be interested in the code itself. Notice that the warning messages that mention that data was excluded from the plots still appear in the knit report. Next, you'll learn how to modify whether or not these warning messages are included in the report!
+
+### Video: Warnings, messages, and errors
+
+### Excluding messages
+In the past, you haven't encountered messages in the report because the `include` option has been set to `FALSE` in the `data` chunk to prevent the code or the results from the code from appearing in the report. In this exercise, you'll use the `message` option to prevent messages from appearing in the report, while still including the code in the report.
+
+Notice that the code for the `data` chunk is now included without any of the messages that you would otherwise see when loading the data or packages used in the report.
+
+### Excluding warnings
+Previously, you used the `collapse` option so that the code and resulting warning messages appear in the same block in the knit report. In this exercise, you'll use the `warning` option to prevent warnings from appearing in the final report.
+
+Notice that DataCamp added a sentence before each of the code chunks that were impacted to let the audience know that: 'Projects that do not have an associated investment amount are excluded from the plot'. If you are excluding any warning messages from the report, it's important to include information about any data that is not included and why.
+
+---
+
+## Customizing the Report
+In this final chapter, you'll learn how to customize your report by adding a table of contents and adding a CSS file to the YAML header, to personalize reports with your brand’s fonts and colors. You'll also learn how to efficiently create new reports from your data using parameters, which will save you time from manually updating existing reports to create new ones.
+
+### Video: Adding a table of contents
+
+### Adding the table of contents
+Adding a table of contents to your report is a useful way to help your audience navigate through the different sections of your report. It provides an overview of what your report contains, and can help your audience navigate through the report easily. In this exercise, you'll add a table of contents to your report to provide an overview of the topics that the report includes.
+
+Now your audience can reference the table of contents at the beginning of your report to understand the information that will be covered in the report.
+
+### Specifying headers and number sectioning
+Now that you've added a table of contents, you'll modify how it appears in the report and which information it includes. You'll use `toc_depth` to specify the depth of headers that will be included in the table of contents and `number_sections` to add section numbering for the headers in the report.
+
+The headers were modified to start with a single hash before adding section numbering because, if the largest headers in the report start with two hashes, the section numbering will start with zeros. Remember that, for `toc_depth`, the default depth is `3` for HTML documents and `2` for PDF documents.
+
+### Adding table of contents options
+When `toc_float` is included, the table of contents appears on the left side of the document and remains visible while the reader scrolls through the document. By default, it displays the largest header, will expand as someone is reading through the report or interacting with the table of contents to navigate to another section, and animates page scrolls when navigating the report.
+
+In this exercise, you'll add `toc_float` and modify these settings using the `collapsed` and `smooth_scroll` fields so that the full table of contents remains visible and page scrolls are not animated.
+
+If you want to add `toc_float` to the report and keep the default `collapsed` and `smooth_scroll` options (both turned on, i.e. `TRUE`, by default), you can set the `toc_float` field to `true` in the YAML header.
+
+### Video: Creating a report with a parameter
+
+### Adding a parameter to the report
+In this exercise, you'll add a parameter for `country` to the report and modify the existing code so that you can create new reports about the investment projects for any country included in the `investment_services_projects` data.
+
+Now that you've reviewed the code for your report, you'll review the text and the YAML header of the document before creating a new report using the `country` parameter.
+
+### Creating a new report using a parameter
+Now that you've added a parameter to the document, you'll create a new report for Bangladesh from the `investment_services_projects` data using the `country` parameter.
+
+Before knitting the report, you'll review and modify the text of the document to ensure that the knit report will reflect the country that is specified in the parameter.
+
+Notice that by only modifying the parameter, you were able to create a new report for Bangladesh that includes all of the information that was previously provided for Brazil. When creating new documents using parameters, there may be some information you want to add that is specific to the new country and report, but parameters are an efficient and quick way to get started!
+
+### Video: Multiple parameters
+
+### Adding multiple parameters to the report
+Previously, you added a parameter for `country` to create new reports to summarize information about the investment projects for any country included in the `investment_services_projects` data. Now, you'll add parameters for the fiscal year and modify the existing code so that you can create new reports about the investment projects for any country and fiscal year from the `investment_services_projects` data.
+
+Now, you'll be able to create a report for any country and fiscal year by modifying only the parameters in the YAML header!
+
+### Creating a new report using multiple parameters
+Now that you've added parameters to account for the fiscal year, you'll create a new report for another country and fiscal year from the `investment_services_projects` data.
+
+Now you're able to create new reports using multiple parameters by modifying only the information in the YAML header. As before, there may be some information you want to add that is specific to the country and fiscal year, but these parameters will help you get started on a new report!
+
+### Video: Customizing the report
+
+### Customizing the report style
+Now that you've learned how to customize the style of your report, you'll begin to add specific fonts and colors to your existing report.
+
+Notice that the document background and code chunks in the knit file are modified to reflect the various fonts and colors you listed.
+
+### Customizing the header and table of contents
+In this exercise, you'll continue to add styles by modifying the table of contents and header sections of the Markdown file.
+
+Notice the difference in appearance of the table of contents section. If you want to customize any of these sections further, you can add the properties you've used so far to any of the sections listed. For example, you can add `opactity` to the `pre` section to customize the code chunks, the same way that you did with the `#header` section.
+
+### Customizing the title, author, and date
+Previously, you modified the header of the document using the `#header` section. Now, you'll practice customizing the title, author, and date sections individually.
+
+In this version of the report, you used the same settings for the `h4.author` and `h4.date` sections, but you can use any colors or fonts you'd like with this syntax.
+
+### Referencing the CSS file
+Rather than adding styles to each Markdown file within the file, you can create and reference a Cascading Style Sheet (CSS) file each time you create a new file that contains particular styles and fonts.
+
+In this exercise, the styles you've specified have been added to a CSS file called `styles.css`. You'll reference this file in the YAML header instead of specifying the styles within the Markdown file.
+
+Notice that, although the styles are no longer listed within the Markdown file, the knit report still reflects all of the styles you've been adding over the past few exercises.
+
+### Video: Congratulations!

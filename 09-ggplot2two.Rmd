@@ -1,0 +1,14 @@
+# Intermediate Data Visualization with ggplot2
+
+This ggplot2 course builds on your knowledge from the introductory course to produce meaningful explanatory plots. Statistics will be calculated on the fly and you’ll see how Coordinates and Facets aid in communication. You’ll also explore details of data visualization best practices with ggplot2 to help make sure you have a sound understanding of what works and why. By the end of the course, you’ll have all the tools needed to make a custom plotting function to explore a large data set, combining statistics and excellent visuals.
+
+## Statistics
+
+A picture paints a thousand words, which is why R ggplot2 is such a powerful tool for graphical data analysis. In this chapter, you’ll progress from simply plotting data to applying a variety of statistical methods. These include a variety of linear models, descriptive and inferential statistics (mean, standard deviation and confidence intervals) and custom functions.
+
+### Video: Stats with geoms
+
+[View slides.](https://drive.google.com/drive/folders/1rTSXe2HiLMbTePzcwtP4IUKEOHs-0OXY)
+
+### Smoothing
+

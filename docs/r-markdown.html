@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 3 R Markdown | R Programming for Business</title>
+  <meta name="description" content="Module 3 R Markdown | R Programming for Business" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 3 R Markdown | R Programming for Business" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 3 R Markdown | R Programming for Business" />
+  
+  
+  
+
+<meta name="author" content="Iain Webb" />
+
+
+<meta name="date" content="2020-12-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intermediate-r.html"/>
+<link rel="next" href="data-manipulation-with-dplyr.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Wonderland</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#intro-to-basics"><i class="fa fa-check"></i><b>1.1</b> Intro to basics</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#how-it-works"><i class="fa fa-check"></i><b>1.1.1</b> How it works</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#arithmetic-with-r"><i class="fa fa-check"></i><b>1.1.2</b> Arithmetic with R</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#variable-assignment"><i class="fa fa-check"></i><b>1.1.3</b> Variable assignment</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#variable-assignment-2"><i class="fa fa-check"></i><b>1.1.4</b> Variable assignment (2)</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#variable-assignment-3"><i class="fa fa-check"></i><b>1.1.5</b> Variable assignment (3)</a></li>
+<li class="chapter" data-level="1.1.6" data-path="index.html"><a href="index.html#apples-and-oranges"><i class="fa fa-check"></i><b>1.1.6</b> Apples and oranges</a></li>
+<li class="chapter" data-level="1.1.7" data-path="index.html"><a href="index.html#basic-data-types-in-r"><i class="fa fa-check"></i><b>1.1.7</b> Basic data types in R</a></li>
+<li class="chapter" data-level="1.1.8" data-path="index.html"><a href="index.html#whats-the-data-type"><i class="fa fa-check"></i><b>1.1.8</b> What’s the data type?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#vectors"><i class="fa fa-check"></i><b>1.2</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#create-a-vector"><i class="fa fa-check"></i><b>1.2.1</b> Create a vector</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#create-a-vector-2"><i class="fa fa-check"></i><b>1.2.2</b> Create a vector (2)</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#create-a-vector-3"><i class="fa fa-check"></i><b>1.2.3</b> Create a vector (3)</a></li>
+<li class="chapter" data-level="1.2.4" data-path="index.html"><a href="index.html#naming-a-vector"><i class="fa fa-check"></i><b>1.2.4</b> Naming a vector</a></li>
+<li class="chapter" data-level="1.2.5" data-path="index.html"><a href="index.html#naming-a-vector-2"><i class="fa fa-check"></i><b>1.2.5</b> Naming a vector (2)</a></li>
+<li class="chapter" data-level="1.2.6" data-path="index.html"><a href="index.html#calculating-total-winnings"><i class="fa fa-check"></i><b>1.2.6</b> Calculating total winnings</a></li>
+<li class="chapter" data-level="1.2.7" data-path="index.html"><a href="index.html#calculating-total-winnings-2"><i class="fa fa-check"></i><b>1.2.7</b> Calculating total winnings (2)</a></li>
+<li class="chapter" data-level="1.2.8" data-path="index.html"><a href="index.html#calculating-total-winnings-3"><i class="fa fa-check"></i><b>1.2.8</b> Calculating total winnings (3)</a></li>
+<li class="chapter" data-level="1.2.9" data-path="index.html"><a href="index.html#comparing-total-winnings"><i class="fa fa-check"></i><b>1.2.9</b> Comparing total winnings</a></li>
+<li class="chapter" data-level="1.2.10" data-path="index.html"><a href="index.html#vector-selection-the-good-times"><i class="fa fa-check"></i><b>1.2.10</b> Vector selection: the good times</a></li>
+<li class="chapter" data-level="1.2.11" data-path="index.html"><a href="index.html#vector-selection-the-good-times-2"><i class="fa fa-check"></i><b>1.2.11</b> Vector selection: the good times (2)</a></li>
+<li class="chapter" data-level="1.2.12" data-path="index.html"><a href="index.html#vector-selection-the-good-times-3"><i class="fa fa-check"></i><b>1.2.12</b> Vector selection: the good times (3)</a></li>
+<li class="chapter" data-level="1.2.13" data-path="index.html"><a href="index.html#vector-selection-the-good-times-4"><i class="fa fa-check"></i><b>1.2.13</b> Vector selection: the good times (4)</a></li>
+<li class="chapter" data-level="1.2.14" data-path="index.html"><a href="index.html#selection-by-comparison---step-1"><i class="fa fa-check"></i><b>1.2.14</b> Selection by comparison - Step 1</a></li>
+<li class="chapter" data-level="1.2.15" data-path="index.html"><a href="index.html#selection-by-comparison---step-2"><i class="fa fa-check"></i><b>1.2.15</b> Selection by comparison - Step 2</a></li>
+<li class="chapter" data-level="1.2.16" data-path="index.html"><a href="index.html#advanced-selection"><i class="fa fa-check"></i><b>1.2.16</b> Advanced selection</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#matrices"><i class="fa fa-check"></i><b>1.3</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#whats-a-matrix"><i class="fa fa-check"></i><b>1.3.1</b> What’s a matrix?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#analyze-matrices-you-shall"><i class="fa fa-check"></i><b>1.3.2</b> Analyze matrices, you shall</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#naming-a-matrix"><i class="fa fa-check"></i><b>1.3.3</b> Naming a matrix</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#calculating-the-worldwide-box-office"><i class="fa fa-check"></i><b>1.3.4</b> Calculating the worldwide box office</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#using-dimnames"><i class="fa fa-check"></i><b>1.3.5</b> Using dimnames()</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#adding-a-column-for-the-worldwide-box-office"><i class="fa fa-check"></i><b>1.3.6</b> Adding a column for the Worldwide box office</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#adding-a-row"><i class="fa fa-check"></i><b>1.3.7</b> Adding a row</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#the-total-box-office-revenue-for-the-entire-saga"><i class="fa fa-check"></i><b>1.3.8</b> The total box office revenue for the entire saga</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#selection-of-matrix-elements"><i class="fa fa-check"></i><b>1.3.9</b> Selection of matrix elements</a></li>
+<li class="chapter" data-level="1.3.10" data-path="index.html"><a href="index.html#a-little-arithmetic-with-matrices"><i class="fa fa-check"></i><b>1.3.10</b> A little arithmetic with matrices</a></li>
+<li class="chapter" data-level="1.3.11" data-path="index.html"><a href="index.html#a-little-arithmetic-with-matrices-2"><i class="fa fa-check"></i><b>1.3.11</b> A little arithmetic with matrices (2)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#factors"><i class="fa fa-check"></i><b>1.4</b> Factors</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it"><i class="fa fa-check"></i><b>1.4.1</b> What’s a factor and why would you use it?</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it-2"><i class="fa fa-check"></i><b>1.4.2</b> What’s a factor and why would you use it? (2)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#whats-a-factor-and-why-would-you-use-it-3"><i class="fa fa-check"></i><b>1.4.3</b> What’s a factor and why would you use it? (3)</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#factor-levels"><i class="fa fa-check"></i><b>1.4.4</b> Factor levels</a></li>
+<li class="chapter" data-level="1.4.5" data-path="index.html"><a href="index.html#summarizing-a-factor"><i class="fa fa-check"></i><b>1.4.5</b> Summarizing a factor</a></li>
+<li class="chapter" data-level="1.4.6" data-path="index.html"><a href="index.html#battle-of-the-sexes"><i class="fa fa-check"></i><b>1.4.6</b> Battle of the sexes</a></li>
+<li class="chapter" data-level="1.4.7" data-path="index.html"><a href="index.html#ordered-factors"><i class="fa fa-check"></i><b>1.4.7</b> Ordered factors</a></li>
+<li class="chapter" data-level="1.4.8" data-path="index.html"><a href="index.html#ordered-factors-2"><i class="fa fa-check"></i><b>1.4.8</b> Ordered factors (2)</a></li>
+<li class="chapter" data-level="1.4.9" data-path="index.html"><a href="index.html#comparing-ordered-factors"><i class="fa fa-check"></i><b>1.4.9</b> Comparing ordered factors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#data-frames"><i class="fa fa-check"></i><b>1.5</b> Data frames</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#whats-a-data-frame"><i class="fa fa-check"></i><b>1.5.1</b> What’s a data frame?</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#quick-have-a-look-at-your-data-set"><i class="fa fa-check"></i><b>1.5.2</b> Quick, have a look at your data set</a></li>
+<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#have-a-look-at-the-structure"><i class="fa fa-check"></i><b>1.5.3</b> Have a look at the structure</a></li>
+<li class="chapter" data-level="1.5.4" data-path="index.html"><a href="index.html#creating-a-data-frame"><i class="fa fa-check"></i><b>1.5.4</b> Creating a data frame</a></li>
+<li class="chapter" data-level="1.5.5" data-path="index.html"><a href="index.html#creating-a-data-frame-2"><i class="fa fa-check"></i><b>1.5.5</b> Creating a data frame (2)</a></li>
+<li class="chapter" data-level="1.5.6" data-path="index.html"><a href="index.html#selection-of-data-frame-elements"><i class="fa fa-check"></i><b>1.5.6</b> Selection of data frame elements</a></li>
+<li class="chapter" data-level="1.5.7" data-path="index.html"><a href="index.html#selection-of-data-frame-elements-2"><i class="fa fa-check"></i><b>1.5.7</b> Selection of data frame elements (2)</a></li>
+<li class="chapter" data-level="1.5.8" data-path="index.html"><a href="index.html#only-planets-with-rings"><i class="fa fa-check"></i><b>1.5.8</b> Only planets with rings</a></li>
+<li class="chapter" data-level="1.5.9" data-path="index.html"><a href="index.html#only-planets-with-rings-2"><i class="fa fa-check"></i><b>1.5.9</b> Only planets with rings (2)</a></li>
+<li class="chapter" data-level="1.5.10" data-path="index.html"><a href="index.html#only-planets-with-rings-but-shorter"><i class="fa fa-check"></i><b>1.5.10</b> Only planets with rings but shorter</a></li>
+<li class="chapter" data-level="1.5.11" data-path="index.html"><a href="index.html#sorting"><i class="fa fa-check"></i><b>1.5.11</b> Sorting</a></li>
+<li class="chapter" data-level="1.5.12" data-path="index.html"><a href="index.html#sorting-your-data-frame"><i class="fa fa-check"></i><b>1.5.12</b> Sorting your data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#lists"><i class="fa fa-check"></i><b>1.6</b> Lists</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="index.html"><a href="index.html#lists-why-would-you-need-them"><i class="fa fa-check"></i><b>1.6.1</b> Lists, why would you need them?</a></li>
+<li class="chapter" data-level="1.6.2" data-path="index.html"><a href="index.html#lists-why-would-you-need-them-2"><i class="fa fa-check"></i><b>1.6.2</b> Lists, why would you need them? (2)</a></li>
+<li class="chapter" data-level="1.6.3" data-path="index.html"><a href="index.html#creating-a-list"><i class="fa fa-check"></i><b>1.6.3</b> Creating a list</a></li>
+<li class="chapter" data-level="1.6.4" data-path="index.html"><a href="index.html#creating-a-named-list"><i class="fa fa-check"></i><b>1.6.4</b> Creating a named list</a></li>
+<li class="chapter" data-level="1.6.5" data-path="index.html"><a href="index.html#creating-a-named-list-2"><i class="fa fa-check"></i><b>1.6.5</b> Creating a named list (2)</a></li>
+<li class="chapter" data-level="1.6.6" data-path="index.html"><a href="index.html#selecting-elements-from-a-list"><i class="fa fa-check"></i><b>1.6.6</b> Selecting elements from a list</a></li>
+<li class="chapter" data-level="1.6.7" data-path="index.html"><a href="index.html#creating-a-new-list-for-another-movie"><i class="fa fa-check"></i><b>1.6.7</b> Creating a new list for another movie</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#challenge"><i class="fa fa-check"></i><b>1.7</b> Challenge</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#solutions"><i class="fa fa-check"></i><b>1.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intermediate-r.html"><a href="intermediate-r.html"><i class="fa fa-check"></i><b>2</b> Intermediate R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intermediate-r.html"><a href="intermediate-r.html#conditionals-and-control-flow"><i class="fa fa-check"></i><b>2.1</b> Conditionals and Control Flow</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-relational-operators"><i class="fa fa-check"></i><b>2.1.1</b> Video: Relational Operators</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intermediate-r.html"><a href="intermediate-r.html#equality"><i class="fa fa-check"></i><b>2.1.2</b> Equality</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intermediate-r.html"><a href="intermediate-r.html#greater-and-less-than"><i class="fa fa-check"></i><b>2.1.3</b> Greater and less than</a></li>
+<li class="chapter" data-level="2.1.4" data-path="intermediate-r.html"><a href="intermediate-r.html#compare-vectors"><i class="fa fa-check"></i><b>2.1.4</b> Compare vectors</a></li>
+<li class="chapter" data-level="2.1.5" data-path="intermediate-r.html"><a href="intermediate-r.html#compare-matrices"><i class="fa fa-check"></i><b>2.1.5</b> Compare matrices</a></li>
+<li class="chapter" data-level="2.1.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-logical-operators"><i class="fa fa-check"></i><b>2.1.6</b> Video: Logical Operators</a></li>
+<li class="chapter" data-level="2.1.7" data-path="intermediate-r.html"><a href="intermediate-r.html#and"><i class="fa fa-check"></i><b>2.1.7</b> &amp; and |</a></li>
+<li class="chapter" data-level="2.1.8" data-path="intermediate-r.html"><a href="intermediate-r.html#and-2"><i class="fa fa-check"></i><b>2.1.8</b> &amp; and | (2)</a></li>
+<li class="chapter" data-level="2.1.9" data-path="intermediate-r.html"><a href="intermediate-r.html#question-reverse-the-result"><i class="fa fa-check"></i><b>2.1.9</b> Question: Reverse the result: !</a></li>
+<li class="chapter" data-level="2.1.10" data-path="intermediate-r.html"><a href="intermediate-r.html#blend-it-all-together"><i class="fa fa-check"></i><b>2.1.10</b> Blend it all together</a></li>
+<li class="chapter" data-level="2.1.11" data-path="intermediate-r.html"><a href="intermediate-r.html#video-conditional-statements"><i class="fa fa-check"></i><b>2.1.11</b> Video: Conditional Statements</a></li>
+<li class="chapter" data-level="2.1.12" data-path="intermediate-r.html"><a href="intermediate-r.html#the-if-statement"><i class="fa fa-check"></i><b>2.1.12</b> The if statement</a></li>
+<li class="chapter" data-level="2.1.13" data-path="intermediate-r.html"><a href="intermediate-r.html#add-an-else"><i class="fa fa-check"></i><b>2.1.13</b> Add an else</a></li>
+<li class="chapter" data-level="2.1.14" data-path="intermediate-r.html"><a href="intermediate-r.html#customize-further-else-if"><i class="fa fa-check"></i><b>2.1.14</b> Customize further: else if</a></li>
+<li class="chapter" data-level="2.1.15" data-path="intermediate-r.html"><a href="intermediate-r.html#question-else-if-2.0"><i class="fa fa-check"></i><b>2.1.15</b> Question: Else if 2.0</a></li>
+<li class="chapter" data-level="2.1.16" data-path="intermediate-r.html"><a href="intermediate-r.html#take-control"><i class="fa fa-check"></i><b>2.1.16</b> Take control!</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intermediate-r.html"><a href="intermediate-r.html#loops"><i class="fa fa-check"></i><b>2.2</b> Loops</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-while-loop"><i class="fa fa-check"></i><b>2.2.1</b> Video: While loop</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intermediate-r.html"><a href="intermediate-r.html#write-a-while-loop"><i class="fa fa-check"></i><b>2.2.2</b> Write a while loop</a></li>
+<li class="chapter" data-level="2.2.3" data-path="intermediate-r.html"><a href="intermediate-r.html#throw-in-more-conditionals"><i class="fa fa-check"></i><b>2.2.3</b> Throw in more conditionals</a></li>
+<li class="chapter" data-level="2.2.4" data-path="intermediate-r.html"><a href="intermediate-r.html#stop-the-while-loop-break"><i class="fa fa-check"></i><b>2.2.4</b> Stop the while loop: break</a></li>
+<li class="chapter" data-level="2.2.5" data-path="intermediate-r.html"><a href="intermediate-r.html#build-a-while-loop-from-scratch"><i class="fa fa-check"></i><b>2.2.5</b> Build a while loop from scratch</a></li>
+<li class="chapter" data-level="2.2.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-for-loop"><i class="fa fa-check"></i><b>2.2.6</b> Video: For loop</a></li>
+<li class="chapter" data-level="2.2.7" data-path="intermediate-r.html"><a href="intermediate-r.html#loop-over-a-list"><i class="fa fa-check"></i><b>2.2.7</b> Loop over a list</a></li>
+<li class="chapter" data-level="2.2.8" data-path="intermediate-r.html"><a href="intermediate-r.html#loop-over-a-matrix"><i class="fa fa-check"></i><b>2.2.8</b> Loop over a matrix</a></li>
+<li class="chapter" data-level="2.2.9" data-path="intermediate-r.html"><a href="intermediate-r.html#mix-it-up-with-control-flow"><i class="fa fa-check"></i><b>2.2.9</b> Mix it up with control flow</a></li>
+<li class="chapter" data-level="2.2.10" data-path="intermediate-r.html"><a href="intermediate-r.html#next-you-break-it"><i class="fa fa-check"></i><b>2.2.10</b> Next, you break it</a></li>
+<li class="chapter" data-level="2.2.11" data-path="intermediate-r.html"><a href="intermediate-r.html#build-a-for-loop-from-scratch"><i class="fa fa-check"></i><b>2.2.11</b> Build a for loop from scratch</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intermediate-r.html"><a href="intermediate-r.html#functions"><i class="fa fa-check"></i><b>2.3</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-introduction-to-functions"><i class="fa fa-check"></i><b>2.3.1</b> Video: Introduction to functions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intermediate-r.html"><a href="intermediate-r.html#function-documentation"><i class="fa fa-check"></i><b>2.3.2</b> Function documentation</a></li>
+<li class="chapter" data-level="2.3.3" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function"><i class="fa fa-check"></i><b>2.3.3</b> Use a function</a></li>
+<li class="chapter" data-level="2.3.4" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function-2"><i class="fa fa-check"></i><b>2.3.4</b> Use a function (2)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="intermediate-r.html"><a href="intermediate-r.html#use-a-function-3"><i class="fa fa-check"></i><b>2.3.5</b> Use a function (3)</a></li>
+<li class="chapter" data-level="2.3.6" data-path="intermediate-r.html"><a href="intermediate-r.html#functions-inside-functions"><i class="fa fa-check"></i><b>2.3.6</b> Functions inside functions</a></li>
+<li class="chapter" data-level="2.3.7" data-path="intermediate-r.html"><a href="intermediate-r.html#question-required-or-optional"><i class="fa fa-check"></i><b>2.3.7</b> Question: Required, or optional?</a></li>
+<li class="chapter" data-level="2.3.8" data-path="intermediate-r.html"><a href="intermediate-r.html#video-writing-functions"><i class="fa fa-check"></i><b>2.3.8</b> Video: Writing functions</a></li>
+<li class="chapter" data-level="2.3.9" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function"><i class="fa fa-check"></i><b>2.3.9</b> Write your own function</a></li>
+<li class="chapter" data-level="2.3.10" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function-2"><i class="fa fa-check"></i><b>2.3.10</b> Write your own function (2)</a></li>
+<li class="chapter" data-level="2.3.11" data-path="intermediate-r.html"><a href="intermediate-r.html#write-your-own-function-3"><i class="fa fa-check"></i><b>2.3.11</b> Write your own function (3)</a></li>
+<li class="chapter" data-level="2.3.12" data-path="intermediate-r.html"><a href="intermediate-r.html#question-function-scoping"><i class="fa fa-check"></i><b>2.3.12</b> Question: Function scoping</a></li>
+<li class="chapter" data-level="2.3.13" data-path="intermediate-r.html"><a href="intermediate-r.html#question-r-passes-arguments-by-value"><i class="fa fa-check"></i><b>2.3.13</b> Question: R passes arguments by value</a></li>
+<li class="chapter" data-level="2.3.14" data-path="intermediate-r.html"><a href="intermediate-r.html#r-you-functional"><i class="fa fa-check"></i><b>2.3.14</b> R you functional?</a></li>
+<li class="chapter" data-level="2.3.15" data-path="intermediate-r.html"><a href="intermediate-r.html#r-you-functional-2"><i class="fa fa-check"></i><b>2.3.15</b> R you functional? (2)</a></li>
+<li class="chapter" data-level="2.3.16" data-path="intermediate-r.html"><a href="intermediate-r.html#video-r-packages"><i class="fa fa-check"></i><b>2.3.16</b> Video: R packages</a></li>
+<li class="chapter" data-level="2.3.17" data-path="intermediate-r.html"><a href="intermediate-r.html#load-an-r-package"><i class="fa fa-check"></i><b>2.3.17</b> Load an R Package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intermediate-r.html"><a href="intermediate-r.html#the-apply-family"><i class="fa fa-check"></i><b>2.4</b> The apply family</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-a-built-in-r-function"><i class="fa fa-check"></i><b>2.4.1</b> Use lapply with a built-in R function</a></li>
+<li class="chapter" data-level="2.4.2" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-your-own-function"><i class="fa fa-check"></i><b>2.4.2</b> Use lapply with your own function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="intermediate-r.html"><a href="intermediate-r.html#lapply-and-anonymous-functions"><i class="fa fa-check"></i><b>2.4.3</b> lapply and anonymous functions</a></li>
+<li class="chapter" data-level="2.4.4" data-path="intermediate-r.html"><a href="intermediate-r.html#use-lapply-with-additional-arguments"><i class="fa fa-check"></i><b>2.4.4</b> Use lapply with additional arguments</a></li>
+<li class="chapter" data-level="2.4.5" data-path="intermediate-r.html"><a href="intermediate-r.html#apply-functions-that-return-null"><i class="fa fa-check"></i><b>2.4.5</b> Apply functions that return NULL</a></li>
+<li class="chapter" data-level="2.4.6" data-path="intermediate-r.html"><a href="intermediate-r.html#video-sapply"><i class="fa fa-check"></i><b>2.4.6</b> Video: sapply()</a></li>
+<li class="chapter" data-level="2.4.7" data-path="intermediate-r.html"><a href="intermediate-r.html#how-to-use-sapply"><i class="fa fa-check"></i><b>2.4.7</b> How to use sapply</a></li>
+<li class="chapter" data-level="2.4.8" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-your-own-function"><i class="fa fa-check"></i><b>2.4.8</b> sapply with your own function</a></li>
+<li class="chapter" data-level="2.4.9" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-function-returning-vector"><i class="fa fa-check"></i><b>2.4.9</b> sapply with function returning vector</a></li>
+<li class="chapter" data-level="2.4.10" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-cant-simplify-now-what"><i class="fa fa-check"></i><b>2.4.10</b> sapply can’t simplify, now what?</a></li>
+<li class="chapter" data-level="2.4.11" data-path="intermediate-r.html"><a href="intermediate-r.html#sapply-with-functions-that-return-null"><i class="fa fa-check"></i><b>2.4.11</b> sapply with functions that return NULL</a></li>
+<li class="chapter" data-level="2.4.12" data-path="intermediate-r.html"><a href="intermediate-r.html#reverse-engineering-sapply"><i class="fa fa-check"></i><b>2.4.12</b> Reverse engineering sapply</a></li>
+<li class="chapter" data-level="2.4.13" data-path="intermediate-r.html"><a href="intermediate-r.html#video-vapply"><i class="fa fa-check"></i><b>2.4.13</b> Video: vapply</a></li>
+<li class="chapter" data-level="2.4.14" data-path="intermediate-r.html"><a href="intermediate-r.html#use-vapply"><i class="fa fa-check"></i><b>2.4.14</b> Use vapply</a></li>
+<li class="chapter" data-level="2.4.15" data-path="intermediate-r.html"><a href="intermediate-r.html#use-vapply-2"><i class="fa fa-check"></i><b>2.4.15</b> Use vapply (2)</a></li>
+<li class="chapter" data-level="2.4.16" data-path="intermediate-r.html"><a href="intermediate-r.html#from-sapply-to-vapply"><i class="fa fa-check"></i><b>2.4.16</b> From sapply to vapply</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intermediate-r.html"><a href="intermediate-r.html#utilities"><i class="fa fa-check"></i><b>2.5</b> Utilities</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="intermediate-r.html"><a href="intermediate-r.html#video-useful-functions"><i class="fa fa-check"></i><b>2.5.1</b> Video: Useful functions</a></li>
+<li class="chapter" data-level="2.5.2" data-path="intermediate-r.html"><a href="intermediate-r.html#mathematical-utilities"><i class="fa fa-check"></i><b>2.5.2</b> Mathematical utilities</a></li>
+<li class="chapter" data-level="2.5.3" data-path="intermediate-r.html"><a href="intermediate-r.html#find-the-error"><i class="fa fa-check"></i><b>2.5.3</b> Find the error</a></li>
+<li class="chapter" data-level="2.5.4" data-path="intermediate-r.html"><a href="intermediate-r.html#data-utilities"><i class="fa fa-check"></i><b>2.5.4</b> Data Utilities</a></li>
+<li class="chapter" data-level="2.5.5" data-path="intermediate-r.html"><a href="intermediate-r.html#find-the-error-2"><i class="fa fa-check"></i><b>2.5.5</b> Find the error (2)</a></li>
+<li class="chapter" data-level="2.5.6" data-path="intermediate-r.html"><a href="intermediate-r.html#beat-gauss-using-r"><i class="fa fa-check"></i><b>2.5.6</b> Beat Gauss using R</a></li>
+<li class="chapter" data-level="2.5.7" data-path="intermediate-r.html"><a href="intermediate-r.html#video-regular-expressions"><i class="fa fa-check"></i><b>2.5.7</b> Video: Regular expressions</a></li>
+<li class="chapter" data-level="2.5.8" data-path="intermediate-r.html"><a href="intermediate-r.html#grepl-grep"><i class="fa fa-check"></i><b>2.5.8</b> grepl &amp; grep</a></li>
+<li class="chapter" data-level="2.5.9" data-path="intermediate-r.html"><a href="intermediate-r.html#grepl-grep-2"><i class="fa fa-check"></i><b>2.5.9</b> grepl &amp; grep (2)</a></li>
+<li class="chapter" data-level="2.5.10" data-path="intermediate-r.html"><a href="intermediate-r.html#sub-gsub"><i class="fa fa-check"></i><b>2.5.10</b> sub &amp; gsub</a></li>
+<li class="chapter" data-level="2.5.11" data-path="intermediate-r.html"><a href="intermediate-r.html#sub-gsub-2"><i class="fa fa-check"></i><b>2.5.11</b> sub &amp; gsub (2)</a></li>
+<li class="chapter" data-level="2.5.12" data-path="intermediate-r.html"><a href="intermediate-r.html#video-times-dates"><i class="fa fa-check"></i><b>2.5.12</b> Video: Times &amp; Dates</a></li>
+<li class="chapter" data-level="2.5.13" data-path="intermediate-r.html"><a href="intermediate-r.html#right-here-right-now"><i class="fa fa-check"></i><b>2.5.13</b> Right here, right now</a></li>
+<li class="chapter" data-level="2.5.14" data-path="intermediate-r.html"><a href="intermediate-r.html#create-and-format-dates"><i class="fa fa-check"></i><b>2.5.14</b> Create and format dates</a></li>
+<li class="chapter" data-level="2.5.15" data-path="intermediate-r.html"><a href="intermediate-r.html#create-and-format-times"><i class="fa fa-check"></i><b>2.5.15</b> Create and format times</a></li>
+<li class="chapter" data-level="2.5.16" data-path="intermediate-r.html"><a href="intermediate-r.html#calculations-with-dates"><i class="fa fa-check"></i><b>2.5.16</b> Calculations with Dates</a></li>
+<li class="chapter" data-level="2.5.17" data-path="intermediate-r.html"><a href="intermediate-r.html#calculations-with-times"><i class="fa fa-check"></i><b>2.5.17</b> Calculations with Times</a></li>
+<li class="chapter" data-level="2.5.18" data-path="intermediate-r.html"><a href="intermediate-r.html#time-is-of-the-essence"><i class="fa fa-check"></i><b>2.5.18</b> Time is of the essence</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>3</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-markdown.html"><a href="r-markdown.html#getting-started-with-r-markdown"><i class="fa fa-check"></i><b>3.1</b> Getting started with R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-markdown.html"><a href="r-markdown.html#video-introduction-to-r-markdown"><i class="fa fa-check"></i><b>3.1.1</b> Video: Introduction to R Markdown</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-markdown.html"><a href="r-markdown.html#creating-your-first-r-markdown-file"><i class="fa fa-check"></i><b>3.1.2</b> Creating your first R Markdown file</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-markdown.html"><a href="r-markdown.html#adding-code-chunks-to-your-file"><i class="fa fa-check"></i><b>3.1.3</b> Adding code chunks to your file</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-markdown.html"><a href="r-markdown.html#video-adding-and-formatting-text"><i class="fa fa-check"></i><b>3.1.4</b> Video: Adding and formatting text</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-markdown.html"><a href="r-markdown.html#question-formatting-text"><i class="fa fa-check"></i><b>3.1.5</b> Question: Formatting text</a></li>
+<li class="chapter" data-level="3.1.6" data-path="r-markdown.html"><a href="r-markdown.html#adding-sections-to-your-report"><i class="fa fa-check"></i><b>3.1.6</b> Adding sections to your report</a></li>
+<li class="chapter" data-level="3.1.7" data-path="r-markdown.html"><a href="r-markdown.html#question-including-links-and-images"><i class="fa fa-check"></i><b>3.1.7</b> Question: Including links and images</a></li>
+<li class="chapter" data-level="3.1.8" data-path="r-markdown.html"><a href="r-markdown.html#video-the-yaml-header"><i class="fa fa-check"></i><b>3.1.8</b> Video: The YAML header</a></li>
+<li class="chapter" data-level="3.1.9" data-path="r-markdown.html"><a href="r-markdown.html#editing-the-yaml-header"><i class="fa fa-check"></i><b>3.1.9</b> Editing the YAML header</a></li>
+<li class="chapter" data-level="3.1.10" data-path="r-markdown.html"><a href="r-markdown.html#formatting-the-date"><i class="fa fa-check"></i><b>3.1.10</b> Formatting the date</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-markdown.html"><a href="r-markdown.html#adding-analyses-and-visualizations"><i class="fa fa-check"></i><b>3.2</b> Adding Analyses and Visualizations</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-markdown.html"><a href="r-markdown.html#video-analyzing-the-data"><i class="fa fa-check"></i><b>3.2.1</b> Video: Analyzing the data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-markdown.html"><a href="r-markdown.html#filtering-for-a-specific-country"><i class="fa fa-check"></i><b>3.2.2</b> Filtering for a specific country</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-markdown.html"><a href="r-markdown.html#filtering-for-a-specific-year"><i class="fa fa-check"></i><b>3.2.3</b> Filtering for a specific year</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-markdown.html"><a href="r-markdown.html#referencing-code-results-in-the-report"><i class="fa fa-check"></i><b>3.2.4</b> Referencing code results in the report</a></li>
+<li class="chapter" data-level="3.2.5" data-path="r-markdown.html"><a href="r-markdown.html#video-adding-plots"><i class="fa fa-check"></i><b>3.2.5</b> Video: Adding plots</a></li>
+<li class="chapter" data-level="3.2.6" data-path="r-markdown.html"><a href="r-markdown.html#visualizing-the-investment-annual-summary-data"><i class="fa fa-check"></i><b>3.2.6</b> Visualizing the Investment Annual Summary data</a></li>
+<li class="chapter" data-level="3.2.7" data-path="r-markdown.html"><a href="r-markdown.html#visualizing-all-projects-for-one-country"><i class="fa fa-check"></i><b>3.2.7</b> Visualizing all projects for one country</a></li>
+<li class="chapter" data-level="3.2.8" data-path="r-markdown.html"><a href="r-markdown.html#visualizing-all-projects-for-one-country-and-year"><i class="fa fa-check"></i><b>3.2.8</b> Visualizing all projects for one country and year</a></li>
+<li class="chapter" data-level="3.2.9" data-path="r-markdown.html"><a href="r-markdown.html#video-plot-options"><i class="fa fa-check"></i><b>3.2.9</b> Video: Plot options</a></li>
+<li class="chapter" data-level="3.2.10" data-path="r-markdown.html"><a href="r-markdown.html#setting-chunk-options-globally"><i class="fa fa-check"></i><b>3.2.10</b> Setting chunk options globally</a></li>
+<li class="chapter" data-level="3.2.11" data-path="r-markdown.html"><a href="r-markdown.html#setting-chunk-options-locally"><i class="fa fa-check"></i><b>3.2.11</b> Setting chunk options locally</a></li>
+<li class="chapter" data-level="3.2.12" data-path="r-markdown.html"><a href="r-markdown.html#adding-figure-captions"><i class="fa fa-check"></i><b>3.2.12</b> Adding figure captions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-markdown.html"><a href="r-markdown.html#improving-the-report"><i class="fa fa-check"></i><b>3.3</b> Improving the Report</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-markdown.html"><a href="r-markdown.html#video-organizing-the-report"><i class="fa fa-check"></i><b>3.3.1</b> Video: Organizing the report</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-bulleted-list"><i class="fa fa-check"></i><b>3.3.2</b> Creating a bulleted list</a></li>
+<li class="chapter" data-level="3.3.3" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-numbered-list"><i class="fa fa-check"></i><b>3.3.3</b> Creating a numbered list</a></li>
+<li class="chapter" data-level="3.3.4" data-path="r-markdown.html"><a href="r-markdown.html#adding-a-table"><i class="fa fa-check"></i><b>3.3.4</b> Adding a table</a></li>
+<li class="chapter" data-level="3.3.5" data-path="r-markdown.html"><a href="r-markdown.html#video-code-chunk-options"><i class="fa fa-check"></i><b>3.3.5</b> Video: Code chunk options</a></li>
+<li class="chapter" data-level="3.3.6" data-path="r-markdown.html"><a href="r-markdown.html#question-comparing-code-chunk-options"><i class="fa fa-check"></i><b>3.3.6</b> Question: Comparing code chunk options</a></li>
+<li class="chapter" data-level="3.3.7" data-path="r-markdown.html"><a href="r-markdown.html#collapsing-blocks-in-the-knit-report"><i class="fa fa-check"></i><b>3.3.7</b> Collapsing blocks in the knit report</a></li>
+<li class="chapter" data-level="3.3.8" data-path="r-markdown.html"><a href="r-markdown.html#modifying-the-report-using-include-and-echo"><i class="fa fa-check"></i><b>3.3.8</b> Modifying the report using include and echo</a></li>
+<li class="chapter" data-level="3.3.9" data-path="r-markdown.html"><a href="r-markdown.html#video-warnings-messages-and-errors"><i class="fa fa-check"></i><b>3.3.9</b> Video: Warnings, messages, and errors</a></li>
+<li class="chapter" data-level="3.3.10" data-path="r-markdown.html"><a href="r-markdown.html#excluding-messages"><i class="fa fa-check"></i><b>3.3.10</b> Excluding messages</a></li>
+<li class="chapter" data-level="3.3.11" data-path="r-markdown.html"><a href="r-markdown.html#excluding-warnings"><i class="fa fa-check"></i><b>3.3.11</b> Excluding warnings</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-report"><i class="fa fa-check"></i><b>3.4</b> Customizing the Report</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-markdown.html"><a href="r-markdown.html#video-adding-a-table-of-contents"><i class="fa fa-check"></i><b>3.4.1</b> Video: Adding a table of contents</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-markdown.html"><a href="r-markdown.html#adding-the-table-of-contents"><i class="fa fa-check"></i><b>3.4.2</b> Adding the table of contents</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-markdown.html"><a href="r-markdown.html#specifying-headers-and-number-sectioning"><i class="fa fa-check"></i><b>3.4.3</b> Specifying headers and number sectioning</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-markdown.html"><a href="r-markdown.html#adding-table-of-contents-options"><i class="fa fa-check"></i><b>3.4.4</b> Adding table of contents options</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-markdown.html"><a href="r-markdown.html#video-creating-a-report-with-a-parameter"><i class="fa fa-check"></i><b>3.4.5</b> Video: Creating a report with a parameter</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-markdown.html"><a href="r-markdown.html#adding-a-parameter-to-the-report"><i class="fa fa-check"></i><b>3.4.6</b> Adding a parameter to the report</a></li>
+<li class="chapter" data-level="3.4.7" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-report-using-a-parameter"><i class="fa fa-check"></i><b>3.4.7</b> Creating a new report using a parameter</a></li>
+<li class="chapter" data-level="3.4.8" data-path="r-markdown.html"><a href="r-markdown.html#video-multiple-parameters"><i class="fa fa-check"></i><b>3.4.8</b> Video: Multiple parameters</a></li>
+<li class="chapter" data-level="3.4.9" data-path="r-markdown.html"><a href="r-markdown.html#adding-multiple-parameters-to-the-report"><i class="fa fa-check"></i><b>3.4.9</b> Adding multiple parameters to the report</a></li>
+<li class="chapter" data-level="3.4.10" data-path="r-markdown.html"><a href="r-markdown.html#creating-a-new-report-using-multiple-parameters"><i class="fa fa-check"></i><b>3.4.10</b> Creating a new report using multiple parameters</a></li>
+<li class="chapter" data-level="3.4.11" data-path="r-markdown.html"><a href="r-markdown.html#video-customizing-the-report"><i class="fa fa-check"></i><b>3.4.11</b> Video: Customizing the report</a></li>
+<li class="chapter" data-level="3.4.12" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-report-style"><i class="fa fa-check"></i><b>3.4.12</b> Customizing the report style</a></li>
+<li class="chapter" data-level="3.4.13" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-header-and-table-of-contents"><i class="fa fa-check"></i><b>3.4.13</b> Customizing the header and table of contents</a></li>
+<li class="chapter" data-level="3.4.14" data-path="r-markdown.html"><a href="r-markdown.html#customizing-the-title-author-and-date"><i class="fa fa-check"></i><b>3.4.14</b> Customizing the title, author, and date</a></li>
+<li class="chapter" data-level="3.4.15" data-path="r-markdown.html"><a href="r-markdown.html#referencing-the-css-file"><i class="fa fa-check"></i><b>3.4.15</b> Referencing the CSS file</a></li>
+<li class="chapter" data-level="3.4.16" data-path="r-markdown.html"><a href="r-markdown.html#video-congratulations"><i class="fa fa-check"></i><b>3.4.16</b> Video: Congratulations!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>4</b> Data Manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#transforming-data-with-dplyr"><i class="fa fa-check"></i><b>4.1</b> Transforming Data with dplyr</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-counties-dataset"><i class="fa fa-check"></i><b>4.1.1</b> Video: The counties dataset</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-understanding-your-data"><i class="fa fa-check"></i><b>4.1.2</b> Question: Understanding your data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-columns"><i class="fa fa-check"></i><b>4.1.3</b> Selecting columns</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-filter-and-arrange-verbs"><i class="fa fa-check"></i><b>4.1.4</b> Video: The filter and arrange verbs</a></li>
+<li class="chapter" data-level="4.1.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arranging-observations"><i class="fa fa-check"></i><b>4.1.5</b> Arranging observations</a></li>
+<li class="chapter" data-level="4.1.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filtering-for-conditions"><i class="fa fa-check"></i><b>4.1.6</b> Filtering for conditions</a></li>
+<li class="chapter" data-level="4.1.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filtering-and-arranging"><i class="fa fa-check"></i><b>4.1.7</b> Filtering and arranging</a></li>
+<li class="chapter" data-level="4.1.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-mutate"><i class="fa fa-check"></i><b>4.1.8</b> Video: Mutate</a></li>
+<li class="chapter" data-level="4.1.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#calculating-the-number-of-government-employees"><i class="fa fa-check"></i><b>4.1.9</b> Calculating the number of government employees</a></li>
+<li class="chapter" data-level="4.1.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#calculating-the-percentage-of-women-in-a-county"><i class="fa fa-check"></i><b>4.1.10</b> Calculating the percentage of women in a county</a></li>
+<li class="chapter" data-level="4.1.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select-mutate-filter-and-arrange"><i class="fa fa-check"></i><b>4.1.11</b> Select, mutate, filter, and arrange</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>4.2</b> Aggregating Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-count-verb"><i class="fa fa-check"></i><b>4.2.1</b> Video: The count verb</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#counting-by-region"><i class="fa fa-check"></i><b>4.2.2</b> Counting by region</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#counting-citizens-by-state"><i class="fa fa-check"></i><b>4.2.3</b> Counting citizens by state</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#mutating-and-counting"><i class="fa fa-check"></i><b>4.2.4</b> Mutating and counting</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-group-by-summarize-and-ungroup-verbs"><i class="fa fa-check"></i><b>4.2.5</b> Video: The group by, summarize and ungroup verbs</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-by-state"><i class="fa fa-check"></i><b>4.2.6</b> Summarizing by state</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summarizing-by-state-and-region"><i class="fa fa-check"></i><b>4.2.7</b> Summarizing by state and region</a></li>
+<li class="chapter" data-level="4.2.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-top_n-verb"><i class="fa fa-check"></i><b>4.2.8</b> Video: The top_n verb</a></li>
+<li class="chapter" data-level="4.2.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-a-county-from-each-region"><i class="fa fa-check"></i><b>4.2.9</b> Selecting a county from each region</a></li>
+<li class="chapter" data-level="4.2.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#finding-the-highest-income-state-in-each-region"><i class="fa fa-check"></i><b>4.2.10</b> Finding the highest-income state in each region</a></li>
+<li class="chapter" data-level="4.2.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-summarize-top_n-and-count-together"><i class="fa fa-check"></i><b>4.2.11</b> Using summarize, top_n, and count together</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-and-transforming-data"><i class="fa fa-check"></i><b>4.3</b> Selecting and Transforming Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-selecting"><i class="fa fa-check"></i><b>4.3.1</b> Video: Selecting</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#selecting-columns-1"><i class="fa fa-check"></i><b>4.3.2</b> Selecting columns</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#select-helpers"><i class="fa fa-check"></i><b>4.3.3</b> Select helpers</a></li>
+<li class="chapter" data-level="4.3.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-rename-verb"><i class="fa fa-check"></i><b>4.3.4</b> Video: The rename verb</a></li>
+<li class="chapter" data-level="4.3.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#renaming-a-column-after-count"><i class="fa fa-check"></i><b>4.3.5</b> Renaming a column after count</a></li>
+<li class="chapter" data-level="4.3.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#renaming-a-column-as-part-of-a-select"><i class="fa fa-check"></i><b>4.3.6</b> Renaming a column as part of a select</a></li>
+<li class="chapter" data-level="4.3.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-transmute-verb"><i class="fa fa-check"></i><b>4.3.7</b> Video: The transmute verb</a></li>
+<li class="chapter" data-level="4.3.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-choosing-among-verbs"><i class="fa fa-check"></i><b>4.3.8</b> Question: Choosing among verbs</a></li>
+<li class="chapter" data-level="4.3.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-transmute"><i class="fa fa-check"></i><b>4.3.9</b> Using transmute</a></li>
+<li class="chapter" data-level="4.3.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-matching-verbs-to-their-definitions"><i class="fa fa-check"></i><b>4.3.10</b> Question: Matching verbs to their definitions</a></li>
+<li class="chapter" data-level="4.3.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#choosing-among-the-four-verbs"><i class="fa fa-check"></i><b>4.3.11</b> Choosing among the four verbs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#case-study-the-babynames-dataset"><i class="fa fa-check"></i><b>4.4</b> Case Study: The babynames Dataset</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-the-babynames-data"><i class="fa fa-check"></i><b>4.4.1</b> Video: The babynames data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#filtering-and-arranging-for-one-year"><i class="fa fa-check"></i><b>4.4.2</b> Filtering and arranging for one year</a></li>
+<li class="chapter" data-level="4.4.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-top_n-with-babynames"><i class="fa fa-check"></i><b>4.4.3</b> Using top_n with babynames</a></li>
+<li class="chapter" data-level="4.4.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#visualizing-names-with-ggplot2"><i class="fa fa-check"></i><b>4.4.4</b> Visualizing names with ggplot2</a></li>
+<li class="chapter" data-level="4.4.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-grouped-mutates"><i class="fa fa-check"></i><b>4.4.5</b> Video: Grouped mutates</a></li>
+<li class="chapter" data-level="4.4.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#finding-the-year-each-name-is-most-common"><i class="fa fa-check"></i><b>4.4.6</b> Finding the year each name is most common</a></li>
+<li class="chapter" data-level="4.4.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#adding-the-total-and-maximum-for-each-name"><i class="fa fa-check"></i><b>4.4.7</b> Adding the total and maximum for each name</a></li>
+<li class="chapter" data-level="4.4.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#visualizing-the-normalized-change-in-popularity"><i class="fa fa-check"></i><b>4.4.8</b> Visualizing the normalized change in popularity</a></li>
+<li class="chapter" data-level="4.4.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-window-functions"><i class="fa fa-check"></i><b>4.4.9</b> Video: Window functions</a></li>
+<li class="chapter" data-level="4.4.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#using-ratios-to-describe-the-frequency-of-a-name"><i class="fa fa-check"></i><b>4.4.10</b> Using ratios to describe the frequency of a name</a></li>
+<li class="chapter" data-level="4.4.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#biggest-jumps-in-a-name"><i class="fa fa-check"></i><b>4.4.11</b> Biggest jumps in a name</a></li>
+<li class="chapter" data-level="4.4.12" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#video-contratulations"><i class="fa fa-check"></i><b>4.4.12</b> Video: Contratulations!</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#challenge-1"><i class="fa fa-check"></i><b>4.5</b> Challenge</a></li>
+<li class="chapter" data-level="4.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#solutions-1"><i class="fa fa-check"></i><b>4.6</b> Solutions</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-1"><i class="fa fa-check"></i><b>4.6.1</b> Question 1</a></li>
+<li class="chapter" data-level="4.6.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-2"><i class="fa fa-check"></i><b>4.6.2</b> Question 2</a></li>
+<li class="chapter" data-level="4.6.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-3"><i class="fa fa-check"></i><b>4.6.3</b> Question 3</a></li>
+<li class="chapter" data-level="4.6.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-4"><i class="fa fa-check"></i><b>4.6.4</b> Question 4</a></li>
+<li class="chapter" data-level="4.6.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-5"><i class="fa fa-check"></i><b>4.6.5</b> Question 5</a></li>
+<li class="chapter" data-level="4.6.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-6"><i class="fa fa-check"></i><b>4.6.6</b> Question 6</a></li>
+<li class="chapter" data-level="4.6.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-7"><i class="fa fa-check"></i><b>4.6.7</b> Question 7</a></li>
+<li class="chapter" data-level="4.6.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-8"><i class="fa fa-check"></i><b>4.6.8</b> Question 8</a></li>
+<li class="chapter" data-level="4.6.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#question-9"><i class="fa fa-check"></i><b>4.6.9</b> Question 9</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html"><i class="fa fa-check"></i><b>5</b> Cleaning Data in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#common-data-problems"><i class="fa fa-check"></i><b>5.1</b> 1: Common Data Problems</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-data-type-constraints"><i class="fa fa-check"></i><b>5.1.1</b> Video: Data type constraints</a></li>
+<li class="chapter" data-level="5.1.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#question-common-data-types"><i class="fa fa-check"></i><b>5.1.2</b> Question: Common data types</a></li>
+<li class="chapter" data-level="5.1.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#converting-data-types"><i class="fa fa-check"></i><b>5.1.3</b> Converting data types</a></li>
+<li class="chapter" data-level="5.1.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#trimming-strings"><i class="fa fa-check"></i><b>5.1.4</b> Trimming strings</a></li>
+<li class="chapter" data-level="5.1.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-range-constraints"><i class="fa fa-check"></i><b>5.1.5</b> Video: Range constraints</a></li>
+<li class="chapter" data-level="5.1.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#ride-duration-constraints"><i class="fa fa-check"></i><b>5.1.6</b> Ride duration constraints</a></li>
+<li class="chapter" data-level="5.1.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#back-to-the-future"><i class="fa fa-check"></i><b>5.1.7</b> Back to the future</a></li>
+<li class="chapter" data-level="5.1.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-uniqueness-constraints"><i class="fa fa-check"></i><b>5.1.8</b> Video: Uniqueness constraints</a></li>
+<li class="chapter" data-level="5.1.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#full-duplicates"><i class="fa fa-check"></i><b>5.1.9</b> Full duplicates</a></li>
+<li class="chapter" data-level="5.1.10" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#removing-partial-duplicates"><i class="fa fa-check"></i><b>5.1.10</b> Removing partial duplicates</a></li>
+<li class="chapter" data-level="5.1.11" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#aggregating-partial-duplicates"><i class="fa fa-check"></i><b>5.1.11</b> Aggregating partial duplicates</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#categorical-and-text-data"><i class="fa fa-check"></i><b>5.2</b> 2: Categorical and Text Data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-checking-membership"><i class="fa fa-check"></i><b>5.2.1</b> Video: Checking membership</a></li>
+<li class="chapter" data-level="5.2.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#question-members-only"><i class="fa fa-check"></i><b>5.2.2</b> Question: Members only</a></li>
+<li class="chapter" data-level="5.2.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#not-a-member"><i class="fa fa-check"></i><b>5.2.3</b> Not a member</a></li>
+<li class="chapter" data-level="5.2.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-categorical-data-problems"><i class="fa fa-check"></i><b>5.2.4</b> Video: Categorical data problems</a></li>
+<li class="chapter" data-level="5.2.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#identifying-inconsistency"><i class="fa fa-check"></i><b>5.2.5</b> Identifying inconsistency</a></li>
+<li class="chapter" data-level="5.2.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#correcting-inconsistency"><i class="fa fa-check"></i><b>5.2.6</b> Correcting inconsistency</a></li>
+<li class="chapter" data-level="5.2.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#collapsing-categories"><i class="fa fa-check"></i><b>5.2.7</b> Collapsing categories</a></li>
+<li class="chapter" data-level="5.2.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-cleaning-text-data"><i class="fa fa-check"></i><b>5.2.8</b> Video: Cleaning text data</a></li>
+<li class="chapter" data-level="5.2.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#detecting-inconsistent-text-data"><i class="fa fa-check"></i><b>5.2.9</b> Detecting inconsistent text data</a></li>
+<li class="chapter" data-level="5.2.10" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#replacing-and-removing"><i class="fa fa-check"></i><b>5.2.10</b> Replacing and removing</a></li>
+<li class="chapter" data-level="5.2.11" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#invalid-phone-numbers"><i class="fa fa-check"></i><b>5.2.11</b> Invalid phone numbers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#advanced-data-problems"><i class="fa fa-check"></i><b>5.3</b> 3: Advanced Data Problems</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#date-uniformity"><i class="fa fa-check"></i><b>5.3.1</b> Date uniformity</a></li>
+<li class="chapter" data-level="5.3.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#currency-uniformity"><i class="fa fa-check"></i><b>5.3.2</b> Currency uniformity</a></li>
+<li class="chapter" data-level="5.3.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-cross-field-validation"><i class="fa fa-check"></i><b>5.3.3</b> Video: Cross field validation</a></li>
+<li class="chapter" data-level="5.3.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#validating-totals"><i class="fa fa-check"></i><b>5.3.4</b> Validating totals</a></li>
+<li class="chapter" data-level="5.3.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#validating-age"><i class="fa fa-check"></i><b>5.3.5</b> Validating age</a></li>
+<li class="chapter" data-level="5.3.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-completeness"><i class="fa fa-check"></i><b>5.3.6</b> Video: Completeness</a></li>
+<li class="chapter" data-level="5.3.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#question-types-of-missingness"><i class="fa fa-check"></i><b>5.3.7</b> Question: Types of missingness</a></li>
+<li class="chapter" data-level="5.3.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#visualizing-missing-data"><i class="fa fa-check"></i><b>5.3.8</b> Visualizing missing data</a></li>
+<li class="chapter" data-level="5.3.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#treating-missing-data"><i class="fa fa-check"></i><b>5.3.9</b> Treating missing data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#record-linkage"><i class="fa fa-check"></i><b>5.4</b> 4: Record Linkage</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#calculating-distance"><i class="fa fa-check"></i><b>5.4.1</b> Calculating distance</a></li>
+<li class="chapter" data-level="5.4.2" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#small-distance-small-difference"><i class="fa fa-check"></i><b>5.4.2</b> Small distance, small difference</a></li>
+<li class="chapter" data-level="5.4.3" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#fixing-typos-with-string-distance"><i class="fa fa-check"></i><b>5.4.3</b> Fixing typos with string distance</a></li>
+<li class="chapter" data-level="5.4.4" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-generating-and-comparing-pairs"><i class="fa fa-check"></i><b>5.4.4</b> Video: Generating and comparing pairs</a></li>
+<li class="chapter" data-level="5.4.5" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#exercise-link-or-join"><i class="fa fa-check"></i><b>5.4.5</b> Exercise: Link or join?</a></li>
+<li class="chapter" data-level="5.4.6" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#pair-blocking"><i class="fa fa-check"></i><b>5.4.6</b> Pair blocking</a></li>
+<li class="chapter" data-level="5.4.7" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#comparing-pairs"><i class="fa fa-check"></i><b>5.4.7</b> Comparing pairs</a></li>
+<li class="chapter" data-level="5.4.8" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-scoring-and-linking"><i class="fa fa-check"></i><b>5.4.8</b> Video: Scoring and linking</a></li>
+<li class="chapter" data-level="5.4.9" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#score-then-select-or-select-then-score"><i class="fa fa-check"></i><b>5.4.9</b> Score then select or select then score?</a></li>
+<li class="chapter" data-level="5.4.10" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#putting-it-together"><i class="fa fa-check"></i><b>5.4.10</b> Putting it together</a></li>
+<li class="chapter" data-level="5.4.11" data-path="cleaning-data-in-r.html"><a href="cleaning-data-in-r.html#video-congratulations-1"><i class="fa fa-check"></i><b>5.4.11</b> Video: Congratulations!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introduction-to-data-visualization-with-ggplot2.html"><a href="introduction-to-data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>6</b> Introduction to Data Visualization with ggplot2</a></li>
+<li class="chapter" data-level="7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html"><i class="fa fa-check"></i><b>7</b> Exploratory Data Analysis in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#comics"><i class="fa fa-check"></i><b>7.1</b> Comics</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-exploring-categorical-data"><i class="fa fa-check"></i><b>7.1.1</b> Video: Exploring categorical data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-bar-chart-expectations"><i class="fa fa-check"></i><b>7.1.2</b> Question: Bar chart expectations</a></li>
+<li class="chapter" data-level="7.1.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#contingency-table-review"><i class="fa fa-check"></i><b>7.1.3</b> Contingency table review</a></li>
+<li class="chapter" data-level="7.1.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#dropping-levels"><i class="fa fa-check"></i><b>7.1.4</b> Dropping levels</a></li>
+<li class="chapter" data-level="7.1.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#side-by-side-barcharts"><i class="fa fa-check"></i><b>7.1.5</b> Side-by-side barcharts</a></li>
+<li class="chapter" data-level="7.1.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-bar-chart-interpretation"><i class="fa fa-check"></i><b>7.1.6</b> Question: Bar chart interpretation</a></li>
+<li class="chapter" data-level="7.1.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-counts-vs.-proportions"><i class="fa fa-check"></i><b>7.1.7</b> Video: Counts vs. proportions</a></li>
+<li class="chapter" data-level="7.1.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-conditional-proportions"><i class="fa fa-check"></i><b>7.1.8</b> Question: Conditional proportions</a></li>
+<li class="chapter" data-level="7.1.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#counts-vs.-proportions-2"><i class="fa fa-check"></i><b>7.1.9</b> Counts vs. proportions (2)</a></li>
+<li class="chapter" data-level="7.1.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-distribution-of-one-variable"><i class="fa fa-check"></i><b>7.1.10</b> Video: Distribution of one variable</a></li>
+<li class="chapter" data-level="7.1.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#marginal-barchart"><i class="fa fa-check"></i><b>7.1.11</b> Marginal barchart</a></li>
+<li class="chapter" data-level="7.1.12" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#conditional-barchart"><i class="fa fa-check"></i><b>7.1.12</b> Conditional barchart</a></li>
+<li class="chapter" data-level="7.1.13" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#improve-piechart"><i class="fa fa-check"></i><b>7.1.13</b> Improve piechart</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#cars"><i class="fa fa-check"></i><b>7.2</b> Cars</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-exploring-numerical-data"><i class="fa fa-check"></i><b>7.2.1</b> Video: Exploring numerical data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#faceted-histogram"><i class="fa fa-check"></i><b>7.2.2</b> Faceted histogram</a></li>
+<li class="chapter" data-level="7.2.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#boxplots-and-density-plots"><i class="fa fa-check"></i><b>7.2.3</b> Boxplots and density plots</a></li>
+<li class="chapter" data-level="7.2.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#compare-distribution-via-plots"><i class="fa fa-check"></i><b>7.2.4</b> Compare distribution via plots</a></li>
+<li class="chapter" data-level="7.2.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-distribution-of-one-variable-1"><i class="fa fa-check"></i><b>7.2.5</b> Video: Distribution of one variable</a></li>
+<li class="chapter" data-level="7.2.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#marginal-and-conditional-histograms"><i class="fa fa-check"></i><b>7.2.6</b> Marginal and conditional histograms</a></li>
+<li class="chapter" data-level="7.2.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-marginal-and-conditional-histograms-interpretation"><i class="fa fa-check"></i><b>7.2.7</b> Question: Marginal and conditional histograms interpretation</a></li>
+<li class="chapter" data-level="7.2.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#three-binwidths"><i class="fa fa-check"></i><b>7.2.8</b> Three binwidths</a></li>
+<li class="chapter" data-level="7.2.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-three-binwidths-interpretation"><i class="fa fa-check"></i><b>7.2.9</b> Question: Three binwidths interpretation</a></li>
+<li class="chapter" data-level="7.2.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-box-plots"><i class="fa fa-check"></i><b>7.2.10</b> Video: Box plots</a></li>
+<li class="chapter" data-level="7.2.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#box-plots-for-outliers"><i class="fa fa-check"></i><b>7.2.11</b> Box plots for outliers</a></li>
+<li class="chapter" data-level="7.2.12" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#plot-selection"><i class="fa fa-check"></i><b>7.2.12</b> Plot selection</a></li>
+<li class="chapter" data-level="7.2.13" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-visualization-in-higher-dimensions"><i class="fa fa-check"></i><b>7.2.13</b> Video: Visualization in higher dimensions</a></li>
+<li class="chapter" data-level="7.2.14" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#variable-plot"><i class="fa fa-check"></i><b>7.2.14</b> 3 variable plot</a></li>
+<li class="chapter" data-level="7.2.15" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-interpret-3-var-plot"><i class="fa fa-check"></i><b>7.2.15</b> Question: Interpret 3 var plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#gapminder"><i class="fa fa-check"></i><b>7.3</b> Gapminder</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-measures-of-center"><i class="fa fa-check"></i><b>7.3.1</b> Video: Measures of center</a></li>
+<li class="chapter" data-level="7.3.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-choice-of-center-measure"><i class="fa fa-check"></i><b>7.3.2</b> Question: Choice of center measure</a></li>
+<li class="chapter" data-level="7.3.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#calculate-center-measures"><i class="fa fa-check"></i><b>7.3.3</b> Calculate center measures</a></li>
+<li class="chapter" data-level="7.3.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-measures-of-variability"><i class="fa fa-check"></i><b>7.3.4</b> Video: Measures of variability</a></li>
+<li class="chapter" data-level="7.3.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#calculate-spread-measures"><i class="fa fa-check"></i><b>7.3.5</b> Calculate spread measures</a></li>
+<li class="chapter" data-level="7.3.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#choose-measures-for-center-and-spread"><i class="fa fa-check"></i><b>7.3.6</b> Choose measures for center and spread</a></li>
+<li class="chapter" data-level="7.3.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-shape-and-transformations"><i class="fa fa-check"></i><b>7.3.7</b> Video: Shape and transformations</a></li>
+<li class="chapter" data-level="7.3.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#describe-the-shape"><i class="fa fa-check"></i><b>7.3.8</b> Describe the shape</a></li>
+<li class="chapter" data-level="7.3.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#transformations"><i class="fa fa-check"></i><b>7.3.9</b> Transformations</a></li>
+<li class="chapter" data-level="7.3.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-outliers"><i class="fa fa-check"></i><b>7.3.10</b> Video: Outliers</a></li>
+<li class="chapter" data-level="7.3.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#identify-outliers"><i class="fa fa-check"></i><b>7.3.11</b> Identify outliers</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#email"><i class="fa fa-check"></i><b>7.4</b> Email</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-introducing-the-data"><i class="fa fa-check"></i><b>7.4.1</b> Video: Introducing the data</a></li>
+<li class="chapter" data-level="7.4.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and-num_char"><i class="fa fa-check"></i><b>7.4.2</b> Spam and num_char</a></li>
+<li class="chapter" data-level="7.4.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and-num_char-interpretation"><i class="fa fa-check"></i><b>7.4.3</b> Spam and num_char interpretation</a></li>
+<li class="chapter" data-level="7.4.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and"><i class="fa fa-check"></i><b>7.4.4</b> Spam and !!!</a></li>
+<li class="chapter" data-level="7.4.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#spam-and-interpretation"><i class="fa fa-check"></i><b>7.4.5</b> Spam and !!! interpretation</a></li>
+<li class="chapter" data-level="7.4.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-check-in-1"><i class="fa fa-check"></i><b>7.4.6</b> Video: Check-in 1</a></li>
+<li class="chapter" data-level="7.4.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#collapsing-levels"><i class="fa fa-check"></i><b>7.4.7</b> Collapsing levels</a></li>
+<li class="chapter" data-level="7.4.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#question-image-and-spam-interpretation"><i class="fa fa-check"></i><b>7.4.8</b> Question: Image and spam interpretation</a></li>
+<li class="chapter" data-level="7.4.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#data-integrity"><i class="fa fa-check"></i><b>7.4.9</b> Data Integrity</a></li>
+<li class="chapter" data-level="7.4.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#answering-questions-with-chains"><i class="fa fa-check"></i><b>7.4.10</b> Answering questions with chains</a></li>
+<li class="chapter" data-level="7.4.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-check-in-2"><i class="fa fa-check"></i><b>7.4.11</b> Video: Check-in 2</a></li>
+<li class="chapter" data-level="7.4.12" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#whats-in-a-number"><i class="fa fa-check"></i><b>7.4.12</b> What’s in a number?</a></li>
+<li class="chapter" data-level="7.4.13" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#whats-in-a-number-interpretation"><i class="fa fa-check"></i><b>7.4.13</b> What’s in a number interpretation</a></li>
+<li class="chapter" data-level="7.4.14" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-conclusion"><i class="fa fa-check"></i><b>7.4.14</b> Video: Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#challenge-2"><i class="fa fa-check"></i><b>7.5</b> Challenge</a></li>
+<li class="chapter" data-level="7.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#solutions-1-data-cleaning-and-summarizing-with-dplyr"><i class="fa fa-check"></i><b>7.6</b> Solutions 1: Data cleaning and summarizing with dplyr</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-the-united-nations-voting-dataset"><i class="fa fa-check"></i><b>7.6.1</b> Video: The United Nations Voting Dataset</a></li>
+<li class="chapter" data-level="7.6.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#filtering-rows"><i class="fa fa-check"></i><b>7.6.2</b> Filtering rows</a></li>
+<li class="chapter" data-level="7.6.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#adding-a-year-column"><i class="fa fa-check"></i><b>7.6.3</b> Adding a year column</a></li>
+<li class="chapter" data-level="7.6.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#adding-a-country-column"><i class="fa fa-check"></i><b>7.6.4</b> Adding a country column</a></li>
+<li class="chapter" data-level="7.6.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-grouping-and-summarizing"><i class="fa fa-check"></i><b>7.6.5</b> Video: Grouping and summarizing</a></li>
+<li class="chapter" data-level="7.6.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-the-full-dataset"><i class="fa fa-check"></i><b>7.6.6</b> Summarizing the full dataset</a></li>
+<li class="chapter" data-level="7.6.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-by-year"><i class="fa fa-check"></i><b>7.6.7</b> Summarizing by year</a></li>
+<li class="chapter" data-level="7.6.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-by-country"><i class="fa fa-check"></i><b>7.6.8</b> Summarizing by country</a></li>
+<li class="chapter" data-level="7.6.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-sorting-and-filtering-summarized-data"><i class="fa fa-check"></i><b>7.6.9</b> Video: Sorting and filtering summarized data</a></li>
+<li class="chapter" data-level="7.6.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#sorting-by-percentage-of-yes-votes"><i class="fa fa-check"></i><b>7.6.10</b> Sorting by percentage of “yes” votes</a></li>
+<li class="chapter" data-level="7.6.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#filtering-summarized-output"><i class="fa fa-check"></i><b>7.6.11</b> Filtering summarized output</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#solutions-2-visualization-with-ggplot2"><i class="fa fa-check"></i><b>7.7</b> Solutions 2: Visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-visualization-with-ggplot2"><i class="fa fa-check"></i><b>7.7.1</b> Video: Visualization with ggplot2</a></li>
+<li class="chapter" data-level="7.7.2" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#choosing-an-aesthetic"><i class="fa fa-check"></i><b>7.7.2</b> Choosing an aesthetic</a></li>
+<li class="chapter" data-level="7.7.3" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#other-ggplot2-layers"><i class="fa fa-check"></i><b>7.7.3</b> Other ggplot2 layers</a></li>
+<li class="chapter" data-level="7.7.4" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-visualizing-by-country"><i class="fa fa-check"></i><b>7.7.4</b> Video: Visualizing by country</a></li>
+<li class="chapter" data-level="7.7.5" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#summarizing-by-year-and-country"><i class="fa fa-check"></i><b>7.7.5</b> Summarizing by year and country</a></li>
+<li class="chapter" data-level="7.7.6" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#plotting-just-the-uk-over-time"><i class="fa fa-check"></i><b>7.7.6</b> Plotting just the UK over time</a></li>
+<li class="chapter" data-level="7.7.7" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#plotting-multiple-countries"><i class="fa fa-check"></i><b>7.7.7</b> Plotting multiple countries</a></li>
+<li class="chapter" data-level="7.7.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-faceting-by-country"><i class="fa fa-check"></i><b>7.7.8</b> Video: Faceting by country</a></li>
+<li class="chapter" data-level="7.7.9" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#faceting-the-time-series"><i class="fa fa-check"></i><b>7.7.9</b> Faceting the time series</a></li>
+<li class="chapter" data-level="7.7.10" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#faceting-with-free-y-axis"><i class="fa fa-check"></i><b>7.7.10</b> Faceting with free y-axis</a></li>
+<li class="chapter" data-level="7.7.11" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#choose-your-own-countries"><i class="fa fa-check"></i><b>7.7.11</b> Choose your own countries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#solutions-3-tidy-modeling-with-broom"><i class="fa fa-check"></i><b>7.8</b> Solutions 3: Tidy modeling with broom</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="exploratory-data-analysis-in-r.html"><a href="exploratory-data-analysis-in-r.html#video-linear-regression"><i class="fa fa-check"></i><b>7.8.1</b> Video: Linear regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="correlation-and-regression-in-r.html"><a href="correlation-and-regression-in-r.html"><i class="fa fa-check"></i><b>8</b> Correlation and Regression in R</a></li>
+<li class="chapter" data-level="9" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html"><i class="fa fa-check"></i><b>9</b> Intermediate Data Visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html#statistics"><i class="fa fa-check"></i><b>9.1</b> Statistics</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html#video-stats-with-geoms"><i class="fa fa-check"></i><b>9.1.1</b> Video: Stats with geoms</a></li>
+<li class="chapter" data-level="9.1.2" data-path="intermediate-data-visualization-with-ggplot2.html"><a href="intermediate-data-visualization-with-ggplot2.html#smoothing"><i class="fa fa-check"></i><b>9.1.2</b> Smoothing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tree-based-models-in-r.html"><a href="tree-based-models-in-r.html"><i class="fa fa-check"></i><b>10</b> Tree-Based Models in R</a></li>
+<li class="chapter" data-level="11" data-path="end-of-semester-project.html"><a href="end-of-semester-project.html"><i class="fa fa-check"></i><b>11</b> End-of-semester project</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Programming for Business</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-markdown" class="section level1" number="3">
+<h1><span class="header-section-number">Module 3</span> R Markdown</h1>
+<p>R Markdown is an easy to use formatting language you can use to reveal insights from data and author your findings as a PDF, HTML file, or Shiny app. In this course, you’ll learn how to create and modify each element of a Markdown file, including the code, text, and metadata. You’ll analyze data with dplyr, create visualizations with ggplot2, and author your analyses and plots as reports. You’ll gain hands-on experience of building reports as you work with real-world data from the International Finance Corporation (IFC)—learning how to efficiently organize reports using code chunk options, create lists and tables, and include a table of contents. By the end of the course, you’ll have the skills you need to add your brand’s fonts and colors using parameters and Cascading Style Sheets (CSS), to make your reports stand out.</p>
+<div id="getting-started-with-r-markdown" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Getting started with R Markdown</h2>
+<p>In this chapter, you’ll learn about the three components of a Markdown file: the code, the text, and the metadata. You’ll also learn to add and modify each of these elements to your own reports, as you create your first Markdown files.</p>
+<div id="video-introduction-to-r-markdown" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Video: Introduction to R Markdown</h3>
+</div>
+<div id="creating-your-first-r-markdown-file" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Creating your first R Markdown file</h3>
+<p>Throughout the course, you’ll be working on creating an investment report using two datasets from the World Bank IFC. The first dataset, <code>investment_annual_summary</code>, provides the summary of the dollars in millions provided to each region for each fiscal year, from 2012 to 2018. To get started on your report, you first want to print out the dataset.</p>
+<p>To create your report, you’ll need to edit the Markdown file shown on the right of the DataCamp console, as described in the instructions, then press the green “Knit HTML” button to knit the file and see the resulting HTML file. We’ll discuss other output types later in the course.</p>
+<p>Because this textbook is written using R Markdown, I’ll be including the R Markdown output for this chapter <a href="https://rpubs.com/ijcwebb/rprogforbus-module3">here</a>.</p>
+<p>In each exercise, the first code chunk in the Markdown file will load the <code>readr</code> package and the datasets you’ll be using in the exercise. You’ll learn more about the details of this code chunk later in the course, but you won’t need to modify it for any of the exercises in this chapter.</p>
+<p>As you can see from the output, adding the dataset name to the code chunk and knitting the document resulted in the dataset being printed in your report. You can also see from the report that the dataset has 42 rows, and that each row contains information about the `<code>fiscal_year</code>, <code>region</code>, and <code>dollars_in_millions</code> for the investments made that year.</p>
+</div>
+<div id="adding-code-chunks-to-your-file" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Adding code chunks to your file</h3>
+<p>When creating your own reports, one of the first things you’ll want to do is add some code! In the video, we discussed how you can add your own code by adding code chunks. Previously, we looked at the <code>investment_annual_summary</code> dataset we’ll be using throughout the course. In this exercise, let’s take a look at the annual summary dataset as well as the other dataset we’ll be using, <code>investment_services_projects</code>.</p>
+<p>From the report, you can see that the <code>investment_services_project</code> dataset contains information about each individual project and includes a lot more variables than the <code>investment_annual_summary</code> dataset. You’ll be exploring both of these datasets in much more depth in the coming exercises as you create your investment report!</p>
+</div>
+<div id="video-adding-and-formatting-text" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Video: Adding and formatting text</h3>
+</div>
+<div id="question-formatting-text" class="section level3" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Question: Formatting text</h3>
+</div>
+<div id="adding-sections-to-your-report" class="section level3" number="3.1.6">
+<h3><span class="header-section-number">3.1.6</span> Adding sections to your report</h3>
+<p>Previously, you added the names of the datasets you’ll be using to build your report to the Markdown file that will be used to create the report. Now, you’ll add some headers and text to the document to provide some additional detail about the datasets to the audience who will read the report.</p>
+<p>As you can see from the report, the more hashes you place in front of the text, the smaller the header will be when you knit the file.</p>
+</div>
+<div id="question-including-links-and-images" class="section level3" number="3.1.7">
+<h3><span class="header-section-number">3.1.7</span> Question: Including links and images</h3>
+</div>
+<div id="video-the-yaml-header" class="section level3" number="3.1.8">
+<h3><span class="header-section-number">3.1.8</span> Video: The YAML header</h3>
+</div>
+<div id="editing-the-yaml-header" class="section level3" number="3.1.9">
+<h3><span class="header-section-number">3.1.9</span> Editing the YAML header</h3>
+<p>The YAML header contains the metadata for your report and includes information like the title, author, and output format. In this exercise, you’ll update your report by adding some more detail about who created the report and when it was created.</p>
+<p>Remember, you can add the date to your report manually by entering the date as a string. However, adding the date with <code>Sys.Date()</code> is much more efficient and scalable, since it will ensure that the date is updated automatically each time you edit and knit your file.</p>
+</div>
+<div id="formatting-the-date" class="section level3" number="3.1.10">
+<h3><span class="header-section-number">3.1.10</span> Formatting the date</h3>
+<p>Now that your report includes some more high-level detail, you’d like to include the date using a different format. Be sure to refer to the tables of date formatting options from the video below.</p>
+<p><img src="C:/Users/user/Documents/R/RProgforBus/dateformattingoptiontables.png" /> Source: DataCamp</p>
+<p>Keep in mind that there are many text and numeric options for formatting the date of your report. Now that you understand each of the elements of the Markdown file, and how to modify them, you’re ready to add more detail to your Investment Report!</p>
+<hr />
+</div>
+</div>
+<div id="adding-analyses-and-visualizations" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Adding Analyses and Visualizations</h2>
+<p>In this chapter, you’ll use dplyr to begin to analyze the World Bank IFC datasets and include the analyses in your report. You’ll then create visualizations of the data using ggplot2 and learn to modify how the plots display in your knit report.</p>
+<div id="video-analyzing-the-data" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Video: Analyzing the data</h3>
+</div>
+<div id="filtering-for-a-specific-country" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Filtering for a specific country</h3>
+<p>Previously, you learned how to filter the data to find out more information about projects that occurred in Indonesia. Now, you’ll build a report that provides this information for another country that’s included in the <code>investment_services_project</code> data. In this exercise, you’ll begin filtering the data to gather information about projects that occurred in Brazil.</p>
+<p>From the report, you can see that there were a total of 88 projects in Brazil during the 2012 to 2018 fiscal years.</p>
+</div>
+<div id="filtering-for-a-specific-year" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Filtering for a specific year</h3>
+<p>Now that you’ve filtered the data for the projects in a specific country, you can filter the results further to look at all projects that occurred in the 2018 fiscal year. Recall, the fiscal year starts on July 1st of the previous year and ends on June 30th of the year of interest.</p>
+<p>Now your report includes information about all projects that occurred in Brazil during the 2012 to 2018 fiscal years and the projects that occurred in the 2018 fiscal year. Next, you’ll learn how to create and add plots to these reports, so that your audience is able to visualize this information when they read the final report.</p>
+</div>
+<div id="referencing-code-results-in-the-report" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Referencing code results in the report</h3>
+<p>In this exercise, you’ll use <code>summarize()</code> and <code>brazil_investment_projects_2018</code> to find the total investment amount for all projects in Brazil in the 2018 fiscal year. Then, you’ll add text to the report to include the information and reference the code results in the text, so that the calculated amount is printed in the text of the report when you knit the file.</p>
+<p>Now, if you update the analysis and the <code>brazil_investment_projects_2018_total</code> amount changes, you won’t need to modify the amount manually in the sentence that describes the information. Instead, since the object name is referenced in the text, the report will update automatically the next time the report is knit.</p>
+</div>
+<div id="video-adding-plots" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Video: Adding plots</h3>
+</div>
+<div id="visualizing-the-investment-annual-summary-data" class="section level3" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> Visualizing the Investment Annual Summary data</h3>
+<p>Now that you have all of the data ready for the report you’re creating, you can start making plots that will be included in the report to help your audience visualize the data when they’re reading the report. You’ll start by creating a line plot of the <code>investment_annual_summary</code> data.</p>
+<p>Notice that for each region, the highest investments were made during the 2013 or 2014 fiscal years. This is an example of an insight you might want to include as text in the final report.</p>
+</div>
+<div id="visualizing-all-projects-for-one-country" class="section level3" number="3.2.7">
+<h3><span class="header-section-number">3.2.7</span> Visualizing all projects for one country</h3>
+<p>Previously, you created a line plot using the <code>investment_annual_summary</code>. Now, you’ll use the data you filtered to create scatterplots that summarize the information about the projects that occurred in Brazil.</p>
+<p>Notice the warning message in the report that tells us that there were 7 rows removed that contain missing values. You’ll learn how to handle warning messages later in the course, but this may be something you’d want to include in the text of your report to specify which data points were excluded from the plot and why.</p>
+</div>
+<div id="visualizing-all-projects-for-one-country-and-year" class="section level3" number="3.2.8">
+<h3><span class="header-section-number">3.2.8</span> Visualizing all projects for one country and year</h3>
+<p>Now, you’ll create a line plot using the data that was filtered for all projects that occurred in Brazil in the 2018 fiscal year. In the previous exercises, the labels were added for you. While creating this plot, you’ll gain some experience adding your own labels that will appear when you knit the report.</p>
+<p>Now your report has plots for the Investment Annual Summary data, as well as for all projects in Brazil during the 2012 to 2018 fiscal years and all projects in the 2018 fiscal year. Now that you’ve created these plots for your report, you’ll learn some of the options you have for formatting how the plots appear in the final report.</p>
+</div>
+<div id="video-plot-options" class="section level3" number="3.2.9">
+<h3><span class="header-section-number">3.2.9</span> Video: Plot options</h3>
+</div>
+<div id="setting-chunk-options-globally" class="section level3" number="3.2.10">
+<h3><span class="header-section-number">3.2.10</span> Setting chunk options globally</h3>
+<p>Now that your plots are ready to include in your report, you can modify how they appear once the file is knit. Previously, you learned the difference between setting options globally and setting them locally. In this exercise, you’ll set options for the figures globally, which means the options will apply to all figures throughout the code chunks in the report.</p>
+<p>Recall, the options for <code>fig.align</code> are <code>'left'</code>, <code>'right'</code>, and <code>'center'</code>. These options can be set globally or locally, depending on whether or not you want all figures to appear uniformly throughout the report, or if you want the options to vary by figure.</p>
+</div>
+<div id="setting-chunk-options-locally" class="section level3" number="3.2.11">
+<h3><span class="header-section-number">3.2.11</span> Setting chunk options locally</h3>
+<p>When creating a report, you may want to set the chunk options locally so that the figure display in the final report varies. The <code>investment_annual_summary</code> data provides helpful background information, but the focus of the report is on projects in Brazil. In this exercise, you’ll modify the chunk options locally so that the plots that display information about projects in Brazil appear slightly larger in the final report than the plot that provides the overview of the Investment Annual Summary data.</p>
+<p>You can see in the final report that the plots that display information about projects in Brazil are slightly larger than the plot that provides the Investment Annual Summary overview. Notice that the <code>fig.align = center</code> option remained in the <code>setup</code> code chunk at the top, so this option has been set globally and determines the alignment for all figures in the report.</p>
+<p>Also note that you can override globally set options with locally set ones. For example, if you wanted all figures to display at 50% width except for two figures you wanted to be larger, you could include <code>out.width = '50%'</code> in the global options but <code>out.width = '95%'</code> in the local options of the two figures.</p>
+</div>
+<div id="adding-figure-captions" class="section level3" number="3.2.12">
+<h3><span class="header-section-number">3.2.12</span> Adding figure captions</h3>
+<p>Now that the figures have been modified, you’ll add some captions to label the figures and provide some information about what is displayed in each plot.</p>
+<p>Now you can see that each figure is labeled in the final report and includes a caption that describes what each plot displays.</p>
+<hr />
+</div>
+</div>
+<div id="improving-the-report" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Improving the Report</h2>
+<p>Now that you’ve learned how to add, label, and modify code chunks, you’ll learn about code chunk options. You can use these to determine whether the code and results appear in the knit report. You’ll also discover how to create lists and tables to include in your report.</p>
+<div id="video-organizing-the-report" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Video: Organizing the report</h3>
+</div>
+<div id="creating-a-bulleted-list" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Creating a bulleted list</h3>
+<p>Previously, you learned how to add text to your Markdown file to include additional information for your audience. Now, you’ll create a bulleted list to specify which regions are included in the <code>investment_annual_summary</code> data. Refer to the image below from the video to recall the list of regions that should be included in your table.</p>
+<p><img src="C:/Users/user/Documents/R/RProgforBus/Bulleted%20list%20of%20regions.png" /> Source: DataCamp</p>
+<p>Remember, you can structure the list formatting by adding indentation before an item on the list.</p>
+</div>
+<div id="creating-a-numbered-list" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Creating a numbered list</h3>
+<p>When adding a list to your report, you can use either bulleted or numbered lists. In this exercise, you’ll modify the bulleted list of regions from the previous exercise to create a numbered list.</p>
+<p>Adding a numbered list to the report is a helpful way to quickly display the total number of regions that are included in the data.</p>
+</div>
+<div id="adding-a-table" class="section level3" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Adding a table</h3>
+<p>Previously, you printed the datasets used in your report to your report so that the audience was able to look through the data themselves. Now, you’ll create a table of the <code>investment_region_summary</code> to display this information more clearly to your audience. The <code>investment_region_summary</code> provides the total of all investments for each region from the 2012 to 2018 fiscal years.</p>
+<p>Now your report begins with a list of all regions in the <code>investment_annual_summary</code> data, as well as a table that summarizes the total investments that were made to each region across the 2012 to 2018 fiscal years.</p>
+</div>
+<div id="video-code-chunk-options" class="section level3" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Video: Code chunk options</h3>
+</div>
+<div id="question-comparing-code-chunk-options" class="section level3" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Question: Comparing code chunk options</h3>
+<ul>
+<li><code>include=FALSE</code>: Code runs but does not appears in report, results do not appear.</li>
+<li><code>echo=FALSE</code>: Code runs but does not appear in the report, results appear.</li>
+<li><code>eval=FALSE</code>: Code appears in report but does not run, results do not appear.</li>
+</ul>
+<p>The other option you recently learned is <code>collapse</code>, which was the only option you’ve learned so far that has a default of <code>FALSE</code>.</p>
+</div>
+<div id="collapsing-blocks-in-the-knit-report" class="section level3" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Collapsing blocks in the knit report</h3>
+<p>By default, the <code>collapse</code> option is set to <code>FALSE</code>, and the code and any output appear in the knit file in separate blocks. You encountered this earlier when creating plots of the data. In this exercise, you’ll modify the Markdown file so that the code and resulting warning messages appear in the same block.</p>
+<p>Notice that the warning messages for the plots now appear as comments in the same block as the code that creates the plot, instead of being separated into an individual block. You’ll learn more about warning messages and how to specify whether or not they are included in the report soon!</p>
+</div>
+<div id="modifying-the-report-using-include-and-echo" class="section level3" number="3.3.8">
+<h3><span class="header-section-number">3.3.8</span> Modifying the report using include and echo</h3>
+<p>The exercises in the course have used <code>include = FALSE</code> to prevent the code and results of the <code>setup</code> and <code>data</code> chunks from appearing in the knit report. Although you won’t modify those options, since the code and results from those chunks should be excluded from the report, it’s important to note how they impact the final report.</p>
+<p>In this exercise, you’ll use the <code>echo</code> option to modify whether or not the code appears in the report.</p>
+<p>Even though the code no longer displays in the knit report, the results of the code still appears. This is an option you’ll want to use if your report is being written for a non-technical audience, who is interested in the results but may not be interested in the code itself. Notice that the warning messages that mention that data was excluded from the plots still appear in the knit report. Next, you’ll learn how to modify whether or not these warning messages are included in the report!</p>
+</div>
+<div id="video-warnings-messages-and-errors" class="section level3" number="3.3.9">
+<h3><span class="header-section-number">3.3.9</span> Video: Warnings, messages, and errors</h3>
+</div>
+<div id="excluding-messages" class="section level3" number="3.3.10">
+<h3><span class="header-section-number">3.3.10</span> Excluding messages</h3>
+<p>In the past, you haven’t encountered messages in the report because the <code>include</code> option has been set to <code>FALSE</code> in the <code>data</code> chunk to prevent the code or the results from the code from appearing in the report. In this exercise, you’ll use the <code>message</code> option to prevent messages from appearing in the report, while still including the code in the report.</p>
+<p>Notice that the code for the <code>data</code> chunk is now included without any of the messages that you would otherwise see when loading the data or packages used in the report.</p>
+</div>
+<div id="excluding-warnings" class="section level3" number="3.3.11">
+<h3><span class="header-section-number">3.3.11</span> Excluding warnings</h3>
+<p>Previously, you used the <code>collapse</code> option so that the code and resulting warning messages appear in the same block in the knit report. In this exercise, you’ll use the <code>warning</code> option to prevent warnings from appearing in the final report.</p>
+<p>Notice that DataCamp added a sentence before each of the code chunks that were impacted to let the audience know that: ‘Projects that do not have an associated investment amount are excluded from the plot’. If you are excluding any warning messages from the report, it’s important to include information about any data that is not included and why.</p>
+<hr />
+</div>
+</div>
+<div id="customizing-the-report" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Customizing the Report</h2>
+<p>In this final chapter, you’ll learn how to customize your report by adding a table of contents and adding a CSS file to the YAML header, to personalize reports with your brand’s fonts and colors. You’ll also learn how to efficiently create new reports from your data using parameters, which will save you time from manually updating existing reports to create new ones.</p>
+<div id="video-adding-a-table-of-contents" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Video: Adding a table of contents</h3>
+</div>
+<div id="adding-the-table-of-contents" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Adding the table of contents</h3>
+<p>Adding a table of contents to your report is a useful way to help your audience navigate through the different sections of your report. It provides an overview of what your report contains, and can help your audience navigate through the report easily. In this exercise, you’ll add a table of contents to your report to provide an overview of the topics that the report includes.</p>
+<p>Now your audience can reference the table of contents at the beginning of your report to understand the information that will be covered in the report.</p>
+</div>
+<div id="specifying-headers-and-number-sectioning" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Specifying headers and number sectioning</h3>
+<p>Now that you’ve added a table of contents, you’ll modify how it appears in the report and which information it includes. You’ll use <code>toc_depth</code> to specify the depth of headers that will be included in the table of contents and <code>number_sections</code> to add section numbering for the headers in the report.</p>
+<p>The headers were modified to start with a single hash before adding section numbering because, if the largest headers in the report start with two hashes, the section numbering will start with zeros. Remember that, for <code>toc_depth</code>, the default depth is <code>3</code> for HTML documents and <code>2</code> for PDF documents.</p>
+</div>
+<div id="adding-table-of-contents-options" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Adding table of contents options</h3>
+<p>When <code>toc_float</code> is included, the table of contents appears on the left side of the document and remains visible while the reader scrolls through the document. By default, it displays the largest header, will expand as someone is reading through the report or interacting with the table of contents to navigate to another section, and animates page scrolls when navigating the report.</p>
+<p>In this exercise, you’ll add <code>toc_float</code> and modify these settings using the <code>collapsed</code> and <code>smooth_scroll</code> fields so that the full table of contents remains visible and page scrolls are not animated.</p>
+<p>If you want to add <code>toc_float</code> to the report and keep the default <code>collapsed</code> and <code>smooth_scroll</code> options (both turned on, i.e. <code>TRUE</code>, by default), you can set the <code>toc_float</code> field to <code>true</code> in the YAML header.</p>
+</div>
+<div id="video-creating-a-report-with-a-parameter" class="section level3" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> Video: Creating a report with a parameter</h3>
+</div>
+<div id="adding-a-parameter-to-the-report" class="section level3" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> Adding a parameter to the report</h3>
+<p>In this exercise, you’ll add a parameter for <code>country</code> to the report and modify the existing code so that you can create new reports about the investment projects for any country included in the <code>investment_services_projects</code> data.</p>
+<p>Now that you’ve reviewed the code for your report, you’ll review the text and the YAML header of the document before creating a new report using the <code>country</code> parameter.</p>
+</div>
+<div id="creating-a-new-report-using-a-parameter" class="section level3" number="3.4.7">
+<h3><span class="header-section-number">3.4.7</span> Creating a new report using a parameter</h3>
+<p>Now that you’ve added a parameter to the document, you’ll create a new report for Bangladesh from the <code>investment_services_projects</code> data using the <code>country</code> parameter.</p>
+<p>Before knitting the report, you’ll review and modify the text of the document to ensure that the knit report will reflect the country that is specified in the parameter.</p>
+<p>Notice that by only modifying the parameter, you were able to create a new report for Bangladesh that includes all of the information that was previously provided for Brazil. When creating new documents using parameters, there may be some information you want to add that is specific to the new country and report, but parameters are an efficient and quick way to get started!</p>
+</div>
+<div id="video-multiple-parameters" class="section level3" number="3.4.8">
+<h3><span class="header-section-number">3.4.8</span> Video: Multiple parameters</h3>
+</div>
+<div id="adding-multiple-parameters-to-the-report" class="section level3" number="3.4.9">
+<h3><span class="header-section-number">3.4.9</span> Adding multiple parameters to the report</h3>
+<p>Previously, you added a parameter for <code>country</code> to create new reports to summarize information about the investment projects for any country included in the <code>investment_services_projects</code> data. Now, you’ll add parameters for the fiscal year and modify the existing code so that you can create new reports about the investment projects for any country and fiscal year from the <code>investment_services_projects</code> data.</p>
+<p>Now, you’ll be able to create a report for any country and fiscal year by modifying only the parameters in the YAML header!</p>
+</div>
+<div id="creating-a-new-report-using-multiple-parameters" class="section level3" number="3.4.10">
+<h3><span class="header-section-number">3.4.10</span> Creating a new report using multiple parameters</h3>
+<p>Now that you’ve added parameters to account for the fiscal year, you’ll create a new report for another country and fiscal year from the <code>investment_services_projects</code> data.</p>
+<p>Now you’re able to create new reports using multiple parameters by modifying only the information in the YAML header. As before, there may be some information you want to add that is specific to the country and fiscal year, but these parameters will help you get started on a new report!</p>
+</div>
+<div id="video-customizing-the-report" class="section level3" number="3.4.11">
+<h3><span class="header-section-number">3.4.11</span> Video: Customizing the report</h3>
+</div>
+<div id="customizing-the-report-style" class="section level3" number="3.4.12">
+<h3><span class="header-section-number">3.4.12</span> Customizing the report style</h3>
+<p>Now that you’ve learned how to customize the style of your report, you’ll begin to add specific fonts and colors to your existing report.</p>
+<p>Notice that the document background and code chunks in the knit file are modified to reflect the various fonts and colors you listed.</p>
+</div>
+<div id="customizing-the-header-and-table-of-contents" class="section level3" number="3.4.13">
+<h3><span class="header-section-number">3.4.13</span> Customizing the header and table of contents</h3>
+<p>In this exercise, you’ll continue to add styles by modifying the table of contents and header sections of the Markdown file.</p>
+<p>Notice the difference in appearance of the table of contents section. If you want to customize any of these sections further, you can add the properties you’ve used so far to any of the sections listed. For example, you can add <code>opactity</code> to the <code>pre</code> section to customize the code chunks, the same way that you did with the <code>#header</code> section.</p>
+</div>
+<div id="customizing-the-title-author-and-date" class="section level3" number="3.4.14">
+<h3><span class="header-section-number">3.4.14</span> Customizing the title, author, and date</h3>
+<p>Previously, you modified the header of the document using the <code>#header</code> section. Now, you’ll practice customizing the title, author, and date sections individually.</p>
+<p>In this version of the report, you used the same settings for the <code>h4.author</code> and <code>h4.date</code> sections, but you can use any colors or fonts you’d like with this syntax.</p>
+</div>
+<div id="referencing-the-css-file" class="section level3" number="3.4.15">
+<h3><span class="header-section-number">3.4.15</span> Referencing the CSS file</h3>
+<p>Rather than adding styles to each Markdown file within the file, you can create and reference a Cascading Style Sheet (CSS) file each time you create a new file that contains particular styles and fonts.</p>
+<p>In this exercise, the styles you’ve specified have been added to a CSS file called <code>styles.css</code>. You’ll reference this file in the YAML header instead of specifying the styles within the Markdown file.</p>
+<p>Notice that, although the styles are no longer listed within the Markdown file, the knit report still reflects all of the styles you’ve been adding over the past few exercises.</p>
+</div>
+<div id="video-congratulations" class="section level3" number="3.4.16">
+<h3><span class="header-section-number">3.4.16</span> Video: Congratulations!</h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intermediate-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-manipulation-with-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ijcwebb/wonderland/edit/master/03-markdown.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ijcwebb/wonderland/blob/master/03-markdown.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
