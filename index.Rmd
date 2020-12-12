@@ -1,8 +1,27 @@
 --- 
-title: "Alicein Wonderland"
+title: "Alice in Wonderland"
+author: "Iain Webb"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
 # Down the rabbit-hole
+
+What
+
+```{r chunk-label, echo = FALSE, fig.cap = 'A figure caption.'}
+1 + 1
+rnorm(10)  # 10 random numbers
+plot(dist ~ speed, cars)  # a scatterplot
+```
+
+hey
+
+Why
+
+```{r second, echo = TRUE, fig.cap = 'A second caption.'}
+1 + 1
+rnorm(10)  # 10 random numbers
+plot(dist ~ speed, cars)  # a scatterplot
+```
 

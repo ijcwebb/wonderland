@@ -1,0 +1,154 @@
+# Fourth Topic
+
+## Challenge 4
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr) # Load dplyr package
+library(ggplot2) # Load ggplot2 package
+library(ds4psy) # Load ds4psy package
+```
+
+```{r}
+sw <- dplyr::starwars # Create sw dataframe
+head(sw)
+```
+
+### Question 1
+
+```{r}
+dim(sw) # 1.a.
+
+dim.sw <- nrow(sw)*ncol(sw) # 1.b.
+```
+
+### Question 2
+
+```{r}
+na.cells <- sum(is.na(sw)) # 2.a.
+
+round(100*na.cells/dim.sw,1) # 2.b.
+
+colnames(sw[,colSums(is.na(sw)) == max(colSums(is.na(sw)))]) # 2.c.
+
+filter(sw, is.na(homeworld)==TRUE & (is.na(birth_year)==FALSE | is.na(mass)==FALSE))  # 2.d.
+```
+
+### Question 3
+
+```{r}
+length(unique(sw$species)) # 3.
+```
+
+### Question 4
+
+```{r}
+length(which(sw$species == "Human")) # 4.a.i
+
+sw %>% # 4.a.ii.
+  filter(species=="Human") %>% 
+  group_by(gender) %>% 
+  count()
+
+filter(sw, is.na(gender) | (gender != "male" & gender != "female")) %>% # 4.b.
+  count()
+
+sw %>% # 4.c.
+  group_by(species, gender) %>% # Creates piles of similarly sexed members of the same species
+  count() %>% # Produces a table of tallies of the above groups
+  group_by(species) %>% # Groups within this table of tallies
+  count() %>% # Produces a tally of the numbers of members of the groups above
+  filter(n > 1)
+```
+
+### Question 5
+
+```{r}
+tb <- sw %>% # 5.a.
+  group_by(gender) %>% 
+  count()
+
+my_cols <- unikn::usecol(c(Pinky, Seegruen, Seeblau, Grau))
+ggplot(sw, aes(x = gender)) + # 5.b.
+  geom_bar(aes(fill = gender)) +
+  labs(title = "Sex distribtion of the sw universe",
+       tag = "5.b.",
+       x = "Gender",
+       y = "Frequency",
+       caption = "Using raw data sw.") +
+  scale_fill_manual(name = "Gender:", values = my_cols, na.value = "black") +
+  ds4psy::theme_ds4psy()
+
+ggplot(tb, aes(x = gender, y = n)) + # 5.c., adding y=n to the aes()
+  geom_bar(aes(fill = gender), stat = "identity") + # Adding stat="identity" to the aes()
+  labs(title = "Sex distribtion of the sw universe",
+       tag = "5.c.",
+       x = "Gender",
+       y = "Frequency",
+       caption = "Using raw data sw.") +
+  scale_fill_manual(name = "Gender:", values = my_cols, na.value = "black") +
+  ds4psy::theme_ds4psy()
+```
+
+### Question 6
+
+```{r}
+sw %>% # 6.a.
+  group_by(homeworld) %>% 
+  count() %>% 
+  arrange(desc(n))
+
+sw %>% # 6.b.
+  filter(homeworld == "Naboo", eye_color == "orange") %>% 
+  summarise(n = n(),
+            mn_height =mean(height))
+```
+
+### Question 7
+
+```{r}
+sw %>% # 7.
+  filter(species == "Droid") %>% 
+  summarise(n = n(),
+            not_NA_h = sum(!is.na(height)),
+            md_height = median(height, na.rm=TRUE), 
+            mn_height = mean(height, na.rm=TRUE), 
+            sd_height = sd(height, na.rm=TRUE))
+```
+
+### Question 8
+
+```{r}
+h_m <- sw %>% # 8.a.
+  group_by(species) %>% 
+  summarise(mn_height = mean(height, na.rm=TRUE),
+            mn_mass = mean(mass, na.rm=TRUE))
+
+h_m %>% # 8.b.
+  arrange(mn_height) %>% 
+  slice(1:3) 
+
+h_m %>% # 8.c.
+  arrange(desc(mn_mass)) %>% 
+  slice(1:3)
+```
+
+### Question 9
+
+```{r}
+sw %>% # 9.a.
+  filter(!is.na(species)) %>% 
+  group_by(species) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n)) %>% 
+  slice(1:3)
+
+sw %>% # 9.b.
+  select(name, homeworld, mass) %>% 
+  group_by(homeworld) %>% 
+  mutate(mn_mass = mean(mass, na.rm = TRUE),
+         lighter = mass < (mn_mass*0.8)
+         ) %>% 
+  filter(lighter == TRUE)
+```
